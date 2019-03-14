@@ -5,10 +5,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Configurar ambiente
 
-- Download Node.js versão 8.
-- Após a instalação do Node.js, instalar Angular-cli: $ `npm install -g @angular/cli`
+- Download Node.js.
+- Após a instalação do Node.js, instalar Angular CLI: $ `npm install -g @angular/cli`
 - Clonar o repositório
-- No diretório do repositório, executar: $ `npm install`
+- No diretório do repositório, executar: $ `npm install` para instalar as dependências.(Necessário somente após clonar o repositório, ou adicionar uma nova dependência)
+- O backend está disponível no repositório: https://github.com/tarley/gtm-server.git
 
 ## Subir o Front
 
