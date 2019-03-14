@@ -3,6 +3,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
+## Boas práticas de comentário do Git:
+
+Seguir os padrões definidos em [https://udacity.github.io/git-styleguide/]
+
 ## Configurar ambiente
 
 - Download Node.js versão 8.
