@@ -3,14 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UsuarioModule } from './componentes/usuario/usuario.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UsuarioModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
