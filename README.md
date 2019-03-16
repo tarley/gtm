@@ -17,7 +17,7 @@ Seguir os padrões definidos em [https://udacity.github.io/git-styleguide/]
 
 ## Subir o Front
 
-- Pelo CMD executar o comando `ng serve` np diretório do projeto. A aplicação ficará disponível no endereço `http://localhost:4200/`.
+- Pelo CMD executar o comando `npm start` np diretório do projeto. A aplicação ficará disponível no endereço `http://localhost:4200/`.
 - As alterações no código serão compilados automaticamente e atualizado no navegador.
 
 ## Gerar código pelo Angular/CLI
