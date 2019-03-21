@@ -7,6 +7,7 @@ import { UsuarioModule } from './componentes/usuario/usuario.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { ToastModule } from 'primeng/toast';
     HttpClientModule,
     ToastModule,
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
