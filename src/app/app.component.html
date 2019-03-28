@@ -1,5 +1,10 @@
+<div *ngIf="isUsuarioAutenticado == true" id="menu">
+    <p-menu [class]="menu" [model]="items"></p-menu>
+</div>
+<div *ngIf="isUsuarioAutenticado == true">
+    <app-menu-superior></app-menu-superior>
+</div>
 <p-toast position="top-right"></p-toast>
-<app-menu-superior></app-menu-superior>
 <div class="container-conteudo">
     <router-outlet></router-outlet>
 </div>

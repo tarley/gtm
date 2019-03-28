@@ -1,5 +1,4 @@
-import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
-import { AuthGuard } from './guard/auth.guard';
+import { PacienteModule } from './componentes/paciente/paciente.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +13,11 @@ import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
 
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuModule } from 'primeng/menu';
+import { FormsModule } from '@angular/forms';
+import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,16 +25,22 @@ import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UsuarioModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     ToastModule,
     UsuarioModule,
     LoginModule,
     MenuSuperiorModule,
     GtmTabelaModule,
+    SidebarModule,
+    MenuModule,
+    FormsModule,
+    PacienteModule,
   ],
-  // providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MessageService, AuthGuard],
-  providers: [MessageService, AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

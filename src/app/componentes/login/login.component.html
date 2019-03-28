@@ -1,3 +1,24 @@
-<p>
-  login works!
-</p>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <h1><img src="../../assets/images/logo.fw.png" id="logo"></h1>
+    </div>
+    <form #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
+      <!-- Login Form -->
+      <input required type="text" id="login" class="fadeIn second" name="usuario" placeholder="Usuário" ngModel>
+      <input required type="password" id="password" class="fadeIn third" name="senha" placeholder="Senha" ngModel>
+      <input type="submit" class="fadeIn fourth" value="Entrar">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Esqueceu sua senha?</a>
+    </div>
+
+  </div>
+</div>
