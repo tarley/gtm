@@ -12,7 +12,7 @@ import { UsuarioNovoComponent } from './usuario-novo/usuario-novo.component';
 import { FormsModule } from '@angular/forms';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import {TableModule} from 'primeng/table';
+import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
 
 @NgModule({
   declarations: [UsuarioComponent, UsuarioNovoComponent],
@@ -26,7 +26,7 @@ import {TableModule} from 'primeng/table';
     CardModule,
     MessagesModule,
     MessageModule,
-    TableModule,
+    GtmTabelaModule,
   ],
   providers: [UsuarioService, MessageService]
 })

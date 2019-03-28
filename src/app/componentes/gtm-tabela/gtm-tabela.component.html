@@ -1,0 +1,19 @@
+<div>
+  <p-table [value]="lista">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let coluna of colunas">{{ formataTituloCabecalho(coluna) }}</th>
+        <th class="coluna-acoes">Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-elemento>
+      <tr>
+        <td *ngFor="let coluna of colunas">{{ elemento[coluna] }}</td>
+        <td style="width: 15%;">
+          <button pButton class="botao-acao" icon="fa fa-pencil" type="button"></button>
+          <button pButton class="botao-acao" icon="fa fa-trash" type="button"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

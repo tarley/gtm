@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
 
   titulo: string = 'Lista de Usuários';
 
+  colunas: string[] = ['nome', 'email', 'perfil'];
   usuarios: Usuario[] = [
     {nome: 'Daniel', email: 'daniel@email.com', perfil: 'administrador'},
     {nome: 'Henrique', email: 'henrique@email.com', perfil: 'comum'},

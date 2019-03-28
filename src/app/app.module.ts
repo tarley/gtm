@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     UsuarioModule,
     LoginModule,
     MenuSuperiorModule,
+    GtmTabelaModule,
   ],
   // providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MessageService, AuthGuard],
   providers: [MessageService, AuthGuard],
