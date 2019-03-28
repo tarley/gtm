@@ -7,22 +7,21 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private usuarioAutenticado: boolean = false;
-  private nomeUsuarioLogado: string = 'Daniel';
 
   constructor(private router: Router) { }
 
   isUsuarioAutenticado() {
-    this.usuarioAutenticado = true;
-
     return this.usuarioAutenticado;
+  }
+  
+
+  Autenticar() {
+    this.usuarioAutenticado = true;
+    this.router.navigate(['/usuario/novo'])
   }
 
   logout() {
     this.usuarioAutenticado = false;
     this.router.navigate(['/login'])
-  }
-
-  getUsuarioLogado() {
-    return this.nomeUsuarioLogado;
   }
 }

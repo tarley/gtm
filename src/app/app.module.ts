@@ -1,5 +1,3 @@
-import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
-import { AuthGuard } from './guard/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,26 +7,33 @@ import { UsuarioModule } from './componentes/usuario/usuario.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
-import { LoginModule } from './componentes/login/login.module';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+import {SidebarModule} from 'primeng/sidebar';
+import {MenuModule} from 'primeng/menu';
+import { LoginComponent } from './componentes/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { PacienteComponent } from './componentes/paciente/paciente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    PacienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UsuarioModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     ToastModule,
-    UsuarioModule,
-    LoginModule,
-    MenuSuperiorModule,
+    SidebarModule,
+    MenuModule,
+    FormsModule
   ],
-  // providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MessageService, AuthGuard],
-  providers: [MessageService, AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,7 @@
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './shared/auth.service';
+import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private app: AppComponent) { }
 
   ngOnInit() {
+    this.app.isUsuarioAutenticado = false;
   }
+
+  OnSubmit(form) {
+    console.log(form.value);
+    if(form.value.usuario != "" && form.value.senha != ""){
+      this.auth.Autenticar();
+      this.app.isUsuarioAutenticado = true;
+    }
+  }
+
 
 }
