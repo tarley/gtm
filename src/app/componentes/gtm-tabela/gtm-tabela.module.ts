@@ -4,6 +4,7 @@ import { GtmTabelaComponent } from './gtm-tabela.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [GtmTabelaComponent],
@@ -12,6 +13,7 @@ import { TableModule } from 'primeng/table';
     BrowserAnimationsModule,
     ButtonModule,
     TableModule,
+    PaginatorModule,
   ],
   exports: [GtmTabelaComponent]
 })
