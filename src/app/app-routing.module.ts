@@ -5,6 +5,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { UsuarioNovoComponent } from './componentes/usuario/usuario-novo/usuario-novo.component';
 import { PacienteComponent } from './componentes/paciente/paciente.component';
+import { PacienteNovoComponent } from './componentes/paciente/paciente-novo/paciente-novo.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -16,6 +17,7 @@ const routes: Routes = [
 
   //Rotas Paciente
   { path: 'paciente', component: PacienteComponent },
+  { path: 'paciente/novo', component: PacienteNovoComponent }
 ];
 
 @NgModule({

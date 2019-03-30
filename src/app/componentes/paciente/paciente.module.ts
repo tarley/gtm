@@ -6,18 +6,22 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
-
-
-
+import { PacienteNovoComponent } from './paciente-novo/paciente-novo.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
-  declarations: [PacienteComponent],
+  declarations: [PacienteComponent, PacienteNovoComponent],
   imports: [
     CommonModule,
     CardModule,
     ButtonModule,
     FormsModule,
-    GtmTabelaModule
+    GtmTabelaModule,
+    InputTextModule,
+    BrowserAnimationsModule,
+    InputMaskModule
   ]
 })
 export class PacienteModule { }

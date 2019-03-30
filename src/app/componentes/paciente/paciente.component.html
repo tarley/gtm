@@ -1,7 +1,7 @@
 <div class="body">
   <p-card [header]="titulo">
     <div class="botoes-topo">
-        <button pButton type="button" label="Novo Paciente" ></button>
+        <button pButton type="button" label="Novo Paciente" (click)="navigate('paciente/novo')"></button>
     </div>
       <app-gtm-tabela [colunas]="colunas" [lista]="pacientes"></app-gtm-tabela>
   </p-card>

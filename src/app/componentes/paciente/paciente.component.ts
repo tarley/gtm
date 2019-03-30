@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from './shared/paciente.model';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
@@ -19,9 +21,13 @@ export class PacienteComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  navigate(route: string) {
+    this.router.navigate([route]);
   }
 
 }
