@@ -1,3 +1,5 @@
+import { AtendimentoNovoComponent } from './componentes/atendimento/atendimento-novo/atendimento-novo.component';
+import { AtendimentoComponent } from './componentes/atendimento/atendimento.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -12,14 +14,20 @@ const routes: Routes = [
 
   //Rotas Usuário
   { path: 'usuario/novo', component: UsuarioNovoComponent },
+  { path: 'usuario/:id', component: UsuarioNovoComponent },
   { path: 'usuario', component: UsuarioComponent },
 
   //Rotas Paciente
   { path: 'paciente', component: PacienteComponent },
+
+  //Rotas Atendimento
+  { path: 'atendimento', component: AtendimentoComponent },
+  { path: 'atendimento/novo', component: AtendimentoNovoComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

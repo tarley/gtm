@@ -1,3 +1,4 @@
+import { AtendimentoModule } from './componentes/atendimento/atendimento.module';
 import { PacienteModule } from './componentes/paciente/paciente.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -39,6 +40,7 @@ import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.mo
     MenuModule,
     FormsModule,
     PacienteModule,
+    AtendimentoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

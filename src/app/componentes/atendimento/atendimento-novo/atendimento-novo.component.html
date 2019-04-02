@@ -1,0 +1,67 @@
+<div class="body">
+  <div class="card">
+    <p-card [header]="titulo"></p-card>
+  </div>
+  <p-accordion>
+    <form #form="ngForm" (ngSubmit)="salvar(form)">
+      <p-accordionTab header="Farmacoterapia" [selected]="true">
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6 ui-md-3">
+              <label>Medicamento:</label>
+              <input type="text" pInputText />
+            </div>
+            <div class="ui-g-6 ui-md-3">
+              <label>Posologia:</label>
+              <input type="text" pInputText />
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6 ui-md-3">
+              <label>Efetividade:</label>
+              <input type="text" pInputText />
+            </div>
+            <div class="ui-g-6 ui-md-3">
+              <label>Tempo de Uso:</label>
+              <input type="text" pInputText />
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6 ui-md-3">
+              <label>Segurança:</label>
+              <input type="text" pInputText />
+            </div>
+            <div class="ui-g-6 ui-md-3">
+              <label>Dificuldade no Uso:</label>
+              <input type="text" pInputText />
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6 ui-md-3">
+              <label>PRM:</label>
+              <input type="text" pInputText />
+            </div>
+            <div class="ui-g-6 ui-md-3">
+              <label>Causa do PRM:</label>
+              <input type="text" pInputText />
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Plano de Cuidados">
+        Content 2
+      </p-accordionTab>
+      <p-accordionTab header="Header 3">
+        Content 3
+      </p-accordionTab>
+    </form>
+  </p-accordion>
+
+  <div class="card">
+    <p-card>
+      <button pButton class="botao-acao" type="submit" label="Salvar"></button>
+      <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+    </p-card>
+  </div>
+
+</div>
