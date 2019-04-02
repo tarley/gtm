@@ -6,5 +6,6 @@ export class Usuario {
         public perfil: string,
         public senha?: string,
         public confSenha?: string,
+        public _id?: string,
     ) {}
 }

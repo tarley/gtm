@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { UsuarioService } from '../shared/usuario.service';
 import { MessageService, SelectItem } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -23,19 +23,27 @@ export class UsuarioNovoComponent implements OnInit {
     {label: 'Normal', value: 'Normal'},
   ]
 
-  constructor(private usuarioService: UsuarioService, private messageService: MessageService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if(params['id']) {
+        const id = params['id'];
+        this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
+          this.form = usuario;
+        }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)))
+      }
+    })
   }
 
   salvar(form: NgForm) {
-    if(this.formularioInvalido(form)) {
+    if(this.formularioInvalido(form)) {      
       this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO));
       return;
     }
     this.usuarioService.insereUsuario(form.value).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
-      form.resetForm();
+      this.voltar();
     }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_SALVAR)));
   }
 
@@ -55,8 +63,8 @@ export class UsuarioNovoComponent implements OnInit {
     }
   }
 
-  navigate(route: string) {
-    this.router.navigate([route]);
+  voltar() {
+    this.router.navigate(['usuario']);
   }
 
 }

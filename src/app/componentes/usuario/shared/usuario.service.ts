@@ -9,12 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  urlApi = environment.urlApi.concat('usuarios/v1/');
+  urlApi = environment.urlApi.concat('v1/usuarios/');
 
   constructor(private httpClient: HttpClient) { }
 
   public insereUsuario(usuario: Usuario) {
-    return this.httpClient.post(`${this.urlApi}`, usuario);  
+    return this.httpClient.post(this.urlApi, usuario);  
+  }
+
+  public buscarTodos() {
+    return this.httpClient.get(this.urlApi);  
+  }
+
+  public buscarPorId(id: string) {
+    return this.httpClient.get(`${this.urlApi}${id}`);
   }
 
 }

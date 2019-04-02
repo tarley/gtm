@@ -3,6 +3,9 @@ export class MensagemUtil {
     public static REGISTRO_SALVO = 'Registro Salvo!';
     public static ERRO_SALVAR = 'Erro ao Salvar Registro!';
     public static FORMULARIO_INVALIDO = 'O Formulário Está Inválido!';
+    public static ERRO_BUSCAR = 'Erro ao Buscar Registro!';
+    public static EXCLUIR_SUCESSO = 'Registro excluído com sucesso!';
+    public static EXCLUIR_ERRO = 'Erro ao Excluir Registro!';
 
     public static criaMensagemSucesso(mensagem: string) {
         return {severity:'success', summary:'Sucesso!', detail: mensagem};

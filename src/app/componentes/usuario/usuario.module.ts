@@ -10,9 +10,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { UsuarioNovoComponent } from './usuario-novo/usuario-novo.component';
 import { FormsModule } from '@angular/forms';
+import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [UsuarioComponent, UsuarioNovoComponent],
@@ -27,6 +28,7 @@ import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
     MessagesModule,
     MessageModule,
     GtmTabelaModule,
+    KeyFilterModule,
   ],
   providers: [UsuarioService, MessageService]
 })

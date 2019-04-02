@@ -1,38 +1,55 @@
-<p-card [header]="titulo">
-  <form #form="ngForm" (ngSubmit)="salvar(form)">
-    <div class="ui-g-12 ui-md-12">
-      <div class="ui-g-6 ui-md-3">
-        <label>Nome:</label>
-        <input id="nome" type="text" name="nome" pInputText [(ngModel)]="form.nome" #nome="ngModel" required/>
-        <p-message *ngIf="!nome.valid && nome.touched" severity="error" text="Nome Obrigatório"></p-message>
+<body class="body">
+  <p-card [header]="titulo">
+    <form #form="ngForm" (ngSubmit)="salvar(form)">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-3">
+            <label>Nome:</label>
+            <input id="nome" type="text" minlength="5" name="nome" pInputText [(ngModel)]="form.nome" required />
+            <p-message *ngIf="form.controls['nome'].hasError('required') && form.controls['nome'].touched"
+              severity="error" text="Nome Obrigatório"></p-message>
+            <p-message *ngIf="form.controls['nome'].hasError('minlength') && form.controls['nome'].touched"
+              severity="error" text="O nome deve conter no mínimo 5 caracteres"></p-message>
+          </div>
+          <div class="ui-g-6 ui-md-3">
+            <label>E-Mail:</label>
+            <input type="text" name="email" pInputText pKeyFilter="email" [(ngModel)]="form.email" #email="ngModel"
+              required />
+            <p-message *ngIf="!email.valid && email.touched" severity="error" text="E-mail Obrigatório"></p-message>
+            <!-- <p-message *ngIf="!email.valid && email.touched" severity="error" text="Digite um formato de e-mail válido"></p-message> -->
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-3">
+            <label>Senha:</label>
+            <input type="password" name="senha" pInputText minlength="5" [(ngModel)]="form.senha" required />
+            <p-message *ngIf="form.controls['senha'].hasError('required') && form.controls['senha'].touched"
+              severity="error" text="Senha Obrigatória"></p-message>
+            <p-message *ngIf="form.controls['senha'].hasError('minlength') && form.controls['senha'].touched"
+              severity="error" text="A senha deve conter no mínimo 5 caracteres"></p-message>
+          </div>
+          <div class="ui-g-6 ui-md-3">
+            <label>Confirmação Senha:</label>
+            <input type="password" name="confSenha" minlength="5" #confSenha="ngModel"
+              (keyup)="validaConfirmacaoSenha(form)" [(ngModel)]="form.confSenha" pInputText required />
+            <p-message *ngIf="!confirmacaoSenhaValida && confSenha.touched" severity="error"
+              text="A confirmação não é igual a senha"></p-message>
+            <p-message *ngIf="form.controls['confSenha'].hasError('required') && form.controls['confSenha'].touched"
+              severity="error" text="Confirmação de Senha Obrigatório"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-3">
+            <label>Perfil:</label>
+            <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione um perfil" [required]="true"
+              [(ngModel)]="form.perfil"></p-dropdown>
+            <p-message *ngIf="form.controls['perfil'].hasError('required') && form.controls['perfil'].touched"
+              severity="error" text="Perfil Obrigatório"></p-message>
+          </div>
+        </div>
       </div>
-      <div class="ui-g-6 ui-md-3">
-        <label>E-Mail:</label>
-        <input type="text" name="email" pInputText [(ngModel)]="form.email" #email="ngModel" required/>
-        <p-message *ngIf="!email.valid && email.touched" severity="error" text="E-mail Obrigatório"></p-message>
-      </div>
-    </div>
-    <div class="ui-g-12 ui-md-12">
-      <div class="ui-g-6 ui-md-3">
-        <label>Senha:</label>
-        <input type="password" name="senha" pInputText #senha="ngModel" [(ngModel)]="form.senha" required/>
-        <p-message *ngIf="!senha.valid && senha.touched" severity="error" text="Senha Obrigatória"></p-message>
-      </div>
-      <div class="ui-g-6 ui-md-3">
-        <label>Confirmação Senha:</label>
-        <input type="password" name="confSenha" #confSenha="ngModel" (keyup)="validaConfirmacaoSenha(form)" [(ngModel)]="form.confSenha" pInputText required/>
-        <p-message *ngIf="!confirmacaoSenhaValida && confSenha.touched" severity="error" text="A confirmação não é igual a senha"></p-message>
-        <p-message *ngIf="!confSenha.valid && confSenha.touched" severity="error" text="Confirmação de Senha Obrigatório"></p-message>
-      </div>
-    </div>
-    <div class="ui-g-12 ui-md-12">
-      <div class="ui-g-6 ui-md-3">
-        <label>Perfil:</label>
-        <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione um perfil" #perfil="ngModel" [required]="true" [(ngModel)]="form.perfil"></p-dropdown>
-        <p-message *ngIf="!perfil.valid && perfil.touched" severity="error" text="Perfil Obrigatório"></p-message>
-      </div>
-    </div>
-    <button pButton class="botao-acao" type="submit" label="Salvar"></button>
-    <button pButton class="botao-acao" type="button" label="Voltar" (click)="navigate('usuario')"></button>
-  </form>
-</p-card>
+      <button pButton class="botao-acao" type="submit" label="Salvar"></button>
+      <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+    </form>
+  </p-card>
+</body>

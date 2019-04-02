@@ -1,3 +1,6 @@
+import { MensagemUtil } from 'src/app/util/mensagem-util';
+import { MessageService } from 'primeng/api';
+import { UsuarioService } from './shared/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './shared/usuario.model';
 import { Router } from '@angular/router';
@@ -10,18 +13,22 @@ import { Router } from '@angular/router';
 export class UsuarioComponent implements OnInit {
 
   titulo: string = 'Lista de Usuários';
+  urlDelete = 'v1/usuarios';
+  rotaEdicao = 'usuario';
 
   colunas: string[] = ['nome', 'email', 'perfil'];
-  usuarios: Usuario[] = [
-    {nome: 'Daniel', email: 'daniel@email.com', perfil: 'administrador'},
-    {nome: 'Henrique', email: 'henrique@email.com', perfil: 'comum'},
-    {nome: 'Carlos', email: 'carlos@email.com', perfil: 'comum'},
-    {nome: 'Nixon', email: 'nixon@email.com', perfil: 'comum'},
-  ]
+  usuarios: Usuario[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.buscarTodos()
+  }
+
+  buscarTodos() {
+    this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
+      this.usuarios = usuarios;
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)))
   }
 
   navigate(route: string) {
