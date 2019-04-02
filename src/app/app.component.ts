@@ -19,9 +19,8 @@ export class AppComponent {
     ngOnInit() {
         this.isUsuarioAutenticado = false;
         this.items = [
-            {label: 'Usuario', icon: 'pi pi-fw pi-user', routerLink: '/usuario'},
+            {label: 'Usuários', icon: 'pi pi-fw pi-user', routerLink: '/usuario'},
             {label: 'Pacientes', icon: 'pi pi-fw pi-list', routerLink: '/paciente'},
-            {label: 'Sair', icon: 'pi pi-fw pi-times', routerLink: '/login'}
         ];
         this.isUsuarioAutenticado = this.auth.isUsuarioAutenticado();
     }
