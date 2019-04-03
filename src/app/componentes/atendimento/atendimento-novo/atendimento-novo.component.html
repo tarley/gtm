@@ -1,67 +1,106 @@
-<div class="body">
-  <div class="card">
-    <p-card [header]="titulo"></p-card>
-  </div>
-  <p-accordion>
-    <form #form="ngForm" (ngSubmit)="salvar(form)">
-      <p-accordionTab header="Farmacoterapia" [selected]="true">
-        <div class="ui-g">
-          <div class="ui-g-12 ui-md-12">
-            <div class="ui-g-6 ui-md-3">
-              <label>Medicamento:</label>
-              <input type="text" pInputText />
-            </div>
-            <div class="ui-g-6 ui-md-3">
-              <label>Posologia:</label>
-              <input type="text" pInputText />
-            </div>
+<div class="card">
+  <p-card [header]="titulo"></p-card>
+</div>
+<p-accordion>
+  <form #form="ngForm" (ngSubmit)="salvar(form)">
+    <p-accordionTab header="Avaliação Inicial" [selected]="true">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <label>Quadro Geral:</label>
+          <textarea rows="5" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Doença">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <label>Doenças:</label>
+          <input style="width: 100%;" pInputText />
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <label>Descrição:</label>
+          <textarea rows="5" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Farmacoterapia">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>Medicamento:</label>
+            <input type="text" pInputText />
           </div>
-          <div class="ui-g-12 ui-md-12">
-            <div class="ui-g-6 ui-md-3">
-              <label>Efetividade:</label>
-              <input type="text" pInputText />
-            </div>
-            <div class="ui-g-6 ui-md-3">
-              <label>Tempo de Uso:</label>
-              <input type="text" pInputText />
-            </div>
-          </div>
-          <div class="ui-g-12 ui-md-12">
-            <div class="ui-g-6 ui-md-3">
-              <label>Segurança:</label>
-              <input type="text" pInputText />
-            </div>
-            <div class="ui-g-6 ui-md-3">
-              <label>Dificuldade no Uso:</label>
-              <input type="text" pInputText />
-            </div>
-          </div>
-          <div class="ui-g-12 ui-md-12">
-            <div class="ui-g-6 ui-md-3">
-              <label>PRM:</label>
-              <input type="text" pInputText />
-            </div>
-            <div class="ui-g-6 ui-md-3">
-              <label>Causa do PRM:</label>
-              <input type="text" pInputText />
-            </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Posologia:</label>
+            <input type="text" pInputText />
           </div>
         </div>
-      </p-accordionTab>
-      <p-accordionTab header="Plano de Cuidados">
-        Content 2
-      </p-accordionTab>
-      <p-accordionTab header="Header 3">
-        Content 3
-      </p-accordionTab>
-    </form>
-  </p-accordion>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>Efetividade:</label>
+            <input type="text" pInputText />
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Tempo de Uso:</label>
+            <input type="text" pInputText />
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>Segurança:</label>
+            <input type="text" pInputText />
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Dificuldade no Uso:</label>
+            <input type="text" pInputText />
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Plano de Cuidados">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <label>Objetivo Terapêutico:</label>
+          <input type="text" pInputText />
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>PRM:</label>
+            <p-dropdown [options]="cities1"></p-dropdown>
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Causa do PRM:</label>
+            <p-dropdown [options]="cities1"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <label>Condutas:</label>
+          <textarea rows="3" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>SCF:</label>
+            <p-dropdown [options]="cities1"></p-dropdown>
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Data Avaliação Resultados:</label>
+            <p-calendar dateFormat="dd.mm.yy"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <label>Outras Condutas:</label>
+          <textarea rows="3" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+    </p-accordionTab>
+  </form>
+</p-accordion>
 
-  <div class="card">
-    <p-card>
-      <button pButton class="botao-acao" type="submit" label="Salvar"></button>
-      <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
-    </p-card>
-  </div>
 
+
+<div class="card">
+  <p-card>
+    <button pButton class="botao-acao" type="submit" label="Salvar"></button>
+    <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+  </p-card>
 </div>
