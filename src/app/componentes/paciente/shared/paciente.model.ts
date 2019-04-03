@@ -4,7 +4,7 @@ export class Paciente {
         public nome: string,
         public sexo: string,
         public cpf: number,
-        public data_atendimento: string,
-        public email: string,
+        // public data_atendimento: string,
+        // public email: string,
     ) {}
 }

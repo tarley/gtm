@@ -10,6 +10,7 @@ import { PacienteNovoComponent } from './paciente-novo/paciente-novo.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [PacienteComponent, PacienteNovoComponent],
@@ -21,7 +22,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     GtmTabelaModule,
     InputTextModule,
     BrowserAnimationsModule,
-    InputMaskModule
+    InputMaskModule,
+    DropdownModule
   ]
 })
 export class PacienteModule { }

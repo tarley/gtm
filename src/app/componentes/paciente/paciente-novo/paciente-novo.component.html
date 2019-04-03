@@ -1,20 +1,23 @@
 <p-card [header]="titulo">
-  <form>
-    <div class="ui-g-12 ui-md-12">
-      <div class="ui-g-4 ui-md-3">
-        <label>Nome:</label>
-        <input id="nome" type="text" name="nome" pInputText />
-      </div>
-      <div class="ui-g-4 ui-md-3">
-        <label>CPF:</label>
-        <input id="cpf" type="text" name="cpf" pInputText />
-      </div>
+  <form #form="ngForm" (ngSubmit)="salvar(form)">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-g-4 ui-md-3">
+          <label>Nome:</label>
+          <input id="nome" type="text" name="nome" pInputText [(ngModel)]="form.nome" />
+        </div>
+        <div class="ui-g-4 ui-md-3">
+          <label>CPF:</label>
+          <input id="cpf" type="text" name="cpf" pInputText [(ngModel)]="form.cpf" />
+        </div>
 
-      <div class="ui-g-4 ui-md-3">
-        <label>Sexo:</label>
-        <input type="sexo" name="sexo" pInputText />
+        <div class="ui-g-4 ui-md-1">
+          <label>Sexo:</label>
+          <p-dropdown [options]="sexo" [(ngModel)]="form.sexo" name="sexo" placeholder="Selecione:"></p-dropdown>
+        </div>
       </div>
     </div>
     <button pButton class="botao-acao" type="submit" label="Salvar"></button>
+    <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
   </form>
 </p-card>
