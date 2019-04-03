@@ -5,6 +5,6 @@
     <app-menu-superior></app-menu-superior>
 </div>
 <p-toast position="top-right"></p-toast>
-<div class="container-conteudo">
+<div [ngClass]="isUsuarioAutenticado ? 'container-conteudo body' : 'container-conteudo'">
     <router-outlet></router-outlet>
 </div>
