@@ -1,21 +1,56 @@
 <p-card [header]="titulo">
   <form #form="ngForm" (ngSubmit)="salvar(form)">
-    <div class="ui-g">
+    <div class="ui-g ui-fluid">
       <div class="ui-g-12 ui-md-12">
-        <div class="ui-g-4 ui-md-3">
+        <div class="ui-g-3 ui-md-3">
           <label>Nome:</label>
           <input id="nome" type="text" name="nome" pInputText [(ngModel)]="form.nome" />
         </div>
-        <div class="ui-g-4 ui-md-3">
+
+        <div class="ui-g-3 ui-md-3">
           <label>CPF:</label>
-          <input id="cpf" type="text" name="cpf" pInputText [(ngModel)]="form.cpf" />
+          <p-inputMask mask="999.999.999-99" [(ngModel)]="form.cpf" placeholder="123.456.789-12" id="cpf" name="cpf">
+          </p-inputMask>
         </div>
 
-        <div class="ui-g-4 ui-md-1">
+        <div class="ui-g-2">
           <label>Sexo:</label>
           <p-dropdown [options]="sexo" [(ngModel)]="form.sexo" name="sexo" placeholder="Selecione:"></p-dropdown>
         </div>
+
+        <div class="ui-g-2 ui-md-2">
+          <label>Data de Nascimento:</label>
+          <p-inputMask mask="99/99/9999" [(ngModel)]="form.dataNascimento" placeholder="dd/mm/aaaa" id="dataNascimento"
+            name="dataNascimento"></p-inputMask>
+        </div>
       </div>
+      <div class="ui-g-12 ui-md-12">
+
+        <div class="ui-g-2 ui-md-3">
+          <label>Estado Civil:</label>
+          <p-dropdown [options]="estadoCivil" [(ngModel)]="form.estadoCivil" name="estadoCivil"
+            placeholder="Selecione:"></p-dropdown>
+        </div>
+
+        <div class="ui-g-2 ui-md-1">
+          <label>Anos de Estudo:</label>
+          <input id="anosEstudo" type="number" name="anosEstudo" pInputText [(ngModel)]="form.anosEstudo" />
+        </div>
+
+        <div class="ui-g-2 ui-md-2">
+          <label>Telefone:</label>
+          <p-inputMask mask="(99)99999-9999" [(ngModel)]="form.telefone" placeholder="(00)00000-0000" id="telefone"
+            name="telefone"></p-inputMask>
+        </div>
+
+        <div class="ui-g-2">
+          <label>Profissão:</label>
+          <p-dropdown [options]="profissao" [(ngModel)]="form.profissao" name="profissao"
+            placeholder="Selecione:"></p-dropdown>
+        </div>
+
+      </div>
+
     </div>
     <button pButton class="botao-acao" type="submit" label="Salvar"></button>
     <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>

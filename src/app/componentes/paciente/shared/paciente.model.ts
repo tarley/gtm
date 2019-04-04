@@ -4,7 +4,10 @@ export class Paciente {
         public nome: string,
         public sexo: string,
         public cpf: number,
-        // public data_atendimento: string,
-        // public email: string,
+        public dataNascimento: string,
+        public estadoCivil: string,
+        public anosEstudo: number,
+        public telefone: string,
+        public profissao: string
     ) {}
 }
