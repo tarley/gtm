@@ -1,58 +1,169 @@
-<p-card [header]="titulo">
-  <form #form="ngForm" (ngSubmit)="salvar(form)">
+<form #form="ngForm" (ngSubmit)="salvar(form)">
+  <p-card [header]="titulo">
+
     <div class="ui-g ui-fluid">
-      <div class="ui-g-12 ui-md-12">
-        <div class="ui-g-3 ui-md-3">
-          <label>Nome:</label>
-          <input id="nome" type="text" name="nome" pInputText [(ngModel)]="form.nome" />
-        </div>
+      <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+        <fieldset style="border: none;">
+          <h3>Dados do Paciente:</h3>
+          <hr>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Nome:</label>
+            <input id="nome" type="text" name="nome" pInputText [(ngModel)]="form.nome" required />
+            <p-message *ngIf="form.controls['nome'].hasError('required') && form.controls['nome'].touched" severity="error"
+              text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-3 ui-md-3">
-          <label>CPF:</label>
-          <p-inputMask mask="999.999.999-99" [(ngModel)]="form.cpf" placeholder="123.456.789-12" id="cpf" name="cpf">
-          </p-inputMask>
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>CPF:</label>
+            <p-inputMask required mask="999.999.999-99" [(ngModel)]="form.cpf" placeholder="123.456.789-12" id="cpf" name="cpf">
+            </p-inputMask>
+            <p-message *ngIf="form.controls['cpf'].hasError('required') && form.controls['cpf'].touched" severity="error"
+              text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2">
-          <label>Sexo:</label>
-          <p-dropdown [options]="sexo" [(ngModel)]="form.sexo" name="sexo" placeholder="Selecione:"></p-dropdown>
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Sexo:</label>
+            <p-dropdown required [options]="sexo" [(ngModel)]="form.sexo" name="sexo" placeholder="Selecione:"></p-dropdown>
+            <p-message *ngIf="form.controls['sexo'].hasError('required') && form.controls['sexo'].touched"
+            severity="error" text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2 ui-md-2">
-          <label>Data de Nascimento:</label>
-          <p-inputMask mask="99/99/9999" [(ngModel)]="form.dataNascimento" placeholder="dd/mm/aaaa" id="dataNascimento"
-            name="dataNascimento"></p-inputMask>
-        </div>
-      </div>
-      <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Data de Nascimento:</label>
+            <p-inputMask required mask="99/99/9999" [(ngModel)]="form.dataNascimento" placeholder="dd/mm/aaaa"
+              id="dataNascimento" name="dataNascimento"></p-inputMask>
+            <p-message *ngIf="form.controls['dataNascimento'].hasError('required') && form.controls['dataNascimento'].touched"
+              severity="error" text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2 ui-md-3">
-          <label>Estado Civil:</label>
-          <p-dropdown [options]="estadoCivil" [(ngModel)]="form.estadoCivil" name="estadoCivil"
-            placeholder="Selecione:"></p-dropdown>
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Profissão:</label>
+            <p-dropdown required [options]="profissao" [(ngModel)]="form.profissao" name="profissao" placeholder="Selecione:">
+            </p-dropdown>
+            <p-message *ngIf="form.controls['profissao'].hasError('required') && form.controls['profissao'].touched"
+            severity="error" text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2 ui-md-1">
-          <label>Anos de Estudo:</label>
-          <input id="anosEstudo" type="number" name="anosEstudo" pInputText [(ngModel)]="form.anosEstudo" />
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Telefone:</label>
+            <p-inputMask required mask="(99)99999-9999" [(ngModel)]="form.telefone" placeholder="(00)00000-0000" id="telefone"
+              name="telefone"></p-inputMask>
+            <p-message *ngIf="form.controls['telefone'].hasError('required') && form.controls['telefone'].touched" severity="error"
+              text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2 ui-md-2">
-          <label>Telefone:</label>
-          <p-inputMask mask="(99)99999-9999" [(ngModel)]="form.telefone" placeholder="(00)00000-0000" id="telefone"
-            name="telefone"></p-inputMask>
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Anos de Estudo:</label>
+            <input required id="anosEstudo" type="number" min="0" max="35" name="anosEstudo" pInputText
+              [(ngModel)]="form.anosEstudo" />
+            <p-message *ngIf="form.controls['anosEstudo'].hasError('required') && form.controls['anosEstudo'].touched"
+              severity="error" text="Campo Obrigatório"></p-message>
+          </div>
 
-        <div class="ui-g-2">
-          <label>Profissão:</label>
-          <p-dropdown [options]="profissao" [(ngModel)]="form.profissao" name="profissao"
-            placeholder="Selecione:"></p-dropdown>
-        </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
+            <label>Estado Civil:</label>
+            <p-dropdown required [options]="estadoCivil" [(ngModel)]="form.estadoCivil" name="estadoCivil"
+              placeholder="Selecione:"></p-dropdown>
+            <p-message *ngIf="form.controls['estadoCivil'].hasError('required') && form.controls['estadoCivil'].touched"
+              severity="error" text="Campo Obrigatório"></p-message>
+          </div>
+
+        </fieldset>
+
+        <fieldset style="border: none;">
+          <h3>Dados Complementares:</h3>
+          <hr>
+
+          <div class="ui-g-3 ui-md-3">
+            <label>Profissional do Serviço:</label>
+            <input id="profissionalServico" type="text" name="profissionalServico" pInputText
+              [(ngModel)]="form.profissionalServico" />
+          </div>
+
+          <div class="ui-g-3 ui-md-3">
+            <label>Lugar Atendimento:</label>
+            <input id="lugarAtendimento" type="text" name="lugarAtendimento" pInputText
+              [(ngModel)]="form.lugarAtendimento" />
+          </div>
+
+          <div class="ui-g-3 ui-md-4">
+            <label>Endereço:</label>
+            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="form.endereco" />
+          </div>
+
+          <div class="ui-g-2 ui-md-3">
+            <label>UBS:</label>
+            <p-dropdown [options]="ubs" [(ngModel)]="form.ubs" name="ubs" placeholder="Selecione:"></p-dropdown>
+          </div>
+
+          <div class="ui-g-3 ui-md-3">
+            <label>Profissional do Serviço:</label>
+            <p-dropdown [options]="profissionalServico" [(ngModel)]="form.profissionalServico"
+              name="profissionalServico" placeholder="Selecione:"></p-dropdown>
+          </div>
+
+          <div class="ui-g-2 ui-md-4">
+            <label>Acesso ao Serviço:</label>
+            <p-dropdown [options]="acessoService" [(ngModel)]="form.acessoService" name="acessoService"
+              placeholder="Selecione:"></p-dropdown>
+          </div>
+
+          <div class="ui-g-3 ui-md-10">
+            <label>Motivo da Consulta:</label>
+            <textarea rows="5" style="width: 100%;" pInputTextarea></textarea>
+          </div>
+
+        </fieldset>
+
+        <fieldset style="border: none;">
+          <h3>Habitos de Vida:</h3>
+          <hr>
+
+          <div class="ui-g-2 ui-md-3">
+            <label>Atividade Física:</label>
+            <p-dropdown [options]="atividadeFisica" [(ngModel)]="form.atividadeFisica" name="atividadeFisica"
+              placeholder="Selecione:"></p-dropdown>
+          </div>
+
+          <div class="ui-g-2 ui-md-3">
+            <label>Cigarro:</label>
+            <p-dropdown [options]="cigarro" [(ngModel)]="form.cigarro" name="cigarro" placeholder="Selecione:">
+            </p-dropdown>
+          </div>
+
+          <div class="ui-g-2 ui-md-3">
+            <label>Bebida Alcoólica:</label>
+            <p-dropdown [options]="bebidaAlcoolica" [(ngModel)]="form.bebidaAlcoolica" name="bebidaAlcoolica"
+              placeholder="Selecione:"></p-dropdown>
+          </div>
+
+          <div class="ui-g-3 ui-md-5">
+            <label>Observação Sobre uso Cigarro:</label>
+            <textarea rows="3" style="width: 100%;" pInputTextarea></textarea>
+          </div>
+
+          <div class="ui-g-3 ui-md-5">
+            <label>Observação Sobre uso Bebidas Alcoolicas:</label>
+            <textarea rows="3" style="width: 100%;" pInputTextarea></textarea>
+          </div>
+
+          <div class="ui-g-3 ui-md-5">
+            <label>Alertas:</label>
+            <textarea rows="3" style="width: 100%;" pInputTextarea></textarea>
+          </div>
+
+          <div class="ui-g-3 ui-md-5">
+            <label>Terapia Alternativa:</label>
+            <textarea rows="3" style="width: 100%;" pInputTextarea></textarea>
+          </div>
+
+        </fieldset>
 
       </div>
 
     </div>
     <button pButton class="botao-acao" type="submit" label="Salvar"></button>
     <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
-  </form>
-</p-card>
+
+  </p-card>
+</form>
