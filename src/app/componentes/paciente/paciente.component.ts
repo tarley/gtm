@@ -19,6 +19,7 @@ export class PacienteComponent implements OnInit {
   constructor(private router: Router, private pacienteService: PacienteService) { }
 
   ngOnInit() {
+    this.buscarTodos()
   }
 
   navigate(route: string) {
