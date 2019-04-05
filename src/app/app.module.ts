@@ -18,6 +18,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
+import { MedicamentoModule } from './componentes/medicamento/medicamento.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.mo
     FormsModule,
     PacienteModule,
     AtendimentoModule,
+    MedicamentoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
