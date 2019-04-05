@@ -17,6 +17,10 @@ export class UsuarioService {
     return this.httpClient.post(this.urlApi, usuario);  
   }
 
+  public atualizaUsuario(usuario: Usuario) {
+    return this.httpClient.put(`${this.urlApi}/${usuario._id}`, usuario);  
+  }
+
   public buscarTodos() {
     return this.httpClient.get(this.urlApi);  
   }
