@@ -9,15 +9,14 @@ import { UsuarioModule } from './componentes/usuario/usuario.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
 
-import { SidebarModule } from 'primeng/sidebar';
-import { MenuModule } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
+import { MedicamentoModule } from './componentes/medicamento/medicamento.module';
+import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.module';
 
 @NgModule({
   declarations: [
@@ -35,12 +34,12 @@ import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.mo
     UsuarioModule,
     LoginModule,
     MenuSuperiorModule,
+    MenuLateralModule,
     GtmTabelaModule,
-    SidebarModule,
-    MenuModule,
     FormsModule,
     PacienteModule,
     AtendimentoModule,
+    MedicamentoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

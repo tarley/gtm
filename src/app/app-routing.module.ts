@@ -8,6 +8,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { UsuarioNovoComponent } from './componentes/usuario/usuario-novo/usuario-novo.component';
 import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { PacienteNovoComponent } from './componentes/paciente/paciente-novo/paciente-novo.component';
+import { MedicamentoComponent } from './componentes/medicamento/medicamento.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -25,6 +26,9 @@ const routes: Routes = [
   //Rotas Atendimento
   { path: 'atendimento', component: AtendimentoComponent },
   { path: 'atendimento/novo', component: AtendimentoNovoComponent},
+
+  //Telas Medicamentos
+  {path: 'medicamento', component:MedicamentoComponent}
 ];
 
 @NgModule({
