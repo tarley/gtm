@@ -1,9 +1,8 @@
-<div *ngIf="isUsuarioAutenticado == true" id="menu">
-    <p-menu [class]="menu" [model]="items"></p-menu>
-</div>
 <div *ngIf="isUsuarioAutenticado == true">
+    <app-menu-lateral></app-menu-lateral>
     <app-menu-superior></app-menu-superior>
 </div>
+
 <p-toast position="top-right"></p-toast>
 <div [ngClass]="isUsuarioAutenticado ? 'container-conteudo body' : 'container-conteudo'">
     <router-outlet></router-outlet>

@@ -13,15 +13,10 @@ export class AppComponent {
     constructor(private auth: AuthService) { }
     
   title = 'gtm';
-  items: MenuItem[];
   isUsuarioAutenticado: boolean;
     
     ngOnInit() {
         this.isUsuarioAutenticado = false;
-        this.items = [
-            {label: 'Usuários', icon: 'pi pi-fw pi-user', routerLink: '/usuario'},
-            {label: 'Pacientes', icon: 'pi pi-fw pi-list', routerLink: '/paciente'},
-        ];
         this.isUsuarioAutenticado = this.auth.isUsuarioAutenticado();
     }
 
