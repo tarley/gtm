@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
 import { NgForm } from '@angular/forms';
@@ -15,8 +16,10 @@ export class UsuarioNovoComponent implements OnInit {
 
   titulo = 'Novo Usuário'
 
-  form: Usuario;
+  usuario: Usuario = new Usuario();
   confirmacaoSenhaValida: boolean;
+
+  formulario: NgForm;
 
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
@@ -30,21 +33,28 @@ export class UsuarioNovoComponent implements OnInit {
       if(params['id']) {
         const id = params['id'];
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
-          this.form = usuario;
+          this.usuario = usuario;
+          this.usuario.confSenha = usuario.senha;
         }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)))
       }
     })
   }
 
   salvar(form: NgForm) {
-    if(this.formularioInvalido(form)) {      
-      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO));
-      return;
+    // if(this.formularioInvalido(form)) {      
+    //   this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO));
+    //   return;
+    // }
+    let requisicao: Observable<Object>;
+    if(this.usuario._id.length > 0) {
+      requisicao = this.usuarioService.atualizaUsuario(this.usuario);
+    } else {
+      requisicao = this.usuarioService.insereUsuario(this.usuario);
     }
-    this.usuarioService.insereUsuario(form.value).subscribe(() => {
+    requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_SALVAR)));
+    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
   }
 
   formularioInvalido(form: NgForm) {
