@@ -1,7 +1,7 @@
 import { MensagemUtil } from './../../util/mensagem-util';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { GtmTabelaService } from './gtm-tabela.service';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,10 +17,14 @@ export class GtmTabelaComponent implements OnInit {
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
 
+  existeEdicao: boolean = false;
+  existeDelete: boolean = false;
+
   constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+    this.isExisteAcao();
   }
 
   formataTituloCabecalho(titulo: string) {
@@ -38,6 +42,15 @@ export class GtmTabelaComponent implements OnInit {
         }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.EXCLUIR_ERRO)));
       }
     });
+  }
+
+  isExisteAcao() {
+    if (this.urlDelete) {
+      this.existeDelete = true;
+    }
+    if (this.rotaEdicao) {
+      this.existeEdicao = true;
+    }
   }
 
   deletaItemTabela(id: string) {
