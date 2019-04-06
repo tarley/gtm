@@ -11,6 +11,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [PacienteComponent, PacienteNovoComponent],
@@ -23,7 +26,10 @@ import { DropdownModule } from 'primeng/dropdown';
     InputTextModule,
     BrowserAnimationsModule,
     InputMaskModule,
-    DropdownModule
+    DropdownModule,
+    InputTextareaModule,
+    MessagesModule,
+    MessageModule
   ]
 })
 export class PacienteModule { }
