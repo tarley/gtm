@@ -29,7 +29,8 @@ export class Paciente {
                 consume: Boolean,
                 observacao: String
             }        
-        }
+        },
+        public _id?: string,
 
     ) {}
 }
