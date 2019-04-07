@@ -1,8 +1,9 @@
 import { MensagemUtil } from './../../util/mensagem-util';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { GtmTabelaService } from './gtm-tabela.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-gtm-tabela',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class GtmTabelaComponent implements OnInit {
 
   @Input() colunas: string[] = [];
-  @Input() lista: any[] = []
+  @Input() lista: any[] = [];
 
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
@@ -24,7 +25,7 @@ export class GtmTabelaComponent implements OnInit {
   
   linha: any;
 
-  constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageService,
+  constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageServiceUtil,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
