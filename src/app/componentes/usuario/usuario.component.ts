@@ -1,9 +1,9 @@
 import { MensagemUtil } from 'src/app/util/mensagem-util';
-import { MessageService } from 'primeng/api';
 import { UsuarioService } from './shared/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './shared/usuario.model';
 import { Router } from '@angular/router';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-usuario',
@@ -19,10 +19,10 @@ export class UsuarioComponent implements OnInit {
   colunas: string[] = ['nome', 'email', 'perfil'];
   usuarios: Usuario[] = [];
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private messageService: MessageService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, private messageService: MessageServiceUtil) { }
 
   ngOnInit() {
-    this.buscarTodos()
+    this.buscarTodos();
   }
 
   buscarTodos() {

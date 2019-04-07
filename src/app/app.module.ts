@@ -1,3 +1,4 @@
+import { MessageModule } from 'primeng/message';
 import { AtendimentoModule } from './componentes/atendimento/atendimento.module';
 import { PacienteModule } from './componentes/paciente/paciente.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
 import { MedicamentoModule } from './componentes/medicamento/medicamento.module';
 import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.module';
+import { MessageServiceUtil } from './util/message-service-util.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -39,9 +42,10 @@ import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.modul
     FormsModule,
     PacienteModule,
     AtendimentoModule,
+    MessageModule,
     MedicamentoModule,
   ],
-  providers: [],
+  providers: [MessageServiceUtil, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

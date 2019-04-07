@@ -3,8 +3,8 @@ import { Medicamento } from '../shared/medicamento.model';
 import { MedicamentoService } from '../shared/medicamento.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-medicamento-novo',
@@ -17,7 +17,7 @@ export class MedicamentoNovoComponent implements OnInit {
 
   form: Medicamento;
 
-  constructor(private MedicamentoService: MedicamentoService, private router: Router, private mensagem: MessageService) { }
+  constructor(private MedicamentoService: MedicamentoService, private router: Router, private mensagem: MessageServiceUtil) { }
 
   ngOnInit() {
   }

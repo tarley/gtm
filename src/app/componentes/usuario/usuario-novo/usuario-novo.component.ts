@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
 import { NgForm } from '@angular/forms';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { UsuarioService } from '../shared/usuario.service';
-import { MessageService, SelectItem } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -26,7 +27,8 @@ export class UsuarioNovoComponent implements OnInit {
     {label: 'Normal', value: 'Normal'},
   ]
 
-  constructor(private usuarioService: UsuarioService, private messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -35,7 +37,7 @@ export class UsuarioNovoComponent implements OnInit {
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
           this.usuario.confSenha = usuario.senha;
-        }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)))
+        }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!')))
       }
     })
   }
@@ -46,7 +48,7 @@ export class UsuarioNovoComponent implements OnInit {
     //   return;
     // }
     let requisicao: Observable<Object>;
-    if(this.usuario._id.length > 0) {
+    if(this.usuario._id) {
       requisicao = this.usuarioService.atualizaUsuario(this.usuario);
     } else {
       requisicao = this.usuarioService.insereUsuario(this.usuario);
@@ -54,7 +56,7 @@ export class UsuarioNovoComponent implements OnInit {
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR));
   }
 
   formularioInvalido(form: NgForm) {
