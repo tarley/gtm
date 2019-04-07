@@ -9,28 +9,29 @@ export class Paciente {
         public anosEstudo: number,
         public telefone: string,
         public profissao: string,
-    
-        public dadosComplementares: {
-            profissionalServico: String,
-            lugarAtendimento: String,
-        },
-    
-        public habitosVida: {
-            atividadeFisica: String,
-            terapiaAlternativa: String,
-            alerta: String,
-    
-            cigarro: {
-                fumante: Boolean,
-                observacao: String
-            },
-    
-            bebidasAlcolicas: {
-                consume: Boolean,
-                observacao: String
-            }        
-        },
         public _id?: string,
+    
+        // public dadosComplementares: {
+        //     profissionalServico: String,
+        //     lugarAtendimento: String,
+        // },
+    
+        // public habitosVida: {
+        //     atividadeFisica: String,
+        //     terapiaAlternativa: String,
+        //     alerta: String,
+    
+        //     cigarro: {
+        //         fumante: Boolean,
+        //         observacao: String
+        //     },
+    
+
+        //     bebidasAlcolicas: {
+        //         consume: Boolean,
+        //         observacao: String
+        //     }        
+        // }
 
     ) {}
 }

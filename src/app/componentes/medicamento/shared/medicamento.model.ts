@@ -1,8 +1,8 @@
 export class Medicamento {
 
     public constructor (
-      public _id: String,
-      public descricao: String,
+      public _id?: string,
+      public descricao?: string,
     ) {}
 }
 

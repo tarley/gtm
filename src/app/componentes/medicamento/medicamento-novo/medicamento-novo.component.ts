@@ -30,7 +30,7 @@ export class MedicamentoNovoComponent implements OnInit {
       this.MedicamentoService.inserirMedicamento(form.value).subscribe(() => {
         this.voltar();
         this.mensagem.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
-      }, () => this.mensagem.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_SALVAR)));
+      }, () => this.mensagem.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO)));
   }
 
 }
