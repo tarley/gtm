@@ -5,6 +5,10 @@ import { MedicamentoNovoComponent } from './medicamento-novo/medicamento-novo.co
 import {InputTextModule} from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel';
 import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
+import {ButtonModule} from 'primeng/button';
+import { MedicamentoService } from './shared/medicamento.service';
+import {CardModule} from 'primeng/card';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MedicamentoComponent, MedicamentoNovoComponent],
@@ -12,7 +16,11 @@ import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
     CommonModule,
     InputTextModule,
     PanelModule,
+    FormsModule,
     GtmTabelaModule,
-  ]
+    ButtonModule,
+    CardModule,
+  ],
+  providers: [MedicamentoService]
 })
 export class MedicamentoModule { }

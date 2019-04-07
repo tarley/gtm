@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Medicamento } from '../shared/medicamento.model';
+import { MedicamentoService } from '../shared/medicamento.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { MensagemUtil } from 'src/app/util/mensagem-util';
 
 @Component({
   selector: 'app-medicamento-novo',
@@ -7,9 +13,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicamentoNovoComponent implements OnInit {
 
-  constructor() { }
+  titulo: String = 'Novo Medicamento';
+
+  form: Medicamento;
+
+  constructor(private MedicamentoService: MedicamentoService, private router: Router, private mensagem: MessageService) { }
 
   ngOnInit() {
+  }
+
+  voltar() {
+    this.router.navigate(['medicamento']);
+  }
+
+  salvar(form: NgForm){
+      this.MedicamentoService.inserirMedicamento(form.value).subscribe(() => {
+        this.voltar();
+        this.mensagem.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
+      }, () => this.mensagem.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO)));
   }
 
 }

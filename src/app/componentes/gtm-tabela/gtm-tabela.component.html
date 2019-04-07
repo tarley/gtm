@@ -1,24 +1,27 @@
 <div>
   <p-confirmDialog header="Atenção!" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle">
   </p-confirmDialog>
-  <p-table [value]="lista">
+  <p-table [value]="lista" [selectionMode]="single" [selection]="linha" [paginator]="true" [rows]="10" [first]="1" [totalRecords]="lista.length" (onRowSelect)="novaLinhaSelecionada">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let coluna of colunas">{{ formataTituloCabecalho(coluna) }}</th>
-        <th class="coluna-acoes">Ações</th>
+        <th *ngIf="existeDelete || existeEdicao" class="coluna-acoes">Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
       <tr>
-        <td *ngFor="let coluna of colunas">{{ elemento[coluna] }}</td>
-        <td style="width: 15%;">
-          <button pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
+        <td *ngFor="let coluna of colunas">{{
+           isDate(elemento[coluna]) ? 
+           (elemento[coluna] | date: 'dd/MM/yyyy') : 
+           elemento[coluna]
+          }}</td>
+        <td *ngIf="existeDelete || existeEdicao" style="width: 15%;">
+          <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>
-          <button pButton class="botao-acao" icon="fa fa-trash" (click)="deletaItem(elemento._id)"
+          <button *ngIf="existeDelete" pButton class="botao-acao" icon="fa fa-trash" (click)="deletaItem(elemento._id)"
             type="button"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
-  <p-paginator [rows]="50" [totalRecords]="lista.length"></p-paginator>
 </div>

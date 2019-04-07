@@ -17,10 +17,18 @@ export class GtmTabelaComponent implements OnInit {
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
 
+  @Output() linhaSelecionada = new EventEmitter<any>();
+  
+  existeEdicao: boolean = false;
+  existeDelete: boolean = false;
+  
+  linha: any;
+
   constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+    this.isExisteAcao();
   }
 
   formataTituloCabecalho(titulo: string) {
@@ -38,6 +46,27 @@ export class GtmTabelaComponent implements OnInit {
         }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.EXCLUIR_ERRO)));
       }
     });
+  }
+
+  novaLinhaSelecionada() {
+    this.linhaSelecionada.emit(this.linha);
+  }
+
+  isExisteAcao() {
+    if (this.urlDelete) {
+      this.existeDelete = true;
+    }
+    if (this.rotaEdicao) {
+      this.existeEdicao = true;
+    }
+  }
+
+  isDate(valor) {
+    if(valor instanceof Date) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   deletaItemTabela(id: string) {
