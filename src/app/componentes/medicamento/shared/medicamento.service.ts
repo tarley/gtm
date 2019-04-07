@@ -19,4 +19,8 @@ export class MedicamentoService {
   public buscarTodos(){
    return this.httpClient.get(this.urlApi); 
   }
+
+  public excluir(medicamento: Medicamento){
+    return this.httpClient.put(`${this.urlApi}/${medicamento._id}`, medicamento);
+  }
 }
