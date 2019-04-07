@@ -10,7 +10,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
       <tr>
-        <td *ngFor="let coluna of colunas">{{ elemento[coluna] }}</td>
+        <td *ngFor="let coluna of colunas">{{
+           isDate(elemento[coluna]) ? (elemento[coluna] | date: 'dd/MM/yyyy') : elemento[coluna]
+          }}</td>
         <td *ngIf="existeDelete || existeEdicao" style="width: 15%;">
           <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>

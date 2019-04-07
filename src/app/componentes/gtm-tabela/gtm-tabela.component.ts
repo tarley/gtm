@@ -53,6 +53,14 @@ export class GtmTabelaComponent implements OnInit {
     }
   }
 
+  isDate(valor) {
+    if(valor instanceof Date) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   deletaItemTabela(id: string) {
     const index = this.lista.findIndex(elem => elem._id == id);
     this.lista.splice(index, 1);
