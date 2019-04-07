@@ -1,7 +1,7 @@
 import { MensagemUtil } from './../../util/mensagem-util';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { GtmTabelaService } from './gtm-tabela.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,8 +17,12 @@ export class GtmTabelaComponent implements OnInit {
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
 
+  @Output() linhaSelecionada = new EventEmitter<any>();
+  
   existeEdicao: boolean = false;
   existeDelete: boolean = false;
+  
+  linha: any;
 
   constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
@@ -42,6 +46,10 @@ export class GtmTabelaComponent implements OnInit {
         }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.EXCLUIR_ERRO)));
       }
     });
+  }
+
+  novaLinhaSelecionada() {
+    this.linhaSelecionada.emit(this.linha);
   }
 
   isExisteAcao() {
