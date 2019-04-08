@@ -16,6 +16,9 @@ export class PacienteComponent implements OnInit {
   colunas: string[] = ['nome', 'sexo', 'cpf'];
   pacientes: Paciente[] = [];
 
+  urlDelete = 'v1/pacientes';
+  rotaEdicao = 'paciente';
+
   constructor(private router: Router, private pacienteService: PacienteService) { }
 
   ngOnInit() {
