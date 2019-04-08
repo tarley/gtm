@@ -1,8 +1,7 @@
 <p-card [header]="titulo">
   <div class="botoes-topo">
-    <button pButton type="button" label="Novo Paciente" (click)="navigate('paciente/novo')"></button>
-    <button pButton type="button" label="Novo Atendimento" class="botao-novoAtendimento"
-      (click)="navigate('atendimento/novo')"></button>
+    <button pButton type="button" label="Novo Paciente" (click)="novoPaciente()"></button>
+    <button pButton type="button" label="Novo Atendimento" class="botao-novoAtendimento" [disabled]="pacienteSelecionado ? false : true" (click)="novoAtendimento('atendimento/novo')"></button>
   </div>
-  <app-gtm-tabela [colunas]="colunas" [lista]="pacientes" [rotaEdicao]="rotaEdicao" [urlDelete]="urlDelete"></app-gtm-tabela>
+  <app-gtm-tabela [colunas]="colunas" [lista]="pacientes" [rotaEdicao]="rotaEdicao" [urlDelete]="urlDelete" (linhaSelecionada)="selecionaPaciente($event)"></app-gtm-tabela>
 </p-card>

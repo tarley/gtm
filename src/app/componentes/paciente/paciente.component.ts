@@ -19,14 +19,24 @@ export class PacienteComponent implements OnInit {
   urlDelete = 'v1/pacientes';
   rotaEdicao = 'paciente';
 
+  pacienteSelecionado: Paciente;
+
   constructor(private router: Router, private pacienteService: PacienteService) { }
 
   ngOnInit() {
     this.buscarTodos()
   }
 
-  navigate(route: string) {
-    this.router.navigate([route]);
+  novoPaciente() {
+    this.router.navigate(['paciente/novo']);
+  }
+
+  novoAtendimento() {
+    this.router.navigate(['atendimento/novo', this.pacienteSelecionado._id]);
+  }
+
+  selecionaPaciente(paciente: Paciente) {
+    this.pacienteSelecionado = paciente;
   }
 
   buscarTodos() {

@@ -1,7 +1,7 @@
 <div>
   <p-confirmDialog header="Atenção!" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle">
   </p-confirmDialog>
-  <p-table [value]="lista" [selectionMode]="single" [selection]="linha" [paginator]="true" [rows]="10" [first]="1" [totalRecords]="lista.length+1" (onRowSelect)="novaLinhaSelecionada()">
+  <p-table [value]="lista" selectionMode="single" [(selection)]="linha" [paginator]="false" rows="10" first="1" [totalRecords]="lista.length" (onRowSelect)="novaLinhaSelecionada()">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let coluna of colunas">{{ formataTituloCabecalho(coluna) }}</th>
@@ -9,7 +9,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
-      <tr>
+      <tr [pSelectableRow]="elemento">
         <td *ngFor="let coluna of colunas">{{
            isDate(elemento[coluna]) ? 
            (elemento[coluna] | date: 'dd/MM/yyyy') : 
