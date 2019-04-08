@@ -1,4 +1,3 @@
-import { MessageService } from 'primeng/api';
 import { UsuarioService } from './shared/usuario.service';
 import { CardModule } from 'primeng/card';
 import { NgModule } from '@angular/core';
@@ -30,6 +29,6 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     GtmTabelaModule,
     KeyFilterModule,
   ],
-  providers: [UsuarioService, MessageService]
+  providers: [UsuarioService]
 })
 export class UsuarioModule { }

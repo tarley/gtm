@@ -1,8 +1,9 @@
 import { MensagemUtil } from './../../util/mensagem-util';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { GtmTabelaService } from './gtm-tabela.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-gtm-tabela',
@@ -12,15 +13,23 @@ import { Router } from '@angular/router';
 export class GtmTabelaComponent implements OnInit {
 
   @Input() colunas: string[] = [];
-  @Input() lista: any[] = []
+  @Input() lista: any[] = [];
 
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
 
-  constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageService,
+  @Output() linhaSelecionada = new EventEmitter<any>();
+  
+  existeEdicao: boolean = false;
+  existeDelete: boolean = false;
+  
+  linha: any;
+
+  constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageServiceUtil,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+    this.isExisteAcao();
   }
 
   formataTituloCabecalho(titulo: string) {
@@ -38,6 +47,27 @@ export class GtmTabelaComponent implements OnInit {
         }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.EXCLUIR_ERRO)));
       }
     });
+  }
+
+  novaLinhaSelecionada() {
+    this.linhaSelecionada.emit(this.linha);
+  }
+
+  isExisteAcao() {
+    if (this.urlDelete) {
+      this.existeDelete = true;
+    }
+    if (this.rotaEdicao) {
+      this.existeEdicao = true;
+    }
+  }
+
+  isDate(valor) {
+    if(valor instanceof Date) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   deletaItemTabela(id: string) {

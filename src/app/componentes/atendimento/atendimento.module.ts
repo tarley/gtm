@@ -1,8 +1,9 @@
+import { PacienteService } from './../paciente/shared/paciente.service';
+import { AtendimentoService } from './shared/atendimento.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AtendimentoComponent } from './atendimento.component';
 import { AtendimentoNovoComponent } from './atendimento-novo/atendimento-novo.component';
-import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,6 +16,7 @@ import { MessageModule } from 'primeng/message';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [AtendimentoComponent, AtendimentoNovoComponent],
@@ -32,7 +34,8 @@ import { CalendarModule } from 'primeng/calendar';
     MessageModule,
     AccordionModule,
     CalendarModule,
+    TabViewModule,
   ],
-  providers: [MessageService]
+  providers: [AtendimentoService, PacienteService]
 })
 export class AtendimentoModule { }

@@ -21,4 +21,8 @@ export class PacienteService{
         return this.httpClient.get(this.urlApi);
     }
 
+    public buscarPorId(id: string) {
+        return this.httpClient.get(`${this.urlApi}/${id}`)
+    }
+
 }

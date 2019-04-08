@@ -19,4 +19,5 @@ export class MensagemUtil {
     public static criaMensagemErro(mensagem: string) {
         return {severity:'error', summary:'Ocorreu um erro!', detail: mensagem};
     }
+
 }
