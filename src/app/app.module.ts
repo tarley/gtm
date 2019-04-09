@@ -20,6 +20,7 @@ import { MedicamentoModule } from './componentes/medicamento/medicamento.module'
 import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.module';
 import { MessageServiceUtil } from './util/message-service-util.service';
 import { MessageService } from 'primeng/api';
+import { ProfissaoModule } from './componentes/profissao/profissao.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MessageService } from 'primeng/api';
     AtendimentoModule,
     MessageModule,
     MedicamentoModule,
+    ProfissaoModule
   ],
   providers: [MessageServiceUtil, MessageService],
   bootstrap: [AppComponent]
