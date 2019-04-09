@@ -10,6 +10,8 @@ import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { PacienteNovoComponent } from './componentes/paciente/paciente-novo/paciente-novo.component';
 import { MedicamentoComponent } from './componentes/medicamento/medicamento.component';
 import { MedicamentoNovoComponent } from './componentes/medicamento/medicamento-novo/medicamento-novo.component';
+import { ProfissaoComponent } from './componentes/profissao/profissao.component';
+import { ProfissaoNovoComponent } from './componentes/profissao/profissao-novo/profissao-novo.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -27,11 +29,14 @@ const routes: Routes = [
   //Rotas Atendimento
   { path: 'atendimento', component: AtendimentoComponent },
   { path: 'atendimento/novo/:id', component: AtendimentoNovoComponent},
-  { path: 'atendimento/novo', component: AtendimentoNovoComponent}, //Excluir essa rota
 
   //Telas Medicamentos
   {path: 'medicamento', component:MedicamentoComponent},
-  {path: 'medicamento/novo', component: MedicamentoNovoComponent}
+  {path: 'medicamento/novo', component: MedicamentoNovoComponent},
+
+  //Telas Profissões
+  {path: 'profissao', component:ProfissaoComponent},
+  {path: 'profissao/novo', component: ProfissaoNovoComponent},
 ];
 
 @NgModule({

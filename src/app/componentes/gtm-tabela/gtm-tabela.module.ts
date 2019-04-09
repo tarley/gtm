@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GtmTabelaComponent } from './gtm-tabela.component';
@@ -13,6 +14,7 @@ import { ConfirmationService } from 'primeng/api';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
     ButtonModule,
     TableModule,
     ConfirmDialogModule,

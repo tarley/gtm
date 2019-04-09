@@ -3,8 +3,10 @@ import { NgForm } from '@angular/forms';
 import { Paciente } from './../shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
+import { ProfissaoService } from '../../profissao/shared/profissao.service';
 import { Router } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
+import { Profissao } from '../../profissao/shared/profissao.model';
 
 @Component({
   selector: 'app-paciente-novo',
@@ -16,6 +18,8 @@ export class PacienteNovoComponent implements OnInit {
   titulo = 'Novo Paciente';
 
   form: Paciente;
+
+  profissao: SelectItem[] = []
 
   sexo: SelectItem[] = [
     {label: 'Masculino', value: 'Masculino'},
@@ -30,19 +34,11 @@ export class PacienteNovoComponent implements OnInit {
     {label: 'Viuvo(a)', value: 'Viuvo(a)'},
   ]
 
-  profissao: SelectItem[] = [
-    {label: 'Analista de Sistemas', value: 'AnalistaSistemas'},
-    {label: 'Enfermeiro(a)', value: 'Enfermeiro'},
-    {label: 'Farmacêutico(a)', value: 'farmaceutico'},
-    {label: 'Nutricionista', value: 'nutricionista'}
-  ]
-
   ubs: SelectItem[] = [
     {label: 'Centro de Saúde Confisco', value: 'ubsConfisco'},
     {label: 'Centro de Saúde Dom Orione', value: 'ubsDomOrione'},
     {label: 'Centro de Saúde Trevo', value: 'ubsTrevo'},
     {label: 'Centro de Saúde Ouro Preto', value: 'ubsOuroPreto'},
-
   ]
 
   acessoServico: SelectItem[] = [
@@ -51,7 +47,6 @@ export class PacienteNovoComponent implements OnInit {
     {label: 'Encaminhamento pela Clínica de Psicologia da Newton', value: 'clincaPsicologiaNewton'},
     {label: 'Encaminhamento pela pela UBS,', value: 'clincaUbs'},
     {label: 'Outro Encaminhamento,', value: 'outroEncaminhamento'},
-
   ]
 
   atividadeFisica: SelectItem[] = [
@@ -67,10 +62,10 @@ export class PacienteNovoComponent implements OnInit {
     {label: 'Não', value: 'nao'}
   ]
 
-  constructor(private PacienteService: PacienteService, private router: Router, private messageService: MessageService) { }
-
+  constructor(private PacienteService: PacienteService, private ProfissaoService: ProfissaoService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.carregarDadosIniciais();
   }
 
   voltar() {
@@ -82,6 +77,14 @@ export class PacienteNovoComponent implements OnInit {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
       this.voltar()
     }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) );
+  }
+
+  carregarDadosIniciais(){
+    this.ProfissaoService.buscarTodos().subscribe((profissoes: Profissao[]) => {
+      profissoes.forEach((p) => {
+        this.profissao.push({label: p.descricao, value: p.descricao});
+      })
+    });
   }
 
 }

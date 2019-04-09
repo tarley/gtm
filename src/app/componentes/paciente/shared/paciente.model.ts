@@ -1,20 +1,16 @@
 export class Paciente {
 
     public constructor(
-        public nome: string,
-        public sexo: string,
-        public cpf: number,
-        public dataNascimento: Date,
-        public estadoCivil: string,
-        public anosEstudo: number,
-        public telefone: string,
-        public profissao: string,
         public _id?: string,
-    
-        // public dadosComplementares: {
-        //     profissionalServico: String,
-        //     lugarAtendimento: String,
-        // },
+        public nome?: string,
+        public sexo?: string,
+        public cpf?: number,
+        public dataNascimento?: Date,
+        public estadoCivil?: string,
+        public anosEstudo?: number,
+        public telefone?: string,
+        public profissao?: string,
+        public dadosComplementares?: DadosComplementares,
     
         // public habitosVida: {
         //     atividadeFisica: String,
@@ -33,5 +29,12 @@ export class Paciente {
         //     }        
         // }
 
+    ) {}
+}
+
+export class DadosComplementares {
+    public constructor(
+        public profissionalServico?: String,
+        public lugarAtendimento?: String,
     ) {}
 }
