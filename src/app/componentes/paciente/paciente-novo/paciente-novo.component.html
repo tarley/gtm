@@ -70,35 +70,35 @@
 
         </fieldset>
 
-        <fieldset style="border: none;">
+        <fieldset *ngFor="let dadosComplementares of form.dadosComplementares" style="border: none;">
           <h3>Dados Complementares:</h3>
           <hr>
 
           <div class="ui-g-12 ui-md-3 ui-lg-4 ui-sm-12">
             <label>Profissional do Serviço:</label>
             <input id="profissionalServico" type="text" name="profissionalServico" pInputText
-              [(ngModel)]="form.dadosComplementares" />
+              [(ngModel)]="dadosComplementares.profissionalServico" />
           </div>
 
           <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
             <label>Lugar Atendimento:</label>
             <input id="lugarAtendimento" type="text" name="lugarAtendimento" pInputText
-              [(ngModel)]="form.dadosComplementares" />
+              [(ngModel)]="dadosComplementares.lugarAtendimento" />
           </div>
 
           <div class="ui-g-12 ui-md-6 ui-lg-5 ui-sm-12">
             <label>Endereço:</label>
-            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="form.endereco" />
+            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="dadosComplementares.endereco" />
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-4 ui-sm-12">
             <label>UBS:</label>
-            <p-dropdown [options]="ubs" [(ngModel)]="form.ubs" name="ubs" placeholder="Selecione:"></p-dropdown>
+            <p-dropdown [options]="ubs" name="ubs" placeholder="Selecione:"></p-dropdown>
           </div>
 
           <div class="ui-g-12 ui-md-8 ui-lg-8 ui-sm-12">
             <label>Acesso ao Serviço:</label>
-            <p-dropdown [options]="acessoServico" [(ngModel)]="form.acessoServico"
+            <p-dropdown [options]="acessoServico"
               name="profissionalServico" placeholder="Selecione:"></p-dropdown>
           </div>
 

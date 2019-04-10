@@ -1,6 +1,6 @@
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
-import { Paciente } from './../shared/paciente.model';
+import { Paciente, DadosComplementares, HabitosVida, Cigarro, BebidaAlcoolica } from './../shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
 import { ProfissaoService } from '../../profissao/shared/profissao.service';
@@ -17,7 +17,10 @@ export class PacienteNovoComponent implements OnInit {
 
   titulo = 'Novo Paciente';
 
-  form: Paciente;
+  form: Paciente = {
+    dadosComplementares: {},
+    habitosVida: {}
+  }
 
   profissao: SelectItem[] = []
 
