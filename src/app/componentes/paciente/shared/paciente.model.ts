@@ -13,16 +13,22 @@ export class Paciente {
 
         public dadosComplementares?: DadosComplementares,
 
-        public habitosVida?: HabitosVida, 
+        public habitosVida?: HabitosVida,
 
-    ) {}
+    ) {
+        dadosComplementares = new DadosComplementares()
+        habitosVida = new HabitosVida()
+    }
 }
 
 export class DadosComplementares {
     public constructor(
         public profissionalServico?: string,
         public lugarAtendimento?: string,
-        public endereco?: string
+        public endereco?: String,
+        public ubs?: String,
+        public acessoServico?: String,
+        public motivoConsulta?: String
     ) {}
 }
 
@@ -39,8 +45,8 @@ export class HabitosVida {
 
 export class Cigarro {
     public constructor(
-        public fumante: Boolean,
-        public observacao: String
+        public fumante?: Boolean,
+        public observacao?: String
     ) {}
 }
 

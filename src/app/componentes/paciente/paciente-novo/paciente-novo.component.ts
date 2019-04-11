@@ -1,7 +1,7 @@
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { Paciente, DadosComplementares, HabitosVida, Cigarro, BebidaAlcoolica } from './../shared/paciente.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
 import { ProfissaoService } from '../../profissao/shared/profissao.service';
 import { Router } from '@angular/router';
@@ -17,10 +17,11 @@ export class PacienteNovoComponent implements OnInit {
 
   titulo = 'Novo Paciente';
 
-  form: Paciente = {
-    dadosComplementares: {},
-    habitosVida: {}
-  }
+  paciente: Paciente = new Paciente()
+
+  // dadosComplementares: DadosComplementares = new DadosComplementares()
+
+  // cigarro: Cigarro = new Cigarro()
 
   profissao: SelectItem[] = []
 
@@ -76,6 +77,7 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   salvar(form: NgForm){
+    console.log(form.value)
     this.PacienteService.inserirPaciente(form.value).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
       this.voltar()
