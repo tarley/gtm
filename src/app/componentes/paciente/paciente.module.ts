@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [PacienteComponent, PacienteNovoComponent],
@@ -29,7 +30,8 @@ import { MessageModule } from 'primeng/message';
     DropdownModule,
     InputTextareaModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CheckboxModule
   ]
 })
 export class PacienteModule { }

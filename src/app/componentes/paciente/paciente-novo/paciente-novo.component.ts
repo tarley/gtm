@@ -61,11 +61,6 @@ export class PacienteNovoComponent implements OnInit {
     {label: 'Caminhada', value: 'caminhada'}
   ]
 
-  opcaoUso: SelectItem[] = [
-    {label: 'Sim', value: 'sim'},
-    {label: 'Não', value: 'nao'}
-  ]
-
   constructor(private PacienteService: PacienteService, private ProfissaoService: ProfissaoService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -77,8 +72,9 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   salvar(form: NgForm){
-    console.log(form.value)
-    this.PacienteService.inserirPaciente(form.value).subscribe(() => {
+    // console.log(form.value)
+    console.log(this.paciente)
+    this.PacienteService.inserirPaciente(this.paciente).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
       this.voltar()
     }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) );
