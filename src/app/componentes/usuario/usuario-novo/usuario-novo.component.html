@@ -21,7 +21,7 @@
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-3">
           <label>Senha:</label>
-          <input type="password" name="senha" pInputText minlength="5" [(ngModel)]="usuario.senha" required />
+          <input type="password" (keyup)="validaConfirmacaoSenha(form)" #senha="ngModel" name="senha" pInputText minlength="5" [(ngModel)]="usuario.senha" required />
           <!-- <p-message *ngIf="form.controls['senha'].hasError('required') && form.controls['senha'].touched"
             severity="error" text="Senha Obrigatória"></p-message>
           <p-message *ngIf="form.controls['senha'].hasError('minlength') && form.controls['senha'].touched"
@@ -31,16 +31,16 @@
           <label>Confirmação Senha:</label>
           <input type="password" name="confSenha" minlength="5" #confSenha="ngModel"
             (keyup)="validaConfirmacaoSenha(form)" [(ngModel)]="usuario.confSenha" pInputText required />
-          <!-- <p-message *ngIf="!confirmacaoSenhaValida && confSenha.touched" severity="error"
+          <p-message *ngIf="!confirmacaoSenhaValida && (confSenha.touched || senha.touched)" severity="error"
             text="A confirmação não é igual a senha"></p-message>
-          <p-message *ngIf="form.controls['confSenha'].hasError('required') && form.controls['confSenha'].touched"
+          <!-- <p-message *ngIf="form.controls['confSenha'].hasError('required') && form.controls['confSenha'].touched"
             severity="error" text="Confirmação de Senha Obrigatório"></p-message> -->
         </div>
       </div>
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-3">
           <label>Perfil:</label>
-          <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione um perfil" [required]="true"
+          <p-dropdown [options]="perfis" styleClass="dropdown" name="perfil" placeholder="Selecione um perfil" [required]="true"
             [(ngModel)]="usuario.perfil"></p-dropdown>
           <!-- <p-message *ngIf="form.controls['perfil'].hasError('required') && form.controls['perfil'].touched"
             severity="error" text="Perfil Obrigatório"></p-message> -->
