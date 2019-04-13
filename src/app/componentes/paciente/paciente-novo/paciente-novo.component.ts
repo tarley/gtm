@@ -1,3 +1,4 @@
+import { Constantes } from 'src/app/util/constantes';
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { Paciente, DadosComplementares, HabitosVida, Cigarro, BebidaAlcoolica } from './../shared/paciente.model';
@@ -19,38 +20,19 @@ export class PacienteNovoComponent implements OnInit {
 
   paciente: Paciente = new Paciente()
 
-  // dadosComplementares: DadosComplementares = new DadosComplementares()
-
-  // cigarro: Cigarro = new Cigarro()
-
   profissao: SelectItem[] = []
 
-  sexo: SelectItem[] = [
-    {label: 'Masculino', value: 'Masculino'},
-    {label: 'Feminino', value: 'Feminino'},
-    {label: 'Outro', value: 'Outro'}
-  ]
+  sexo: SelectItem[] = Constantes.sexo;
 
-  estadoCivil: SelectItem[] = [
-    {label: 'Solteiro(a)', value: 'Solteiro(a)'},
-    {label: 'Casado(a)', value: 'Casado(a)'},
-    {label: 'Dirvociado(a)', value: 'Dirvociado(a)'},
-    {label: 'Viuvo(a)', value: 'Viuvo(a)'},
-  ]
+  estadoCivil: SelectItem[] = Constantes.estadoCivil;
+
+  acessoServico: SelectItem[] = Constantes.acessoServico;
 
   ubs: SelectItem[] = [
     {label: 'Centro de Saúde Confisco', value: 'ubsConfisco'},
     {label: 'Centro de Saúde Dom Orione', value: 'ubsDomOrione'},
     {label: 'Centro de Saúde Trevo', value: 'ubsTrevo'},
     {label: 'Centro de Saúde Ouro Preto', value: 'ubsOuroPreto'},
-  ]
-
-  acessoServico: SelectItem[] = [
-    {label: 'Encaminhamento pela Clínica de Odontologia da Newton', value: 'clincaOdontoNewton'},
-    {label: 'Encaminhamento pela Clínica de Fisioterapia da Newton', value: 'clincaFisioterapiaNewton'},
-    {label: 'Encaminhamento pela Clínica de Psicologia da Newton', value: 'clincaPsicologiaNewton'},
-    {label: 'Encaminhamento pela pela UBS,', value: 'clincaUbs'},
-    {label: 'Outro Encaminhamento,', value: 'outroEncaminhamento'},
   ]
 
   atividadeFisica: SelectItem[] = [
@@ -72,8 +54,6 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   salvar(form: NgForm){
-    // console.log(form.value)
-    console.log(this.paciente)
     this.PacienteService.inserirPaciente(this.paciente).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
       this.voltar()

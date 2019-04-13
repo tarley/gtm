@@ -5,8 +5,10 @@ export class Atendimento {
         public dataAtendimento?: Date,
         public quadroGeral?: string,
         public doencas?: Doenca[],
+        public planoCuidado?: PlanoCuidado
     ) {
-        doencas = [];
+        this.doencas = new Array<Doenca>();
+        this.planoCuidado = new PlanoCuidado();
     }
 }
 
@@ -15,9 +17,8 @@ export class Doenca {
         public nome: string,
         public descricao?: string,
         public farmacoterapias?: Farmacoterapia[],
-        public planoCuidado?: PlanoCuidado
     ) {
-        farmacoterapias = [];
+        this.farmacoterapias = new Array<Farmacoterapia>();
     }
 }
 
@@ -29,20 +30,21 @@ export class Farmacoterapia {
         public tempoUso?: string,
         public seguranca?: string,
         public dificuldadeUso?: string,
+        public prm?: PRM,
+        public causaPrm?: string,
     ) {}
 }
 
 export class PlanoCuidado {
     public constructor(
         public objetivoTerapeutico?: string,
-        public prm ?: PRM,
-        public causaPrm?: string,
+        public conduta?: string,
         public condutas?: Conduta[],
         public scf?: string,
         public dataResultado?: Date,
         public outrasCondutas?: string
     ) {
-        condutas = [];
+        this.condutas = new Array<Conduta>();
     }
 }
 
@@ -64,6 +66,63 @@ export class PRM {
         {label: 'PRM 7 - Não adesão', value: 'PRM7', causas: []},
     ]
 }
+
+// Prm 1
+
+// "Ausência de indicação clínica no momento"
+// "Uso de múltiplos med quando apenas um (ns) resolveria (m)"
+// "Medicamento não é efetivo para a condição "
+// "Terapia não medicamentosa mais apropriada"
+// "Tratamento de reação que poderia ter sido prevenida"
+// "Uso recreacional"
+        
+// Prm 2
+
+// "Presença de uma condição clínica que requer o uso de meds"
+// "Tratamento profilático necessário para reduzir risco de outro problema"
+// "Tratamento adicional/sinérgico necessário para obter efeito desejado"
+        
+// Prm 3
+
+// "O medicamento usado não é o mais efetivo para a condição tratada"
+// "A condição tratada é refratária ao medicamento usado"
+// "O medicamento não efetivo para o transtorno"
+// "A forma farmacêutica/produto é inadequada"
+// "Presença de contra indicação"
+
+// Prm4
+        
+// "A dose é muito baixa para  produzir a resposta desejada"
+// "Intervalo entre doses maior que o necessário para se alcançar objetivos"
+//  "Uma interação reduz a quantidade disponível do fármaco"
+// "Duração do trat. menor que necessário para se obter o efeito desejado"
+// "Administração incorreta"
+// "Armazenamento incorreto"
+
+// Prm5
+        
+// "O medicamento produz efeito indesejável que não é relacionado com a dose"
+// "O medicamento produz uma reação alérgica"
+// "O medicamento não é  seguro (presença de fatores risco/contra indicação)"
+// "Interação causa uma reação que não é dose relacionada"
+// "Administração incorreta (dose administrada ou alterada muito rapidamente"
+        
+// Prm6
+
+// "A dose é muito alta"
+// "O intervalo entre as doses é menor que o recomendado"
+// "A duração do tratamento é maior que o necessário"
+// "A interação causa uma reação dose relacionada"
+// "A dose do med foi administrada muito rapidamente"
+
+// Prm7
+        
+// "O paciente não compreendeu as instruções"
+// "O paciente prefere não utilizar o medicamento"
+// "O paciente esquece de utilizar o medicamento"
+// "O medicamento é muito caro para o paciente"
+// "O paciente não consegue engolir/administrar o med adequadamente"
+// "O produto não está disponível para o paciente"
 
 export class SCF {
     public static scf = [
