@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="salvar(form)">
+<form #form="ngForm" (ngSubmit)="salvar()">
   <p-card [header]="titulo">
 
     <div class="ui-g ui-fluid">
@@ -125,7 +125,7 @@
           <h3>Habitos de Vida:</h3>
           <hr>
 
-          <div class="ui-g-12 ui-md-6 ui-lg-6 ui-sm-12">
+          <div class="ui-g-12 ui-md-2 ui-lg-2 ui-sm-12">
             <label>Atividade Física:</label>
             <p-dropdown [options]="atividadeFisica" [(ngModel)]="paciente.habitosVida.atividadeFisica"
               name="atividadeFisica" placeholder="Selecione:"></p-dropdown>
@@ -134,13 +134,15 @@
           <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
 
             <div class="chxOpcao ui-g-2 ui-sm-2 ui-md-2 ui-lg-2">
-              <p-checkbox name="fumante" [(ngModel)]="paciente.habitosVida.cigarro.fumante" binary="true"
-                label="Fumante"></p-checkbox>
+              <p-checkbox name="fumante" #chkCigarro class="estiloCheckBox"
+                (onChange)="validarChk(chkCigarro.name, $event)" [(ngModel)]="paciente.habitosVida.cigarro.fumante"
+                binary="true" label="Cigarro"></p-checkbox>
             </div>
 
             <div class="ui-g-10 ui-sm-10 ui-md-10 ui-lg-10">
               <span class="ui-float-label" *ngIf="paciente.habitosVida.cigarro.fumante">
-                <textarea class="textArea" name="observacao" rows="3" cols="10" [(ngModel)]="paciente.habitosVida.cigarro.observacao" pInputTextarea></textarea>
+                <textarea class="textArea" name="observacaoCigarro" rows="3" cols="10"
+                  [(ngModel)]="paciente.habitosVida.cigarro.observacaoCigarro" pInputTextarea></textarea>
                 <label for="float-input">Obs Consumo Cigarro:</label>
               </span>
             </div>
@@ -149,13 +151,17 @@
 
           <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
             <div class="chxOpcao ui-g-2 ui-sm-2 ui-md-2 ui-lg-2">
-              <p-checkbox name="consume" [(ngModel)]="paciente.habitosVida.bebidaAlcoolica.consume" binary="true"
-                label="Consume Bebida Alcoólica"></p-checkbox>
+              <p-checkbox name="consome" class="estiloCheckBox" #chkBebida
+                (onChange)="validarChk(chkBebida.name, $event)"
+                [(ngModel)]="paciente.habitosVida.bebidaAlcoolica.consome" binary="true" label="Bebida Alcoólica">
+              </p-checkbox>
             </div>
 
             <div class="ui-g-10 ui-sm-10 ui-md-10 ui-lg-10">
-              <span class="ui-float-label" *ngIf="paciente.habitosVida.bebidaAlcoolica.consume">
-                <textarea name="observacao" class="textArea" rows="3" cols="10" [(ngModel)]="paciente.habitosVida.bebidaAlcoolica.observacao" pInputTextarea ></textarea>
+              <span class="ui-float-label" *ngIf="paciente.habitosVida.bebidaAlcoolica.consome">
+                <textarea name="observacaoBebidaAlcoolica" class="textArea" rows="3" cols="10"
+                  [(ngModel)]="paciente.habitosVida.bebidaAlcoolica.observacaoBebidaAlcoolica"
+                  pInputTextarea></textarea>
                 <label for="float-input">Obs Consumo Bebida Alcoólica:</label>
               </span>
             </div>
