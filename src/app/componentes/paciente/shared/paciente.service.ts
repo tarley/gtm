@@ -8,16 +8,27 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
 })
 
-export class PacienteService{
+export class PacienteService {
     urlApi = environment.urlApi.concat('v1/pacientes/');
 
-    constructor(private httpClient: HttpClient){ }
+    constructor(private httpClient: HttpClient) { }
 
-    public inserirPaciente(paciente: Paciente){
+    public inserirPaciente(paciente: Paciente) {
         return this.httpClient.post(this.urlApi, paciente);
     }
 
-    public buscarTodos(){
+    validarCamposObservacao(paciente, chkCigarro, chkBebida) {
+        if(chkCigarro == false){
+            paciente.habitosVida.cigarro.observacaoCigarro = "";
+        } 
+        if(chkBebida == false) {
+            paciente.habitosVida.bebidaAlcoolica.observacaoBebidaAlcoolica = "";
+        }
+
+        return paciente;
+    }
+
+    public buscarTodos() {
         return this.httpClient.get(this.urlApi);
     }
 

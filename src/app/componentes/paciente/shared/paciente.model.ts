@@ -52,14 +52,14 @@ export class HabitosVida {
 export class Cigarro {
     public constructor(
         public fumante?: Boolean,
-        public observacao?: String
+        public observacaoCigarro?: String
     ) { }
 }
 
 export class BebidaAlcoolica {
     public constructor(
-        public consume?: Boolean,
-        public observacao?: String
+        public consome?: Boolean,
+        public observacaoBebidaAlcoolica?: String
     ) { }
 }
 
