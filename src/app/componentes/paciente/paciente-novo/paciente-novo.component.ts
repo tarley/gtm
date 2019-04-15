@@ -8,6 +8,7 @@ import { ProfissaoService } from '../../profissao/shared/profissao.service';
 import { Router } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Profissao } from '../../profissao/shared/profissao.model';
+import { checkBinding } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-paciente-novo',
@@ -28,20 +29,12 @@ export class PacienteNovoComponent implements OnInit {
 
   acessoServico: SelectItem[] = Constantes.acessoServico;
 
-  ubs: SelectItem[] = [
-    {label: 'Centro de Saúde Confisco', value: 'ubsConfisco'},
-    {label: 'Centro de Saúde Dom Orione', value: 'ubsDomOrione'},
-    {label: 'Centro de Saúde Trevo', value: 'ubsTrevo'},
-    {label: 'Centro de Saúde Ouro Preto', value: 'ubsOuroPreto'},
-  ]
+  ubs: SelectItem[] = Constantes.ubs;
 
-  atividadeFisica: SelectItem[] = [
-    {label: 'Nenhuma', value: 'nenhuma'},    
-    {label: 'Natação', value: 'natacao'},
-    {label: 'Corrida', value: 'corrida'},
-    {label: 'Musculação', value: 'musculacao'},
-    {label: 'Caminhada', value: 'caminhada'}
-  ]
+  atividadeFisica: SelectItem[] = Constantes.atividadeFisica;
+
+  chkCigarro: Boolean = false;
+  chkBebidada: Boolean = false;
 
   constructor(private PacienteService: PacienteService, private ProfissaoService: ProfissaoService, private router: Router, private messageService: MessageService) { }
 
@@ -53,17 +46,34 @@ export class PacienteNovoComponent implements OnInit {
     this.router.navigate(['paciente']);
   }
 
-  salvar(form: NgForm){
-    this.PacienteService.inserirPaciente(this.paciente).subscribe(() => {
-      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
-      this.voltar()
-    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) );
+  validarChk(opcao, evento) {
+    if (opcao == "fumante") {
+      if (evento == false) {
+        this.chkCigarro = evento
+      } else {
+        this.chkCigarro = evento
+      }
+    } else {
+      if (opcao == "bebida" && evento == false) {
+        this.chkBebidada = evento;
+      } else {
+        this.chkBebidada = evento
+      }
+    }
   }
 
-  carregarDadosIniciais(){
+  salvar() {
+    this.PacienteService.validarCamposObservacao(this.paciente, this.chkCigarro, this.chkBebidada);
+    this.PacienteService.inserirPaciente(this.paciente).subscribe(() => {
+      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
+      this.voltar()
+    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+  }
+
+  carregarDadosIniciais() {
     this.ProfissaoService.buscarTodos().subscribe((profissoes: Profissao[]) => {
       profissoes.forEach((p) => {
-        this.profissao.push({label: p.descricao, value: p.descricao});
+        this.profissao.push({ label: p.descricao, value: p.descricao });
       })
     });
   }

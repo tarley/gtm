@@ -111,4 +111,20 @@ export class Constantes {
             ]
         },
     ]
+
+    public static ubs = [
+        { label: 'Centro de Saúde Confisco', value: 'ubsConfisco' },
+        { label: 'Centro de Saúde Dom Orione', value: 'ubsDomOrione' },
+        { label: 'Centro de Saúde Trevo', value: 'ubsTrevo' },
+        { label: 'Centro de Saúde Ouro Preto', value: 'ubsOuroPreto' }
+    ]
+
+    public static atividadeFisica = [
+        { label: 'Nenhuma', value: 'nenhuma' },
+        { label: 'Natação', value: 'natacao' },
+        { label: 'Corrida', value: 'corrida' },
+        { label: 'Musculação', value: 'musculacao' },
+        { label: 'Caminhada', value: 'caminhada' }
+    ]
+
 }
