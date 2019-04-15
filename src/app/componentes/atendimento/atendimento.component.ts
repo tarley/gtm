@@ -14,13 +14,12 @@ export class AtendimentoComponent implements OnInit {
 
   colunas: string[] = ['dataAtendimento', 'nomePaciente'];
 
-  atendimentos: Atendimento[] = [
-    {dataAtendimento: new Date('05/04/2019'), nomePaciente: 'Daniel Silva Torres'}
-  ];
+  atendimentos: Atendimento[] = [];
 
   constructor(private atendimentoService: AtendimentoService) { }
 
   ngOnInit() {
+    this.buscarTodos();
   }
 
   buscarTodos() {

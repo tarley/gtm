@@ -1,10 +1,13 @@
-import { ActivatedRoute } from '@angular/router';
+import { MensagemUtil } from 'src/app/util/mensagem-util';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../shared/atendimento.service';
-import { Atendimento, Doenca, Farmacoterapia, PRM, SCF } from './../shared/atendimento.model';
+import { Atendimento, Doenca, Farmacoterapia} from './../shared/atendimento.model';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from '../../paciente/shared/paciente.service';
 import { Paciente } from '../../paciente/shared/paciente.model';
 import { NgForm } from '@angular/forms';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
+import { Constantes } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-atendimento-novo',
@@ -15,38 +18,23 @@ export class AtendimentoNovoComponent implements OnInit {
 
   titulo = 'Novo Atendimento';
   
-  atendimento: Atendimento = {
-    doencas: [{nome: '', farmacoterapias: [{medicamento: ''}]}]
-
-  }
-  // {
-    // doencas: [
-    //   {nome: 'Diabetes', farmacoterapias: [
-    //     {medicamento: 'Insulina'},
-    //     {medicamento: 'Medicamento 2'},
-    //   ]},
-    //   {nome: 'Tosse', farmacoterapias: [
-    //     {medicamento: 'Xarope'},
-    //     {medicamento: 'Medicamento 2'},
-    //   ]},
-    //   {nome: 'Gripe', farmacoterapias: [
-    //     {medicamento: 'Naldecon'},
-    //     {medicamento: 'Medicamento 2'},
-    //   ]},
-    // ]
-  // };
+  atendimento: Atendimento = new Atendimento();
 
   paciente: Paciente;
 
-  prms = PRM.prms;
+  scf = Constantes.scf;
+  configCalendar = Constantes.configCalendar;
+  prms = Constantes.prms;
   causasPrm;
 
-  scf = SCF.scf;
+  indiceDoencaSelecionada: number = 0;
+  indiceFarmacoSelecionada: number = 0;
 
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
-      private route: ActivatedRoute) { }
+      private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
 
   ngOnInit() {
+    this.adicionaDoencaEFarmacoInicial();
     this.route.params.subscribe(params => {
       if(params['id']) {
         const id = params['id'];
@@ -55,16 +43,38 @@ export class AtendimentoNovoComponent implements OnInit {
     })
   }
 
+  adicionaDoencaEFarmacoInicial() {
+    this.novaDoenca();
+    this.novaFarmaco(this.atendimento.doencas[0]);
+  }
+
   buscaPaciente(id: string) {
     this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
       this.paciente = paciente;
-      this.atendimento.idPaciente = paciente._id;
+      this.setAtributosIniciais(paciente);
       this.defineTitulo(paciente.nome);
     })
   }
 
-  salvar(form: NgForm) {
+  setAtributosIniciais(paciente: Paciente) {
+    this.atendimento.idPaciente = paciente._id;
+    this.atendimento.nomePaciente = paciente.nome;
+    this.atendimento.dataAtendimento = new Date();
+  }
 
+  salvar(form: NgForm) {
+    this.atendimentoService.salvar(this.atendimento).subscribe(resposta => {
+      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
+      this.voltar();
+    }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR));
+  }
+
+  carregaCausasPrm(prmSelecionada: string) {
+    Constantes.prms.forEach(prm => {
+      if(prm.value == prmSelecionada) {
+        this.causasPrm = prm.causas;
+      }
+    })
   }
 
   defineTitulo(nomePaciente: string) {
@@ -76,6 +86,11 @@ export class AtendimentoNovoComponent implements OnInit {
       this.atendimento.doencas = [];
     }  
     this.atendimento.doencas.push({nome: ''})
+    this.indiceDoencaSelecionada = this.atendimento.doencas.length - 1;
+  }
+
+  deletaDoenca(indexDeletado: number) {
+    this.atendimento.doencas.splice(indexDeletado, 1);
   }
 
   novaFarmaco(doenca: Doenca) {
@@ -85,9 +100,13 @@ export class AtendimentoNovoComponent implements OnInit {
     doenca.farmacoterapias.push(new Farmacoterapia());
   }
 
+  deletaFarmaco(doenca: Doenca, indexDeletado: number) {
+    doenca.farmacoterapias.splice(indexDeletado, 1);
+  }
+
   formataTituloDoenca(doenca: Doenca) {
     if(doenca.nome) {
-      return this.validaTamanhoMaximo(doenca.nome, 9);
+      return this.validaTamanhoMaximo(doenca.nome, 12);
     } else {
       return 'Nova Doença';
     }
@@ -95,7 +114,7 @@ export class AtendimentoNovoComponent implements OnInit {
 
   formataTituloFarmaco(farmaco: Farmacoterapia) {
     if(farmaco.medicamento) {
-      return this.validaTamanhoMaximo(farmaco.medicamento, 9); 
+      return this.validaTamanhoMaximo(farmaco.medicamento, 12); 
     } else {
       return 'Nova Farmaco'
     }
@@ -107,6 +126,10 @@ export class AtendimentoNovoComponent implements OnInit {
     } else {
       return campo;
     }
+  }
+
+  voltar() {
+    this.router.navigate(['paciente']);
   }
 
 }

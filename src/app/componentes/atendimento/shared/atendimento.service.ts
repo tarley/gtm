@@ -1,3 +1,4 @@
+import { Atendimento } from './atendimento.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -7,11 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class AtendimentoService {
 
-  private urlServico = environment.urlApi.concat('v1/atendimento')
+  private urlServico = environment.urlApi.concat('v1/atendimentos')
 
   constructor(private httpClient: HttpClient) { }
 
   buscarTodos() {
     return this.httpClient.get(this.urlServico);
+  }
+
+  salvar(atendimento: Atendimento) {
+    return this.httpClient.post(this.urlServico, atendimento);
   }
 }
