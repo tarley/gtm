@@ -25,6 +25,7 @@ const routes: Routes = [
   //Rotas Paciente
   { path: 'paciente', component: PacienteComponent },
   { path: 'paciente/novo', component: PacienteNovoComponent },
+  { path: 'paciente/:id', component: PacienteNovoComponent },
 
   //Rotas Atendimento
   { path: 'atendimento', component: AtendimentoComponent },

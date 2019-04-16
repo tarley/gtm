@@ -17,6 +17,10 @@ export class PacienteService {
         return this.httpClient.post(this.urlApi, paciente);
     }
 
+    public atualizaPaciente(paciente: Paciente){
+        return this.httpClient.put(`${this.urlApi}/${paciente._id}`, paciente);
+    }
+
     validarCamposObservacao(paciente, chkCigarro, chkBebida) {
         if(chkCigarro == false){
             paciente.habitosVida.cigarro.observacaoCigarro = "";
