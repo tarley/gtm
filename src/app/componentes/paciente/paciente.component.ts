@@ -1,3 +1,4 @@
+import { BotaoTabela } from './../gtm-tabela/shared/botao-tabela.model';
 import { PacienteService } from './shared/paciente.service';
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from './shared/paciente.model';
@@ -14,12 +15,12 @@ export class PacienteComponent implements OnInit {
   titulo: string = 'Lista de Pacientes';
 
   colunas: string[] = ['nome', 'sexo', 'cpf'];
+  botoes: BotaoTabela[] = [{nome: 'NovoAtendimento', icone: 'fa fa-list-alt'}];
+
   pacientes: Paciente[] = [];
 
   urlDelete = 'v1/pacientes';
   rotaEdicao = 'paciente';
-
-  pacienteSelecionado: Paciente;
 
   constructor(private router: Router, private pacienteService: PacienteService) { }
 
@@ -31,12 +32,10 @@ export class PacienteComponent implements OnInit {
     this.router.navigate(['paciente/novo']);
   }
 
-  novoAtendimento() {
-    this.router.navigate(['atendimento/novo', this.pacienteSelecionado._id]);
-  }
-
-  selecionaPaciente(paciente: Paciente) {
-    this.pacienteSelecionado = paciente;
+  novoAtendimento(evento) {
+    if(evento.nomeBotao == 'NovoAtendimento') {
+      this.router.navigate(['atendimento/novo', evento.idSelecionado]);
+    }
   }
 
   buscarTodos() {
