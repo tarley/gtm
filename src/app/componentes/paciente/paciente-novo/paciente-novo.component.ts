@@ -46,7 +46,7 @@ export class PacienteNovoComponent implements OnInit {
     this.router.navigate(['paciente']);
   }
 
-  validarChk(opcao, evento) {
+  validarCheckBox(opcao, evento) {
     if (opcao == "fumante") {
       if (evento == false) {
         this.chkCigarro = evento
