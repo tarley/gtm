@@ -39,7 +39,7 @@ export class HabitosVida {
     public constructor(
         public atividadeFisica?: string,
         public terapiaAlternativa?: string,
-        public alerta?: string,
+        public alertas?: string,
         public cigarro?: Cigarro,
         public bebidaAlcoolica?: BebidaAlcoolica
 
