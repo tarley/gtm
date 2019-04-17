@@ -17,12 +17,12 @@
            elemento[coluna]
           }}</td>
         <td *ngIf="existeDelete || existeEdicao">
+          <button *ngFor="let botao of botoes" pButton class="botao-acao" [icon]="botao.icone"
+            (click)="clickBotao(botao, elemento._id)" type="button"></button>
           <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>
           <button *ngIf="existeDelete" pButton class="botao-acao" icon="fa fa-trash" (click)="deletaItem(elemento._id)"
             type="button"></button>
-          <button *ngFor="let botao of botoes" pButton class="botao-acao" [icon]="botao.icone"
-            (click)="clickBotao(botao, elemento._id)" type="button"></button>
         </td>
       </tr>
     </ng-template>
