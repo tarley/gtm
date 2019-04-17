@@ -29,7 +29,8 @@ const routes: Routes = [
 
   //Rotas Atendimento
   { path: 'atendimento', component: AtendimentoComponent },
-  { path: 'atendimento/novo/:id', component: AtendimentoNovoComponent},
+  { path: 'atendimento/novo/:idPaciente', component: AtendimentoNovoComponent},
+  { path: 'atendimento/:id', component: AtendimentoNovoComponent},
 
   //Telas Medicamentos
   {path: 'medicamento', component:MedicamentoComponent},
