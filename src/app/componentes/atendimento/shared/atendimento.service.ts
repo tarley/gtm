@@ -19,4 +19,8 @@ export class AtendimentoService {
   salvar(atendimento: Atendimento) {
     return this.httpClient.post(this.urlServico, atendimento);
   }
+
+  buscaUltimoAtendimento(idPaciente: string) {
+    return this.httpClient.get(`${this.urlServico}/paciente/${idPaciente}`)
+  }
 }

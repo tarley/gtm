@@ -1,5 +1,6 @@
 export class Atendimento {
     constructor(
+        public _id?: string,
         public idPaciente?: string,
         public nomePaciente?: string,
         public dataAtendimento?: Date,
