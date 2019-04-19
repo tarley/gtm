@@ -3,7 +3,7 @@
 </div>
 
 <form #f="ngForm" (ngSubmit)="salvar(f)">
-  <p-accordion>
+  <p-accordion [multiple]="true">
     <p-accordionTab header="Avaliação Inicial" [selected]="true">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
