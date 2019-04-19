@@ -35,11 +35,9 @@ export class AtendimentoNovoComponent implements OnInit {
     this.adicionaDoencaEFarmacoInicial();
     this.route.params.subscribe(params => {
       if (params['idPaciente']) {
-        //Novo Atendimento
         const idPaciente = params['idPaciente'];
         this.buscaUltimoAtendimento(idPaciente);
       } else if (params['id']) {
-        // Edição Atendimento
         const id = params['id'];
       }
     })
@@ -90,7 +88,6 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
-    console.log(this.atendimento)
     this.atendimentoService.salvar(this.atendimento).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
