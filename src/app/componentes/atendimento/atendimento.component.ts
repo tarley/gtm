@@ -1,6 +1,5 @@
 import { Atendimento } from './shared/atendimento.model';
 import { AtendimentoService } from './shared/atendimento.service';
-import { Paciente } from './../paciente/shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -24,6 +23,9 @@ export class AtendimentoComponent implements OnInit {
 
   buscarTodos() {
     this.atendimentoService.buscarTodos().subscribe((atendimentos: Atendimento[]) => {
+      atendimentos.forEach(atendimento => {
+        atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
+      })
       this.atendimentos = atendimentos;
     })
   }

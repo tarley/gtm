@@ -3,7 +3,7 @@
 </div>
 
 <form #f="ngForm" (ngSubmit)="salvar(f)">
-  <p-accordion>
+  <p-accordion [multiple]="true">
     <p-accordionTab header="Avaliação Inicial" [selected]="true">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
@@ -15,7 +15,7 @@
     </p-accordionTab>
     <p-accordionTab header="Doenças e Farmacoterapias" [selected]="true">
       <p-button icon="fa fa-plus-circle" type="button" (click)="novaDoenca()" label="Nova Doença"></p-button>
-      <p-tabView controlClose="true" (onClose)="deletaDoenca($event.index)" [activeIndex]="indiceDoencaSelecionada">
+      <p-tabView (onClose)="deletaDoenca($event.index)">
         <p-tabPanel *ngFor="let doenca of atendimento.doencas; let i = index" [header]="formataTituloDoenca(doenca)"
           [closable]="true">
           <h3>Doença</h3>
@@ -36,7 +36,7 @@
           <hr>
           <p-button icon="fa fa-plus-circle" type="button" (click)="novaFarmaco(doenca)" label="Nova Farmacoterapia">
           </p-button>
-          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" [activeIndex]="indiceFarmacoSelecionada">
+          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">

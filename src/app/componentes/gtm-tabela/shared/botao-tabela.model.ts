@@ -1,7 +1,8 @@
 export class BotaoTabela {
 
     public constructor(
-        public nome?: string,
-        public icone?: string,
+        public nome: string,
+        public label: string,
+        public icone: string,
     ) {}
 }

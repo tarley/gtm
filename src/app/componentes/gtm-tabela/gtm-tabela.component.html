@@ -17,7 +17,7 @@
            elemento[coluna]
           }}</td>
         <td *ngIf="existeDelete || existeEdicao">
-          <button *ngFor="let botao of botoes" pButton class="botao-acao" [icon]="botao.icone"
+          <button *ngFor="let botao of botoes" [label]="botao.label" pButton class="botao-acao" [icon]="botao.icone"
             (click)="clickBotao(botao, elemento._id)" type="button"></button>
           <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>

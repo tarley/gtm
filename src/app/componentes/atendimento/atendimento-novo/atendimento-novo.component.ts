@@ -25,9 +25,6 @@ export class AtendimentoNovoComponent implements OnInit {
   prms = Constantes.prms;
   causasPrm;
 
-  indiceDoencaSelecionada: number = 0;
-  indiceFarmacoSelecionada: number = 0;
-
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
     private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
 
@@ -35,11 +32,9 @@ export class AtendimentoNovoComponent implements OnInit {
     this.adicionaDoencaEFarmacoInicial();
     this.route.params.subscribe(params => {
       if (params['idPaciente']) {
-        //Novo Atendimento
         const idPaciente = params['idPaciente'];
         this.buscaUltimoAtendimento(idPaciente);
       } else if (params['id']) {
-        // Edição Atendimento
         const id = params['id'];
       }
     })
@@ -71,6 +66,7 @@ export class AtendimentoNovoComponent implements OnInit {
     this.atendimento.dataAtendimento = new Date();
     this.atendimento.nomePaciente = ultimoAtendimento.nomePaciente;
     this.atendimento.idPaciente = ultimoAtendimento.idPaciente;
+    this.defineTitulo(ultimoAtendimento.nomePaciente);
 
     if (ultimoAtendimento.quadroGeral) {
       this.atendimento.quadroGeral = ultimoAtendimento.quadroGeral
@@ -90,7 +86,6 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
-    console.log(this.atendimento)
     this.atendimentoService.salvar(this.atendimento).subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
@@ -114,7 +109,6 @@ export class AtendimentoNovoComponent implements OnInit {
       this.atendimento.doencas = [];
     }
     this.atendimento.doencas.push({ nome: '' })
-    this.indiceDoencaSelecionada = this.atendimento.doencas.length - 1;
   }
 
   deletaDoenca(indexDeletado: number) {
