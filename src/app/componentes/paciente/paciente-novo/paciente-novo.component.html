@@ -32,7 +32,7 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Data de Nascimento:</label>
-            <p-inputMask required mask="99/99/9999" [(ngModel)]="paciente.dataNascimento" placeholder="dd/mm/aaaa"
+            <p-inputMask required unmask="true" mask="99/99/9999" [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa"
               id="dataNascimento" name="dataNascimento"></p-inputMask>
             <!-- <p-message *ngIf="form.controls['dataNascimento'].hasError('required') && form.controls['dataNascimento'].touched"
               severity="error" text="Campo Obrigatório"></p-message> -->

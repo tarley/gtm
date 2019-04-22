@@ -37,6 +37,8 @@ export class PacienteNovoComponent implements OnInit {
   chkCigarro: Boolean = false;
   chkBebidada: Boolean = false;
 
+  dataNascimento;
+
   constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
     private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
 
@@ -47,6 +49,7 @@ export class PacienteNovoComponent implements OnInit {
         const id = params['id'];
         this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
           this.paciente = paciente;
+          this.dataNascimento = this.pacienteService.formatarDataLeitura(this.paciente)
         }), (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao Buscar Paciente'))
       }
     })
@@ -74,6 +77,7 @@ export class PacienteNovoComponent implements OnInit {
 
   salvar() {
     this.pacienteService.validarCamposObservacao(this.paciente, this.chkCigarro, this.chkBebidada);
+    this.pacienteService.formartarDataGravacao(this.paciente, this.dataNascimento);
     let requisicao: Observable<Object>;
     if (!this.paciente._id) {
       requisicao = this.pacienteService.inserirPaciente(this.paciente);
