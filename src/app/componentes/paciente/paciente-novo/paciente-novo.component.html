@@ -49,8 +49,8 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Telefone:</label>
-            <p-inputMask required mask="(99)99999-9999" [(ngModel)]="paciente.telefone" placeholder="(00)00000-0000"
-              id="telefone" name="telefone"></p-inputMask>
+            <p-inputMask required unmask="true" mask="(99)99999-999?9" [(ngModel)]="paciente.telefone"
+              placeholder="(00)00000-0000" id="telefone" name="telefone"></p-inputMask>
             <!-- <p-message *ngIf="form.controls['telefone'].hasError('required') && form.controls['telefone'].touched" severity="error"
               text="Campo Obrigatório"></p-message> -->
           </div>
@@ -70,6 +70,12 @@
             <!-- <p-message *ngIf="form.controls['estadoCivil'].hasError('required') && form.controls['estadoCivil'].touched"
               severity="error" text="Campo Obrigatório"></p-message> -->
           </div>
+
+          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
+            <label>Endereço:</label>
+            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="paciente.endereco" />
+          </div>
+
         </fieldset>
       </div>
     </div>
@@ -90,12 +96,6 @@
             <label>Lugar Atendimento:</label>
             <input id="lugarAtendimento" type="text" name="lugarAtendimento" pInputText
               [(ngModel)]="paciente.dadosComplementares.lugarAtendimento" />
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Endereço:</label>
-            <input id="endereco" type="text" name="endereco" pInputText
-              [(ngModel)]="paciente.dadosComplementares.endereco" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
@@ -125,10 +125,9 @@
           <h3>Habitos de Vida:</h3>
           <hr>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Atividade Física:</label>
-            <p-dropdown [options]="atividadeFisica" [(ngModel)]="paciente.habitosVida.atividadeFisica"
-              name="atividadeFisica" placeholder="Selecione:"></p-dropdown>
+          <div class="ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
+            <p-checkbox name="atividadeFisica" class="estiloCheckBox" [(ngModel)]="paciente.habitosVida.atividadeFisica"
+              binary="true" label="Atividade Fisica"></p-checkbox>
           </div>
 
           <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
@@ -171,13 +170,13 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
             <label>Alertas:</label>
-            <textarea rows="5"  class="textArea" name="alertas" [(ngModel)]="paciente.habitosVida.alertas"
+            <textarea rows="5" class="textArea" name="alertas" [(ngModel)]="paciente.habitosVida.alertas"
               pInputTextarea></textarea>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
             <label>Terapia Alternativa:</label>
-            <textarea rows="5"  class="textArea" name="terapiaAlternativa"
+            <textarea rows="5" class="textArea" name="terapiaAlternativa"
               [(ngModel)]="paciente.habitosVida.terapiaAlternativa" pInputTextarea></textarea>
           </div>
 
@@ -193,7 +192,7 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Peso(Kg):</label>
-            <input id="peso" type="text" name="peso" [(ngModel)]="paciente.dadosAntropometricos.peso" pInputText />
+            <input id="peso" type="number" name="peso" [(ngModel)]="paciente.dadosAntropometricos.peso" pInputText />
             <!-- <p-message *ngIf="form.controls['nome'].hasError('required') && form.controls['nome'].touched" severity="error"
               text="Campo Obrigatório"></p-message> -->
           </div>
@@ -208,7 +207,7 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>IMC:</label>
-            <input id="imc" type="text" name="imc" [(ngModel)]="paciente.dadosAntropometricos.imc" pInputText
+            <input id="imc" type="number" name="imc" [(ngModel)]="paciente.dadosAntropometricos.imc" pInputText
               required />
             <!-- <p-message *ngIf="form.controls['nome'].hasError('required') && form.controls['nome'].touched" severity="error"
               text="Campo Obrigatório"></p-message> -->
@@ -287,8 +286,8 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
             <label>Observacao:</label>
-            <textarea rows="5" class="textArea" name="observacaoRotina"
-              [(ngModel)]="paciente.rotina.observacaoRotina" pInputTextarea></textarea>
+            <textarea rows="5" class="textArea" name="observacaoRotina" [(ngModel)]="paciente.rotina.observacaoRotina"
+              pInputTextarea></textarea>
           </div>
 
         </fieldset>
