@@ -1,14 +1,13 @@
 import { Constantes } from 'src/app/util/constantes';
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
-import { Paciente, DadosComplementares, HabitosVida, Cigarro, BebidaAlcoolica } from './../shared/paciente.model';
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Paciente } from './../shared/paciente.model';
+import { Component, OnInit } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
 import { ProfissaoService } from '../../profissao/shared/profissao.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Profissao } from '../../profissao/shared/profissao.model';
-import { checkBinding } from '@angular/core/src/view/util';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -34,10 +33,12 @@ export class PacienteNovoComponent implements OnInit {
 
   atividadeFisica: SelectItem[] = Constantes.atividadeFisica;
 
-  chkCigarro: Boolean = false;
-  chkBebidada: Boolean = false;
+  chkCigarroMarcado: Boolean = false;
+  chkBebidaMarcado: Boolean = false;
 
   dataNascimento;
+
+
 
   constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
     private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
@@ -49,6 +50,8 @@ export class PacienteNovoComponent implements OnInit {
         const id = params['id'];
         this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
           this.paciente = paciente;
+          this.chkCigarroMarcado = paciente.habitosVida.cigarro.fumante;
+          this.chkBebidaMarcado = paciente.habitosVida.bebidaAlcoolica.consome;
           this.dataNascimento = this.pacienteService.formatarDataLeitura(this.paciente)
         }), (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao Buscar Paciente'))
       }
@@ -62,22 +65,23 @@ export class PacienteNovoComponent implements OnInit {
   validarCheckBox(opcao, evento) {
     if (opcao == "fumante") {
       if (evento == false) {
-        this.chkCigarro = evento
+        this.chkCigarroMarcado = evento;
       } else {
-        this.chkCigarro = evento
+        this.chkCigarroMarcado = evento;
       }
     } else {
       if (opcao == "bebida" && evento == false) {
-        this.chkBebidada = evento;
+        this.chkBebidaMarcado = evento;
       } else {
-        this.chkBebidada = evento
+        this.chkBebidaMarcado = evento;
       }
     }
   }
 
   salvar() {
-    this.pacienteService.validarCamposObservacao(this.paciente, this.chkCigarro, this.chkBebidada);
+    this.pacienteService.validarCamposObservacao(this.paciente, this.chkCigarroMarcado, this.chkBebidaMarcado);
     this.pacienteService.formartarDataGravacao(this.paciente, this.dataNascimento);
+
     let requisicao: Observable<Object>;
     if (!this.paciente._id) {
       requisicao = this.pacienteService.inserirPaciente(this.paciente);
