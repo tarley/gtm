@@ -55,18 +55,30 @@ export class PacienteService {
         return dataNascimento;
     }
 
-    formartarDataGravacao(paciente: Paciente, dataNascimento) {
-        let dataString = dataNascimento
+    formartarDataGravacao(paciente: Paciente, data) {
+        if (data) {
+            let dia = parseInt(data.substring(0, 2));
+            let mes = parseInt(data.substring(2, 4)) - 1;
+            let ano = parseInt(data.substring(4, 8));
 
-        let dia = parseInt(dataString.substring(0, 2));
-        let mes = parseInt(dataString.substring(2, 4)) - 1;
-        let ano = parseInt(dataString.substring(4, 8));
+            let dataNascimento = new Date(ano, mes, dia);
 
-        let data = new Date(ano, mes, dia);
+            paciente.dataNascimento = dataNascimento
 
-        paciente.dataNascimento = data
+            return paciente;
+        }
+    }
 
-        return paciente;
+    formatarHora(paciente: Paciente, horario) {
+        if (horario) {
+            const hours = horario.slice(0, 2);
+            const minutes = horario.slice(3);
+
+            const date = new Date();
+            date.setHours(hours, minutes, 0);
+
+            console.log(date);
+        } 
     }
 
     public buscarTodos() {
