@@ -1,11 +1,35 @@
-input {
-    width: 100% !important;
-}
+// input {
+//   width: 100% !important;
+// }
 
 .botao-acao {
-    margin-left: 10px;
+  margin-left: 10px;
+}
+
+.chxOpcao {
+  padding-left: 0px;
 }
 
 .textArea {
-    resize: none;
+  resize: none;
+}
+
+.obsHabitosVida {
+  padding-right: 0px;
+}
+
+.tamanhoMinDivCheckBox {
+  min-width: 145px;
+}
+
+.tamanhoMinDiv {
+    min-width: 140px;
+}
+
+.fieldsetBorder {
+    border: none;
+}
+
+.fieldsetTamanhoMin {
+    min-width: 280px;
 }

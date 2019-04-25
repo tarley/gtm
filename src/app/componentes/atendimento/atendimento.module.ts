@@ -15,8 +15,9 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar';
 import { TabViewModule } from 'primeng/tabview';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [AtendimentoComponent, AtendimentoNovoComponent],
@@ -27,14 +28,15 @@ import { TabViewModule } from 'primeng/tabview';
     CardModule,
     InputTextModule,
     InputTextareaModule,
+    InputMaskModule,
     DropdownModule,
     ButtonModule,
     GtmTabelaModule,
     MessagesModule,
     MessageModule,
     AccordionModule,
-    CalendarModule,
     TabViewModule,
+    CalendarModule,
   ],
   providers: [AtendimentoService, PacienteService]
 })

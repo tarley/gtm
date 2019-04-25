@@ -1,3 +1,4 @@
+import { BotaoTabela } from './shared/botao-tabela.model';
 import { MensagemUtil } from './../../util/mensagem-util';
 import { ConfirmationService } from 'primeng/api';
 import { GtmTabelaService } from './gtm-tabela.service';
@@ -18,13 +19,12 @@ export class GtmTabelaComponent implements OnInit {
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
 
-  @Output() linhaSelecionada = new EventEmitter<any>();
+  @Input() botoes: BotaoTabela[];
+  @Output() clickBotaoEvent = new EventEmitter<any>();
   
   existeEdicao: boolean = false;
   existeDelete: boolean = false;
   
-  linha: any;
-
   constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageServiceUtil,
     private confirmationService: ConfirmationService) { }
 
@@ -49,8 +49,11 @@ export class GtmTabelaComponent implements OnInit {
     });
   }
 
-  novaLinhaSelecionada() {
-    this.linhaSelecionada.emit(this.linha);
+  clickBotao(botao: BotaoTabela, id: string) {
+    this.clickBotaoEvent.emit({
+      nomeBotao: botao.nome,
+      idSelecionado: id
+    });
   }
 
   isExisteAcao() {

@@ -1,6 +1,5 @@
 import { Atendimento } from './shared/atendimento.model';
 import { AtendimentoService } from './shared/atendimento.service';
-import { Paciente } from './../paciente/shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,17 +13,19 @@ export class AtendimentoComponent implements OnInit {
 
   colunas: string[] = ['dataAtendimento', 'nomePaciente'];
 
-  atendimentos: Atendimento[] = [
-    {dataAtendimento: new Date('05/04/2019'), nomePaciente: 'Daniel Silva Torres'}
-  ];
+  atendimentos: Atendimento[] = [];
 
   constructor(private atendimentoService: AtendimentoService) { }
 
   ngOnInit() {
+    this.buscarTodos();
   }
 
   buscarTodos() {
     this.atendimentoService.buscarTodos().subscribe((atendimentos: Atendimento[]) => {
+      atendimentos.forEach(atendimento => {
+        atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
+      })
       this.atendimentos = atendimentos;
     })
   }

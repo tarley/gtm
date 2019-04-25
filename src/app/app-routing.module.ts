@@ -25,10 +25,12 @@ const routes: Routes = [
   //Rotas Paciente
   { path: 'paciente', component: PacienteComponent },
   { path: 'paciente/novo', component: PacienteNovoComponent },
+  { path: 'paciente/:id', component: PacienteNovoComponent },
 
   //Rotas Atendimento
   { path: 'atendimento', component: AtendimentoComponent },
-  { path: 'atendimento/novo/:id', component: AtendimentoNovoComponent},
+  { path: 'atendimento/novo/:idPaciente', component: AtendimentoNovoComponent},
+  { path: 'atendimento/:id', component: AtendimentoNovoComponent},
 
   //Telas Medicamentos
   {path: 'medicamento', component:MedicamentoComponent},

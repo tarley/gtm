@@ -5,9 +5,11 @@ import { Paciente, DadosComplementares, HabitosVida, Cigarro, BebidaAlcoolica } 
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
 import { ProfissaoService } from '../../profissao/shared/profissao.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Profissao } from '../../profissao/shared/profissao.model';
+import { checkBinding } from '@angular/core/src/view/util';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-paciente-novo',
@@ -28,42 +30,70 @@ export class PacienteNovoComponent implements OnInit {
 
   acessoServico: SelectItem[] = Constantes.acessoServico;
 
-  ubs: SelectItem[] = [
-    {label: 'Centro de Saúde Confisco', value: 'ubsConfisco'},
-    {label: 'Centro de Saúde Dom Orione', value: 'ubsDomOrione'},
-    {label: 'Centro de Saúde Trevo', value: 'ubsTrevo'},
-    {label: 'Centro de Saúde Ouro Preto', value: 'ubsOuroPreto'},
-  ]
+  ubs: SelectItem[] = Constantes.ubs;
 
-  atividadeFisica: SelectItem[] = [
-    {label: 'Nenhuma', value: 'nenhuma'},    
-    {label: 'Natação', value: 'natacao'},
-    {label: 'Corrida', value: 'corrida'},
-    {label: 'Musculação', value: 'musculacao'},
-    {label: 'Caminhada', value: 'caminhada'}
-  ]
+  atividadeFisica: SelectItem[] = Constantes.atividadeFisica;
 
-  constructor(private PacienteService: PacienteService, private ProfissaoService: ProfissaoService, private router: Router, private messageService: MessageService) { }
+  chkCigarro: Boolean = false;
+  chkBebidada: Boolean = false;
+
+  dataNascimento;
+
+  constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
+    private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarDadosIniciais();
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        const id = params['id'];
+        this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
+          this.paciente = paciente;
+          this.dataNascimento = this.pacienteService.formatarDataLeitura(this.paciente)
+        }), (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao Buscar Paciente'))
+      }
+    })
   }
 
   voltar() {
     this.router.navigate(['paciente']);
   }
 
-  salvar(form: NgForm){
-    this.PacienteService.inserirPaciente(this.paciente).subscribe(() => {
-      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));      
-      this.voltar()
-    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) );
+  validarCheckBox(opcao, evento) {
+    if (opcao == "fumante") {
+      if (evento == false) {
+        this.chkCigarro = evento
+      } else {
+        this.chkCigarro = evento
+      }
+    } else {
+      if (opcao == "bebida" && evento == false) {
+        this.chkBebidada = evento;
+      } else {
+        this.chkBebidada = evento
+      }
+    }
   }
 
-  carregarDadosIniciais(){
+  salvar() {
+    this.pacienteService.validarCamposObservacao(this.paciente, this.chkCigarro, this.chkBebidada);
+    this.pacienteService.formartarDataGravacao(this.paciente, this.dataNascimento);
+    let requisicao: Observable<Object>;
+    if (!this.paciente._id) {
+      requisicao = this.pacienteService.inserirPaciente(this.paciente);
+    } else {
+      requisicao = this.pacienteService.atualizaPaciente(this.paciente);
+    }
+    requisicao.subscribe(() => {
+      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
+      this.voltar()
+    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+  }
+
+  carregarDadosIniciais() {
     this.ProfissaoService.buscarTodos().subscribe((profissoes: Profissao[]) => {
       profissoes.forEach((p) => {
-        this.profissao.push({label: p.descricao, value: p.descricao});
+        this.profissao.push({ label: p.descricao, value: p.descricao });
       })
     });
   }

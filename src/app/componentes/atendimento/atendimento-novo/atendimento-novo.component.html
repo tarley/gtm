@@ -2,19 +2,20 @@
   <p-card [header]="titulo"></p-card>
 </div>
 
-<p-accordion>
-  <form #f="ngForm" (ngSubmit)="salvar(f)">
+<form #f="ngForm" (ngSubmit)="salvar(f)">
+  <p-accordion [multiple]="true">
     <p-accordionTab header="Avaliação Inicial" [selected]="true">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
           <label>Quadro Geral:</label>
-          <textarea rows="5" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
+          <textarea rows="5" style="width: 100%;" name="quadroGeral" [(ngModel)]="atendimento.quadroGeral"
+            pInputTextarea autoResize="true"></textarea>
         </div>
       </div>
     </p-accordionTab>
-    <p-accordionTab header="Atendimento" [selected]="true">
+    <p-accordionTab header="Doenças e Farmacoterapias" [selected]="true">
       <p-button icon="fa fa-plus-circle" type="button" (click)="novaDoenca()" label="Nova Doença"></p-button>
-      <p-tabView>
+      <p-tabView (onClose)="deletaDoenca($event.index)">
         <p-tabPanel *ngFor="let doenca of atendimento.doencas; let i = index" [header]="formataTituloDoenca(doenca)"
           [closable]="true">
           <h3>Doença</h3>
@@ -26,107 +27,118 @@
             </div>
             <div class="ui-g-12 ui-md-12">
               <label>Descrição:</label>
-              <textarea rows="8" style="width: 100%;" pInputTextarea></textarea>
+              <textarea rows="8" style="width: 100%;" name="descricao{{i}}" [(ngModel)]="doenca.descricao"
+                pInputTextarea></textarea>
             </div>
           </div>
 
-          <h3>Farmacoterapia</h3>
+          <h3>Farmacoterapias</h3>
           <hr>
           <p-button icon="fa fa-plus-circle" type="button" (click)="novaFarmaco(doenca)" label="Nova Farmacoterapia">
           </p-button>
-          <p-tabView>
+          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
                     <label>Medicamento:</label>
-                    <input name="medicamento{{i}}{{j}}" type="text" [(ngModel)]="farmaco.medicamento" pInputText />
+                    <input name="medicamento{{i}}{{j}}" type="text" name="medicamento{{i}}"
+                      [(ngModel)]="farmaco.medicamento" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
                     <label>Posologia:</label>
-                    <input type="text" pInputText />
+                    <input type="text" name="posologia{{i}}{{j}}" [(ngModel)]="farmaco.posologia" pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
                     <label>Efetividade:</label>
-                    <input type="text" pInputText />
+                    <input type="text" name="efetividade{{i}}{{j}}" [(ngModel)]="farmaco.efetividade" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
                     <label>Tempo de Uso:</label>
-                    <input type="text" pInputText />
+                    <input type="text" name="tempoUso{{i}}{{j}}" [(ngModel)]="farmaco.tempoUso" pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
                     <label>Segurança:</label>
-                    <input type="text" pInputText />
+                    <input type="text" name="seguranca{{i}}{{j}}" [(ngModel)]="farmaco.seguranca" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
                     <label>Dificuldade no Uso:</label>
-                    <input type="text" pInputText />
+                    <input type="text" name="dificuldadeUso{{i}}{{j}}" [(ngModel)]="farmaco.dificuldadeUso"
+                      pInputText />
                   </div>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <div class="ui-g-6 ui-md-6">
+                    <label>PRM:</label>
+                    <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM" name="prm{{i}}{{j}}"
+                      [(ngModel)]="farmaco.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)"></p-dropdown>
+                  </div>
+                  <div class="ui-g-6 ui-md-6">
+                    <label>Causa do PRM:</label>
+                    <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM para carregar as opções"
+                      name="causaPrm{{i}}{{j}}" [(ngModel)]="farmaco.causaPrm" [options]="causasPrm"></p-dropdown>
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <label>Conduta:</label>
+                  <textarea rows="6" style="width: 100%;" pInputTextarea name="conduta{{i}}{{j}}"
+                    [(ngModel)]="farmaco.conduta"></textarea>
                 </div>
               </div>
             </p-tabPanel>
           </p-tabView>
-
-          <div class="ui-g">
-            <div class="ui-g-12 ui-md-12">
-              <h3>Plano de Cuidado</h3>
-              <hr>
-              <label>Objetivo Terapêutico:</label>
-              <input type="text" pInputText />
-            </div>
-            <div class="ui-g-12 ui-md-12">
-              <div class="ui-g-6 ui-md-6">
-                <label>PRM:</label>
-                <p-dropdown placeholder="Selecione um PRM" [options]="prms"></p-dropdown>
-              </div>
-              <div class="ui-g-6 ui-md-6">
-                <label>Causa do PRM:</label>
-                <p-dropdown placeholder="Selecione um PRM para carregar as opções" [options]="causasPrm"></p-dropdown>
-              </div>
-            </div>
-            <div class="ui-g-12 ui-md-12">
-              <label>Condutas:</label>
-              <textarea rows="5" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
-              <div>
-                <div class="ui-g-6 ui-md-6">
-                  <label>Medicamento:</label>
-                  <input type="text" pInputText disabled="true"/>
-                </div>
-                <div class="ui-g-6 ui-md-6">
-                  <label>Conduta:</label>
-                  <input type="text" pInputText />
-                </div>
-              </div>
-            </div>
-            <div class="ui-g-12 ui-md-12">
-              <div class="ui-g-6 ui-md-6">
-                <label>SCF:</label>
-                <p-dropdown placeholder="Selecione um SCF" [options]="scf"></p-dropdown>
-              </div>
-              <div class="ui-g-6 ui-md-6">
-                <label>Data Avaliação Resultados:</label>
-                <p-calendar dateFormat="dd.mm.yy"></p-calendar>
-              </div>
-            </div>
-            <div class="ui-g-12 ui-md-12">
-              <label>Outras Condutas:</label>
-              <textarea rows="3" style="width: 100%;" pInputTextarea autoResize="autoResize"></textarea>
-            </div>
-          </div>
         </p-tabPanel>
       </p-tabView>
     </p-accordionTab>
-  </form>
-</p-accordion>
 
-<div class="card">
-  <p-card>
-    <button pButton class="botao-acao" type="submit" label="Salvar"></button>
-    <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
-  </p-card>
-</div>
+    <p-accordionTab header="Plano de Cuidado" [selected]="true">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <label>Objetivo Terapêutico:</label>
+          <textarea rows="3" autoResize="true" style="width: 100%;" name="objetivoTerapeutico"
+            [(ngModel)]="atendimento.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
+        </div>
+        <div *ngFor="let conduta of atendimento.planoCuidado.condutas">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6 ui-md-6">
+              <label>Medicamento:</label>
+              <input type="text" [(ngModel)]="conduta.medicamento" pInputText disabled="true" />
+            </div>
+            <div class="ui-g-6 ui-md-6">
+              <label>Conduta:</label>
+              <input type="text" [(ngModel)]="conduta.conduta" pInputText />
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-6 ui-md-6">
+            <label>SCF:</label>
+            <p-dropdown placeholder="Selecione um SCF" styleClass="dropdown" name="scf"
+              [(ngModel)]="atendimento.planoCuidado.scf" [options]="scf"></p-dropdown>
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <label>Data Avaliação Resultados:</label>
+            <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+          <label>Outras Condutas:</label>
+          <textarea rows="3" style="width: 100%;" pInputTextarea name="outrasCondutas"
+            [(ngModel)]="atendimento.planoCuidado.outrasCondutas" autoResize="true"></textarea>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+  <div class="card">
+    <p-card>
+      <button pButton class="botao-acao" type="submit" label="Salvar"></button>
+      <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+    </p-card>
+  </div>
+</form>

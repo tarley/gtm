@@ -37,7 +37,7 @@ export class UsuarioNovoComponent implements OnInit {
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
           this.usuario.confSenha = usuario.senha;
-        }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!')))
+        }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!')))
       }
     })
   }

@@ -8,8 +8,9 @@ export class Paciente {
         public dataNascimento?: Date,
         public estadoCivil?: string,
         public anosEstudo?: number,
-        public telefone?: string,
+        public telefone?: Number,
         public profissao?: string,
+        public endereco?: String,
 
         public dadosComplementares?: DadosComplementares,
         public habitosVida?: HabitosVida,
@@ -28,7 +29,6 @@ export class DadosComplementares {
     public constructor(
         public profissionalServico?: string,
         public lugarAtendimento?: string,
-        public endereco?: String,
         public ubs?: String,
         public acessoServico?: String,
         public motivoConsulta?: String
@@ -37,9 +37,9 @@ export class DadosComplementares {
 
 export class HabitosVida {
     public constructor(
-        public atividadeFisica?: string,
+        public atividadeFisica?: boolean,
         public terapiaAlternativa?: string,
-        public alerta?: string,
+        public alertas?: string,
         public cigarro?: Cigarro,
         public bebidaAlcoolica?: BebidaAlcoolica
 
@@ -52,22 +52,22 @@ export class HabitosVida {
 export class Cigarro {
     public constructor(
         public fumante?: Boolean,
-        public observacao?: String
+        public observacaoCigarro?: String
     ) { }
 }
 
 export class BebidaAlcoolica {
     public constructor(
-        public consume?: Boolean,
-        public observacao?: String
+        public consome?: Boolean,
+        public observacaoBebidaAlcoolica?: String
     ) { }
 }
 
 export class DadosAntropometricos {
     public constructor(
-        public peso?: String,
+        public peso?: Number,
         public altura?: Number,
-        public imc?: String
+        public imc?: Number
     ) { }
 }
 
