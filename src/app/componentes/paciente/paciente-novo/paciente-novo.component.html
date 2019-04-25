@@ -215,7 +215,7 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Acorda:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="horas1" placeholder="--:--" id="acorda" name="acorda">
+            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.acorda" placeholder="--:--" id="acorda" name="acorda">
             </p-inputMask>
           </div>
 
