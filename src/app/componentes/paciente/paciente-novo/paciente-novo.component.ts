@@ -144,4 +144,42 @@ export class PacienteNovoComponent implements OnInit {
 
     return dataNascimento;
   }
+
+  validarHora(horario: string, name) {
+    if (horario) {
+      let hora = parseInt(horario.substring(0, 2));
+      let minutos = parseInt(horario.substring(3, 5));
+
+      if (hora > 23 || minutos > 59) {
+        this.limparCamposHoras(name);
+      }
+    }
+  }
+
+  limparCamposHoras(name: string) {
+    switch (name) {
+      case "acorda":
+        this.paciente.rotina.acorda = "";
+        break;
+      case "cafedaManha":
+        this.paciente.rotina.cafedaManha = "";
+        break;
+      case "lanchedaManha":
+        this.paciente.rotina.lanchedaManha = "";
+        break;
+      case "almoco":
+        this.paciente.rotina.almoco = "";
+        break;
+      case "lanchedaTarde":
+        this.paciente.rotina.lanchedaTarde = "";
+        break;
+      case "jantar":
+        this.paciente.rotina.jantar = "";
+        break;
+      case "dorme":
+        this.paciente.rotina.dorme = "";
+        break;
+    }
+  }
+
 }

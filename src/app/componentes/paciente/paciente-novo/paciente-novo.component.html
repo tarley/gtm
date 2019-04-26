@@ -215,46 +215,53 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Acorda:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.acorda" placeholder="--:--" id="acorda" name="acorda">
+            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.acorda" #horaAcorda
+              (focusout)="validarHora(horaAcorda.value, horaAcorda.name)" placeholder="--:--" id="acorda" name="acorda">
             </p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Café da Manhã:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.cafedaManha"
-              placeholder="--:--" id="cafedaManha" name="cafedaManha"></p-inputMask>
+              placeholder="--:--" id="cafedaManha" name="cafedaManha" #horaCafeManha
+              (focusout)="validarHora(horaCafeManha.value, horaCafeManha.name)"></p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Lanche da Manhã:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaManha"
-              placeholder="--:--" id="lanchedaManha" name="lanchedaManha"></p-inputMask>
+              placeholder="--:--" id="lanchedaManha" name="lanchedaManha" #horaLancheManha
+              (focusout)="validarHora(horaLancheManha.value, horaLancheManha.name)"></p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Almoço:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.almoco"
-              placeholder="--:--" id="almoço" name="almoco">
+              placeholder="--:--" id="almoco" name="almoco" #horaAlmoco
+              (focusout)="validarHora(horaAlmoco.value, horaAlmoco.name)">
             </p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Lanche da Tarde:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaTarde"
-              placeholder="--:--" id="lanchedaTarde" name="lanchedaTarde"></p-inputMask>
+              placeholder="--:--" id="lanchedaTarde" name="lanchedaTarde" #horaLancheTarde
+              (focusout)="validarHora(horaLancheTarde.value, horaLancheTarde.name)"></p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Jantar:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.jantar"
-              placeholder="--:--" id="jantar" name="jantar">
+              placeholder="--:--" id="jantar" name="jantar" #horaJantar
+              (focusout)="validarHora(horaJantar.value, horaJantar.name)">
             </p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Dorme:</label>
             <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.dorme"
-              placeholder="--:--" id="dorme" name="dorme">
+              placeholder="--:--" id="dorme" name="dorme" #horaDorme
+              (focusout)="validarHora(horaDorme.value, horaDorme.name)">
             </p-inputMask>
           </div>
 
