@@ -45,9 +45,9 @@ import { ProfissaoModule } from './componentes/profissao/profissao.module';
     AtendimentoModule,
     MessageModule,
     MedicamentoModule,
-    ProfissaoModule
+    ProfissaoModule,
   ],
-  providers: [MessageServiceUtil, MessageService],
+  providers: [MessageServiceUtil, MessageService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
