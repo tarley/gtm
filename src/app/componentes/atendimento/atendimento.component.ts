@@ -11,7 +11,7 @@ export class AtendimentoComponent implements OnInit {
 
   titulo = 'Lista de Atendimentos';
 
-  colunas: string[] = ['dataAtendimento', 'nomePaciente'];
+  colunas: string[] = ['nomePaciente', 'dataAtendimento'];
 
   atendimentos: Atendimento[] = [];
 

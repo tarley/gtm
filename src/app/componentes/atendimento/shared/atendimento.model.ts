@@ -6,11 +6,10 @@ export class Atendimento {
         public dataAtendimento?: Date,
         public quadroGeral?: string,
         public doencas?: Doenca[],
-        public planoCuidado?: PlanoCuidado,
+        
         public dataResultado?: Date,
     ) {
         this.doencas = new Array<Doenca>();
-        this.planoCuidado = new PlanoCuidado();
     }
 }
 
@@ -19,8 +18,10 @@ export class Doenca {
         public nome?: string,
         public descricao?: string,
         public farmacoterapias?: Farmacoterapia[],
+        public planoCuidado?: PlanoCuidado,
     ) {
         this.farmacoterapias = new Array<Farmacoterapia>();
+        this.planoCuidado = new PlanoCuidado();
     }
 }
 

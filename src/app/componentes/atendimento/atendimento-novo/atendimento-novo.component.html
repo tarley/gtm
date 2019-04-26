@@ -92,46 +92,34 @@
               </div>
             </p-tabPanel>
           </p-tabView>
+
+          <h3>Plano de Cuidado</h3>
+          <hr>
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12">
+              <label>Objetivo Terapêutico:</label>
+              <textarea rows="5" style="width: 100%;" name="objetivoTerapeutico{{i}}"
+                [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
+            </div>
+            <div class="ui-g-12 ui-md-12">
+              <div class="ui-g-6 ui-md-6">
+                <label>SCF:</label>
+                <p-dropdown placeholder="Selecione um SCF" styleClass="dropdown" name="scf{{i}}"
+                  [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.scf" [options]="scf"></p-dropdown>
+              </div>
+              <div class="ui-g-6 ui-md-6">
+                <label>Data Avaliação Resultados:</label>
+                <p-calendar name="dataResultado{{i}}" [(ngModel)]="doenca && doenca.planoCuidado && doenca.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
+              </div>
+            </div>
+            <div class="ui-g-12 ui-md-12">
+              <label>Outras Condutas:</label>
+              <textarea rows="5" style="width: 100%;" pInputTextarea name="outrasCondutas{{i}}"
+                [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.outrasCondutas"></textarea>
+            </div>
+          </div>
         </p-tabPanel>
       </p-tabView>
-    </p-accordionTab>
-
-    <p-accordionTab header="Plano de Cuidado" [selected]="true">
-      <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-12">
-          <label>Objetivo Terapêutico:</label>
-          <textarea rows="3" autoResize="true" style="width: 100%;" name="objetivoTerapeutico"
-            [(ngModel)]="atendimento.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
-        </div>
-        <div *ngFor="let conduta of atendimento.planoCuidado.condutas">
-          <div class="ui-g-12 ui-md-12">
-            <div class="ui-g-6 ui-md-6">
-              <label>Medicamento:</label>
-              <input type="text" [(ngModel)]="conduta.medicamento" pInputText disabled="true" />
-            </div>
-            <div class="ui-g-6 ui-md-6">
-              <label>Conduta:</label>
-              <input type="text" [(ngModel)]="conduta.conduta" pInputText />
-            </div>
-          </div>
-        </div>
-        <div class="ui-g-12 ui-md-12">
-          <div class="ui-g-6 ui-md-6">
-            <label>SCF:</label>
-            <p-dropdown placeholder="Selecione um SCF" styleClass="dropdown" name="scf"
-              [(ngModel)]="atendimento.planoCuidado.scf" [options]="scf"></p-dropdown>
-          </div>
-          <div class="ui-g-6 ui-md-6">
-            <label>Data Avaliação Resultados:</label>
-            <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
-          </div>
-        </div>
-        <div class="ui-g-12 ui-md-12">
-          <label>Outras Condutas:</label>
-          <textarea rows="3" style="width: 100%;" pInputTextarea name="outrasCondutas"
-            [(ngModel)]="atendimento.planoCuidado.outrasCondutas" autoResize="true"></textarea>
-        </div>
-      </div>
     </p-accordionTab>
   </p-accordion>
 
