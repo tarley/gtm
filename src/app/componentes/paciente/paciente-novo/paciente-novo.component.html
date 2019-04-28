@@ -7,13 +7,13 @@
           <h3>Dados do Paciente:</h3>
           <hr>
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Nome:</label>
+            <label>Nome:*</label>
             <input id="nome" type="text" name="nome" pInputText [(ngModel)]="paciente.nome" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>CPF:</label>
-            <p-inputMask unmask="true" mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12"
+            <label>CPF:*</label>
+            <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12"
               id="cpf" name="cpf">
             </p-inputMask>
           </div>
@@ -25,7 +25,7 @@
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Data de Nascimento:</label>
+            <label>Data de Nascimento:*</label>
             <p-inputMask unmask="true" mask="99/99/9999" [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa"
               id="dataNascimento" name="dataNascimento"></p-inputMask>
           </div>
@@ -38,19 +38,19 @@
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Telefone:</label>
+            <label>Telefone:*</label>
             <p-inputMask unmask="true" mask="(99)99999-999?9" [(ngModel)]="paciente.telefone"
               placeholder="(00)00000-0000" id="telefone" name="telefone"></p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Anos de Estudo:</label>
+            <label>Anos de Estudo:*</label>
             <input id="anosEstudo" type="number" min="0" max="35" name="anosEstudo" pInputText
               [(ngModel)]="paciente.anosEstudo" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Estado Civil:</label>
+            <label>Estado Civil:*</label>
             <p-dropdown [options]="estadoCivil" [(ngModel)]="paciente.estadoCivil" name="estadoCivil"
               placeholder="Selecione:"></p-dropdown>
           </div>
@@ -96,7 +96,7 @@
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
-            <label>Motivo da Consulta:</label>
+            <label>Motivo da Consulta:*</label>
             <textarea rows="5" class="textArea" name="motivoConsulta"
               [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.motivoConsulta"
               pInputTextarea></textarea>
