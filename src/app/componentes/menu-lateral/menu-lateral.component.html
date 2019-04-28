@@ -1,1 +1,7 @@
-<p-menu id="menu" [class]="menu" [model]="items"></p-menu>
+<p-sidebar  [(visible)]="display" [fullScreen]="false">
+    <p-menu id="menu"  [model]="items"></p-menu>
+</p-sidebar>
+
+<div class="menu pointer">
+    <i (click)="display = true" class="fa fa-bars fa-2x"></i>
+</div>

@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
@@ -40,6 +41,7 @@ import { ProfissaoModule } from './componentes/profissao/profissao.module';
     MenuSuperiorModule,
     MenuLateralModule,
     GtmTabelaModule,
+    SidebarModule,
     FormsModule,
     PacienteModule,
     AtendimentoModule,
