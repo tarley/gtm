@@ -75,6 +75,12 @@ export class AtendimentoNovoComponent implements OnInit {
     if (ultimoAtendimento.doencas.length > 0) {
       this.atendimento.doencas = ultimoAtendimento.doencas;
     }
+
+    ultimoAtendimento.doencas.forEach((doenca:Doenca) => {
+      if(!doenca.planoCuidado) {
+        doenca.planoCuidado = new PlanoCuidado();
+      }
+    });
   }
 
   setAtributosIniciais(paciente: Paciente) {

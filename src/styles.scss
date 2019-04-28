@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
 body{
-  // background-image: url("./assets/images/fundo.jpg");
   background-color: #ededed;
   background-size: 100%;
   filter: alpha(opacity=100); 
@@ -22,7 +20,7 @@ html{
 .ui-menu {
   border: 0px solid !important; 
   padding-left:0 !important;
-  width:220px !important;
+  width:217px !important;
 }
 
 .ui-sidebar-left{
@@ -31,6 +29,8 @@ html{
   width:220px !important;
 }
 
+.pointer {cursor: pointer;}
+
 .body{
-  padding-left: 230px;
+  margin:3px;
 }

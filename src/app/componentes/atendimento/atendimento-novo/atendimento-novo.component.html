@@ -99,23 +99,23 @@
             <div class="ui-g-12 ui-md-12">
               <label>Objetivo Terapêutico:</label>
               <textarea rows="5" style="width: 100%;" name="objetivoTerapeutico{{i}}"
-                [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
+                [(ngModel)]="doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
             </div>
             <div class="ui-g-12 ui-md-12">
               <div class="ui-g-6 ui-md-6">
                 <label>SCF:</label>
                 <p-dropdown placeholder="Selecione um SCF" styleClass="dropdown" name="scf{{i}}"
-                  [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.scf" [options]="scf"></p-dropdown>
+                  [(ngModel)]="doenca.planoCuidado.scf" [options]="scf"></p-dropdown>
               </div>
               <div class="ui-g-6 ui-md-6">
                 <label>Data Avaliação Resultados:</label>
-                <p-calendar name="dataResultado{{i}}" [(ngModel)]="doenca && doenca.planoCuidado && doenca.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
+                <p-calendar name="dataResultado{{i}}" [(ngModel)]="doenca.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
               </div>
             </div>
             <div class="ui-g-12 ui-md-12">
               <label>Outras Condutas:</label>
               <textarea rows="5" style="width: 100%;" pInputTextarea name="outrasCondutas{{i}}"
-                [(ngModel)]="doenca && doenca.planoCuidado && doenca.planoCuidado.outrasCondutas"></textarea>
+                [(ngModel)]="doenca.planoCuidado.outrasCondutas"></textarea>
             </div>
           </div>
         </p-tabPanel>
