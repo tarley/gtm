@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Profissao } from '../../profissao/shared/profissao.model';
 import { Observable } from 'rxjs';
-import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-paciente-novo',
@@ -40,7 +39,7 @@ export class PacienteNovoComponent implements OnInit {
   dataNascimento;
 
   constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
-    private router: Router, private messageService: MessageServiceUtil, private route: ActivatedRoute) { }
+    private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarDadosIniciais();
@@ -70,9 +69,7 @@ export class PacienteNovoComponent implements OnInit {
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar()
-    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR));
-    //this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg));
-     
+    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
   }
 
   voltar() {
@@ -185,13 +182,16 @@ export class PacienteNovoComponent implements OnInit {
     }
   }
 
-  // testeCPF(){
-  //   if(this.paciente.cpf){
-  //     console.log("q" + this.paciente.cpf + "a")
-  //   } else {
-  //     this.paciente.cpf = null;
-  //   }
-    
-  // }
+  calcularIMC() {
+    let peso = this.paciente.dadosAntropometricos.peso;
+    let altura = this.paciente.dadosAntropometricos.altura;
+
+    if (altura && peso) {
+      altura = altura / 100;
+      let imc = peso / Math.pow(altura, 2);
+
+      this.paciente.dadosAntropometricos.imc = parseFloat(imc.toFixed(2));
+    }
+  }
 
 }

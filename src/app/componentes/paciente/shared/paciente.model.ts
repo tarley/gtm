@@ -65,9 +65,9 @@ export class BebidaAlcoolica {
 
 export class DadosAntropometricos {
     public constructor(
-        public peso?: Number,
-        public altura?: Number,
-        public imc?: Number
+        public peso?: number,
+        public altura?: number,
+        public imc?: number
     ) { }
 }
 

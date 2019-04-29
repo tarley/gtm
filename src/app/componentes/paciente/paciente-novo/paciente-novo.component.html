@@ -184,21 +184,21 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Peso(Kg):</label>
-            <input id="peso" type="number" min="0" name="peso"
+            <input id="peso" type="number" min="0" name="peso" (keyup)="calcularIMC()"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.peso"
               pInputText />
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Altura(cm):</label>
-            <input id="altura" type="number" min="0" name="altura"
+            <input id="altura" type="number" min="0" name="altura" (keyup)="calcularIMC()"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.altura"
               pInputText />
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>IMC:</label>
-            <input id="imc" type="number" min="0" name="imc"
+            <input id="imc" type="number" min="0" name="imc" readonly="true"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.imc" pInputText />
           </div>
 
