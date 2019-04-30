@@ -10,7 +10,6 @@ export class Paciente {
         public anosEstudo?: number,
         public telefone?: number,
         public profissao?: string,
-        public endereco?: string,
 
         public dadosComplementares?: DadosComplementares,
         public habitosVida?: HabitosVida,
@@ -27,11 +26,13 @@ export class Paciente {
 
 export class DadosComplementares {
     public constructor(
+        public informacoesGerais?: string,
+        public motivoConsulta?: string,
         public profissionalServico?: string,
         public lugarAtendimento?: string,
         public ubs?: string,
         public acessoServico?: string,
-        public motivoConsulta?: string
+        public endereco?: string,
     ) { }
 }
 

@@ -13,8 +13,8 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>CPF:*</label>
-            <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12"
-              id="cpf" name="cpf">
+            <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12" id="cpf"
+              name="cpf">
             </p-inputMask>
           </div>
 
@@ -55,11 +55,6 @@
               placeholder="Selecione:"></p-dropdown>
           </div>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Endereço:</label>
-            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="paciente.endereco" />
-          </div>
-
         </fieldset>
       </div>
     </div>
@@ -70,36 +65,20 @@
           <h3>Dados Complementares:</h3>
           <hr>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Profissional do Serviço:</label>
-            <input id="profissionalServico" type="text" name="profissionalServico" pInputText
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.profissionalServico" />
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Lugar Atendimento:</label>
-            <input id="lugarAtendimento" type="text" name="lugarAtendimento" pInputText
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.lugarAtendimento" />
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>UBS:</label>
-            <p-dropdown [options]="ubs" name="ubs"
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.ubs"></p-dropdown>
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Acesso ao Serviço:</label>
-            <p-dropdown [options]="acessoServico" name="acessoServico"
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.acessoServico">
-            </p-dropdown>
+          <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
+            <label>Informações Gerais:</label>
+            <textarea rows="7" class="textArea" name="informacoesGerais"
+              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.informacoesGerais"
+              pInputTextarea>
+            </textarea>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
             <label>Motivo da Consulta:*</label>
             <textarea rows="5" class="textArea" name="motivoConsulta"
               [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.motivoConsulta"
-              pInputTextarea></textarea>
+              pInputTextarea>
+            </textarea>
           </div>
 
         </fieldset>
