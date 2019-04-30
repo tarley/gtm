@@ -145,6 +145,26 @@ export class PacienteNovoComponent implements OnInit {
     return dataNascimento;
   }
 
+  validarData(data: string){
+    if(data){
+      let dia = parseInt(data.substring(0, 2));
+      let mes = parseInt(data.substring(2, 4));
+      let ano = parseInt(data.substring(4, 8));
+
+      if(dia > 31){
+        this.dataNascimento = ""
+      }
+      if (mes > 12){
+        this.dataNascimento = ""
+      }
+      
+      let anoAtual = new Date().getFullYear()
+      if(ano > anoAtual || ano < 1900){
+        this.dataNascimento = ""
+      }
+    }
+  }
+
   validarHora(horario: string, name) {
     if (horario) {
       let hora = parseInt(horario.substring(0, 2));
