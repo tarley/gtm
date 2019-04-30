@@ -30,4 +30,8 @@ export class PacienteService {
         return this.httpClient.get(`${this.urlApi}/${id}`)
     }
 
+    public buscarPorCpf(cpf: string){
+        return this.httpClient.get(`${this.urlApi}/cpf/${cpf}`)
+    }
+
 }
