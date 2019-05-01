@@ -21,7 +21,11 @@ export class AtendimentoService {
   }
 
   buscaUltimoAtendimento(idPaciente: string) {
-    return this.httpClient.get(`${this.urlServico}/paciente/${idPaciente}`)
+    return this.httpClient.get(`${this.urlServico}/paciente/${idPaciente}`);
+  }
+
+  buscaPorCPFPaciente(cpfPaciente: string) {
+    return this.httpClient.get(`${this.urlServico}/paciente/cpf/${cpfPaciente}`);
   }
 
   buscarPorId(id: string) {

@@ -7,14 +7,14 @@
           <h3>Dados do Paciente:</h3>
           <hr>
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Nome:</label>
+            <label>Nome:*</label>
             <input id="nome" type="text" name="nome" pInputText [(ngModel)]="paciente.nome" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>CPF:</label>
-            <p-inputMask unmask="true" mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12"
-              id="cpf" name="cpf">
+            <label>CPF:*</label>
+            <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12" id="cpf"
+              name="cpf">
             </p-inputMask>
           </div>
 
@@ -25,8 +25,8 @@
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Data de Nascimento:</label>
-            <p-inputMask unmask="true" mask="99/99/9999" [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa"
+            <label>Data de Nascimento:*</label>
+            <p-inputMask unmask="true" #data mask="99/99/9999" (focusout)="validarData(data.value)" [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa"
               id="dataNascimento" name="dataNascimento"></p-inputMask>
           </div>
 
@@ -38,26 +38,21 @@
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Telefone:</label>
+            <label>Telefone:*</label>
             <p-inputMask unmask="true" mask="(99)99999-999?9" [(ngModel)]="paciente.telefone"
               placeholder="(00)00000-0000" id="telefone" name="telefone"></p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Anos de Estudo:</label>
+            <label>Anos de Estudo:*</label>
             <input id="anosEstudo" type="number" min="0" max="35" name="anosEstudo" pInputText
               [(ngModel)]="paciente.anosEstudo" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
-            <label>Estado Civil:</label>
+            <label>Estado Civil:*</label>
             <p-dropdown [options]="estadoCivil" [(ngModel)]="paciente.estadoCivil" name="estadoCivil"
               placeholder="Selecione:"></p-dropdown>
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Endereço:</label>
-            <input id="endereco" type="text" name="endereco" pInputText [(ngModel)]="paciente.endereco" />
           </div>
 
         </fieldset>
@@ -70,36 +65,20 @@
           <h3>Dados Complementares:</h3>
           <hr>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Profissional do Serviço:</label>
-            <input id="profissionalServico" type="text" name="profissionalServico" pInputText
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.profissionalServico" />
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Lugar Atendimento:</label>
-            <input id="lugarAtendimento" type="text" name="lugarAtendimento" pInputText
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.lugarAtendimento" />
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>UBS:</label>
-            <p-dropdown [options]="ubs" name="ubs"
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.ubs"></p-dropdown>
-          </div>
-
-          <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12">
-            <label>Acesso ao Serviço:</label>
-            <p-dropdown [options]="acessoServico" name="acessoServico"
-              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.acessoServico">
-            </p-dropdown>
+          <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
+            <label>Informações Gerais:</label>
+            <textarea rows="7" class="textArea" name="informacoesGerais"
+              [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.informacoesGerais"
+              pInputTextarea>
+            </textarea>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
-            <label>Motivo da Consulta:</label>
+            <label>Motivo da Consulta:*</label>
             <textarea rows="5" class="textArea" name="motivoConsulta"
               [(ngModel)]="paciente && paciente.dadosComplementares && paciente.dadosComplementares.motivoConsulta"
-              pInputTextarea></textarea>
+              pInputTextarea>
+            </textarea>
           </div>
 
         </fieldset>
@@ -184,21 +163,21 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Peso(Kg):</label>
-            <input id="peso" type="number" min="0" name="peso"
+            <input id="peso" type="number" min="0" name="peso" (keyup)="calcularIMC()"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.peso"
               pInputText />
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Altura(cm):</label>
-            <input id="altura" type="number" min="0" name="altura"
+            <input id="altura" type="number" min="0" name="altura" (keyup)="calcularIMC()"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.altura"
               pInputText />
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>IMC:</label>
-            <input id="imc" type="number" min="0" name="imc"
+            <input id="imc" type="number" min="0" name="imc" readonly="true"
               [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.imc" pInputText />
           </div>
 

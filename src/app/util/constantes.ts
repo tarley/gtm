@@ -110,6 +110,16 @@ export class Constantes {
                 { label: 'O produto não está disponível para o paciente', value: 'O produto não está disponível para o paciente' },
             ]
         },
+        {
+            label: 'PRM 8 - Sem PRM', value: 'PRM8', causas: [
+                { label: 'Não se aplica', value: 'Não se aplica' },
+            ]
+        },
+        {
+            label: 'PRM 9 - Definir no próximo atendimento', value: 'PRM9', causas: [
+                { label: 'Não se aplica', value: 'Não se aplica' },
+            ]
+        },
     ]
 
     public static ubs = [
