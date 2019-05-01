@@ -18,9 +18,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TabViewModule } from 'primeng/tabview';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
-
+import { AtendimentoImprimirComponent } from './atendimento-imprimir/atendimento-imprimir.component';
+import {NgxPrintModule} from 'ngx-print';
+import {FieldsetModule} from 'primeng/fieldset';
+import {PanelModule} from 'primeng/panel';
 @NgModule({
-  declarations: [AtendimentoComponent, AtendimentoNovoComponent],
+  declarations: [AtendimentoComponent, AtendimentoNovoComponent, AtendimentoImprimirComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -37,6 +40,9 @@ import { CalendarModule } from 'primeng/calendar';
     AccordionModule,
     TabViewModule,
     CalendarModule,
+    NgxPrintModule,
+    FieldsetModule,
+    PanelModule
   ],
   providers: [AtendimentoService, PacienteService]
 })

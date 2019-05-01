@@ -1,0 +1,23 @@
+input {
+    width: 100% !important;
+}
+
+.botao-acao {
+    margin-left: 10px;
+}
+
+.card {
+    margin-top: 10px;
+}
+
+:host {
+    ::ng-deep .dropdown {
+        width: 100%;
+    }
+  }
+
+  #print-section{
+    border: 4px dashed #CCC;
+    padding: 7px; 
+    border-radius: 5px;
+  }
