@@ -22,12 +22,10 @@ import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.modul
 import { MessageServiceUtil } from './util/message-service-util.service';
 import { MessageService } from 'primeng/api';
 import { ProfissaoModule } from './componentes/profissao/profissao.module';
-import { GtmCadastrosComponent } from './componentes/gtm-cadastros/gtm-cadastros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GtmCadastrosComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ Seguir os padrões definidos em [https://udacity.github.io/git-styleguide/]
 
 - Executar `ng generate component component-name` para gerar um novo componente. 
 - Existem as opções: `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-- Iremos usar mais as opções `component | service | module`.
+- Iremos usar mais as opções `module | component | service` nesta ordem.
 
 ## Comandos úteis GIT
 - `git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port`: Configurar Proxy

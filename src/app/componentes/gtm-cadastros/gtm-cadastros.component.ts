@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
+import { GtmCadastrosService } from './gtm-cadastros.service';
 
 @Component({
   selector: 'app-gtm-cadastros',
@@ -8,10 +10,16 @@ import { Router } from '@angular/router';
 })
 export class GtmCadastrosComponent implements OnInit {
 
+  titulo: String = 'Novo cadastro';
 
-  constructor(private router: Router) { }
+
+  constructor(private GtmCadastrosService: GtmCadastrosService, private router: Router, private mensagem: MessageServiceUtil) { }
 
   ngOnInit() {
+  }
+
+  voltar() {
+    this.router.navigate(['']);
   }
 
 }
