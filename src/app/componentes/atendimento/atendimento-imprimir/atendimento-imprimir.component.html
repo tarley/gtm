@@ -1,0 +1,106 @@
+<button pButton class="botao-acao" printSectionId="print-section" label="Imprimir" ngxPrint></button>
+<button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+<div class="card">
+    <p-card [header]="titulo">
+        <div id="print-section">
+            <h3 style="text-align: center; font-family: Arial;">
+                GTM NEWTON - ATENDIMENTO
+            </h3>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <p-fieldset legend="PACIENTE">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-lg-12">
+                                <div>
+                                    <label>NOME: {{atendimento.nomePaciente}}</label>
+                                </div>
+                                <div>
+                                    <label>DATA ATENDIMENTO: {{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </p-fieldset>
+                </div>
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <p-fieldset legend="AVALIAÇÃO">
+                        <p-fieldset legend="QUADRO GERAL">
+                            <div class="p-grid">
+                                <div class="p-col-12 p-md-12 p-lg-12">
+                                    <label>{{atendimento.quadroGeral}}</label>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </p-fieldset>
+                </div>
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <p-fieldset legend="DOENÇAS E FARMACOTERAPIAS">
+                        <div class="p-grid" *ngFor="let doenca of atendimento.doencas; let i = index">
+                            <div class="p-col-12 p-md-12 p-lg-12">
+                                <p-fieldset legend="{{doenca.nome}}">
+                                    <div class="p-grid">
+                                        <p-fieldset legend="DESCRIÇÃO">
+                                            <div class="p-col-12 p-md-12 p-lg-12">
+                                                <label>{{doenca.descricao}}</label>
+                                            </div>
+                                        </p-fieldset>
+                                    </div>
+                                    <div *ngFor="let farmaco of doenca.farmacoterapias; let i = index">
+                                        <p-fieldset legend="FARMACOTERAPIA">
+                                            <div class="p-grid p-dir-rev">
+
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <div>
+                                                        <label>MEDICAMENTO: {{farmaco.medicamento}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>POSOLOGIA: {{farmaco.posologia}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>EFETIVIDADE: {{farmaco.efetividade}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>TEMPO DE USO: {{farmaco.tempoUso}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>SEGURANÇA: {{farmaco.seguranca}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>DIFICULDADE DE USO: {{farmaco.dificuldadeUso}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>PRM: {{farmaco.prm}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>CAUSA DO PRM {{farmaco.causaPrm}}</label>
+                                                    </div>
+                                                    <div>
+                                                        <label>CONDUTA: {{farmaco.conduta}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
+                                    </div>
+                                    <p-fieldset legend="PLANO DE CUIDADO">
+                                        <div class="p-grid">
+                                            <div class="p-col-12 p-md-12 p-lg-12">
+                                                <div>
+                                                    <label>OBJETIVO TERAPEUTICO</label>
+                                                </div>
+                                                <div>
+                                                    <label>SCF</label>
+                                                </div>
+                                                <div>
+                                                    <label>DATA AVALIAÇÃO RESULTADOS</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </p-fieldset>
+                                </p-fieldset>
+                            </div>
+                        </div>
+                    </p-fieldset>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

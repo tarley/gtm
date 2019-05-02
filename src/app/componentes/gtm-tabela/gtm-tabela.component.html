@@ -6,7 +6,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let coluna of colunas">{{ formataTituloCabecalho(coluna) }}</th>
-        <th *ngIf="existeDelete || existeEdicao" class="coluna-acoes">Ações</th>
+        <th *ngIf="existeDelete || existeEdicao || existeImpressao" class="coluna-acoes">Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
@@ -16,12 +16,14 @@
            (elemento[coluna] | date: 'dd/MM/yyyy') : 
            elemento[coluna]
           }}</td>
-        <td *ngIf="existeDelete || existeEdicao">
+        <td *ngIf="existeDelete || existeEdicao || existeImpressao">
           <button *ngFor="let botao of botoes" [label]="botao.label" pButton class="botao-acao" [icon]="botao.icone"
             (click)="clickBotao(botao, elemento._id)" type="button"></button>
           <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>
           <button *ngIf="existeDelete" pButton class="botao-acao" icon="fa fa-trash" (click)="deletaItem(elemento._id)"
+            type="button"></button>
+            <button *ngIf="existeImpressao" pButton class="botao-acao" icon="fa fa-print" (click)="imprimeItem(elemento._id)"
             type="button"></button>
         </td>
       </tr>

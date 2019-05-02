@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
@@ -42,14 +43,15 @@ import { GtmCadastrosComponent } from './componentes/gtm-cadastros/gtm-cadastros
     MenuSuperiorModule,
     MenuLateralModule,
     GtmTabelaModule,
+    SidebarModule,
     FormsModule,
     PacienteModule,
     AtendimentoModule,
     MessageModule,
     MedicamentoModule,
-    ProfissaoModule
+    ProfissaoModule,
   ],
-  providers: [MessageServiceUtil, MessageService],
+  providers: [MessageServiceUtil, MessageService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
