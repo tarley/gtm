@@ -27,4 +27,8 @@ export class AtendimentoService {
   buscaPorCPFPaciente(cpfPaciente: string) {
     return this.httpClient.get(`${this.urlServico}/paciente/cpf/${cpfPaciente}`);
   }
+
+  buscarPorId(id: string) {
+    return this.httpClient.get(`${this.urlServico}/${id}`);
+  }
 }

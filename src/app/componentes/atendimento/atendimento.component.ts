@@ -4,6 +4,7 @@ import { Atendimento } from './shared/atendimento.model';
 import { AtendimentoService } from './shared/atendimento.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-atendimento',
   templateUrl: './atendimento.component.html',
@@ -16,6 +17,7 @@ export class AtendimentoComponent implements OnInit {
   colunas: string[] = ['nomePaciente', 'dataAtendimento'];
 
   atendimentos: Atendimento[] = [];
+  rotaImpressao = 'atendimento/imprimir/';
 
   filtroPesquisa: string;
 

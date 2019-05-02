@@ -18,13 +18,15 @@ export class GtmTabelaComponent implements OnInit {
 
   @Input() urlDelete: string;
   @Input() rotaEdicao: string;
+  @Input() rotaImpressao: string;
 
   @Input() botoes: BotaoTabela[];
   @Output() clickBotaoEvent = new EventEmitter<any>();
   
   existeEdicao: boolean = false;
   existeDelete: boolean = false;
-  
+  existeImpressao: boolean = false;
+
   constructor(private router: Router, private tabelaService: GtmTabelaService, private messageService: MessageServiceUtil,
     private confirmationService: ConfirmationService) { }
 
@@ -56,12 +58,17 @@ export class GtmTabelaComponent implements OnInit {
     });
   }
 
+
+
   isExisteAcao() {
     if (this.urlDelete) {
       this.existeDelete = true;
     }
     if (this.rotaEdicao) {
       this.existeEdicao = true;
+    }
+    if (this.rotaImpressao) {
+      this.existeImpressao = true;
     }
   }
 
@@ -82,4 +89,7 @@ export class GtmTabelaComponent implements OnInit {
     this.router.navigate([this.rotaEdicao, id]);
   }
 
+  imprimeItem(id: string) {
+    this.router.navigate([this.rotaImpressao, id]);
+  }
 }

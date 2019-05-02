@@ -12,6 +12,7 @@ import { MedicamentoComponent } from './componentes/medicamento/medicamento.comp
 import { MedicamentoNovoComponent } from './componentes/medicamento/medicamento-novo/medicamento-novo.component';
 import { ProfissaoComponent } from './componentes/profissao/profissao.component';
 import { ProfissaoNovoComponent } from './componentes/profissao/profissao-novo/profissao-novo.component';
+import { AtendimentoImprimirComponent } from './componentes/atendimento/atendimento-imprimir/atendimento-imprimir.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'atendimento', component: AtendimentoComponent },
   { path: 'atendimento/novo/:idPaciente', component: AtendimentoNovoComponent},
   { path: 'atendimento/:id', component: AtendimentoNovoComponent},
+  { path: 'atendimento/imprimir/:id', component: AtendimentoImprimirComponent},
 
   //Telas Medicamentos
   {path: 'medicamento', component:MedicamentoComponent},

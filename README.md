@@ -27,7 +27,7 @@ Seguir os padrões definidos em [https://udacity.github.io/git-styleguide/]
 - Iremos usar mais as opções `component | service | module`.
 
 ## Comandos úteis GIT
-
+- `git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port`: Configurar Proxy
 - `git clone url-projeto-git`: Clonar repositório
 - `git status`: Verificar arquivos alterados localmente
 - `git add caminho-arquivo`: Adicionar arquivos para commit
