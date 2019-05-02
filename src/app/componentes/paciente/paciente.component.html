@@ -1,7 +1,7 @@
 <p-card [header]="titulo">
   <div class="ui-g botoes-topo">
     <div class="ui-g-12 ui-md-1">
-      <button pButton type="button" icon="fa fa-plus" label="Novo Paciente" (click)="novoPaciente()"></button>
+      <button pButton type="button" icon="fa fa-plus" label="Paciente" (click)="novoPaciente()"></button>
     </div>
     <div class="ui-g-12 ui-md-3" style="align-self: center">
       <p-inputMask mask="?999.999.999-99" unmask="true" [(ngModel)]="cpf" placeholder="Buscar por CPF"></p-inputMask>
