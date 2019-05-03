@@ -41,14 +41,18 @@
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
+                  <label>Medicamento:</label>
+                  <input name="medicamento{{i}}{{j}}" type="text" name="medicamento{{i}}"
+                    [(ngModel)]="farmaco.medicamento" pInputText />
+                </div>
+                <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
-                    <label>Medicamento:</label>
-                    <input name="medicamento{{i}}{{j}}" type="text" name="medicamento{{i}}"
-                      [(ngModel)]="farmaco.medicamento" pInputText />
+                    <label>Posologia Relatada:</label>
+                    <input type="text" name="posologiaRelatada{{i}}{{j}}" [(ngModel)]="farmaco.posologiaRelatada" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
-                    <label>Posologia:</label>
-                    <input type="text" name="posologia{{i}}{{j}}" [(ngModel)]="farmaco.posologia" pInputText />
+                    <label>Posologia Prescrita:</label>
+                    <input type="text" name="posologiaPrescrita{{i}}{{j}}" [(ngModel)]="farmaco.posologiaPrescrita" pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
@@ -76,7 +80,8 @@
                   <div class="ui-g-6 ui-md-6">
                     <label>PRM:</label>
                     <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM" name="prm{{i}}{{j}}"
-                      [(ngModel)]="farmaco.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)"></p-dropdown>
+                      [(ngModel)]="farmaco.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)">
+                    </p-dropdown>
                   </div>
                   <div class="ui-g-6 ui-md-6">
                     <label>Causa do PRM:</label>
@@ -109,7 +114,8 @@
               </div>
               <div class="ui-g-6 ui-md-6">
                 <label>Data Avaliação Resultados:</label>
-                <p-calendar name="dataResultado{{i}}" [(ngModel)]="doenca.dataResultado" dateFormat="dd/mm/yy" [locale]="configCalendar"></p-calendar>
+                <p-calendar name="dataResultado{{i}}" [(ngModel)]="doenca.dataResultado" dateFormat="dd/mm/yy"
+                  [locale]="configCalendar"></p-calendar>
               </div>
             </div>
             <div class="ui-g-12 ui-md-12">
