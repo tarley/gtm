@@ -28,7 +28,8 @@ export class Doenca {
 export class Farmacoterapia {
     public constructor(
         public medicamento?: string,
-        public posologia?: string,
+        public posologiaRelatada?: string,
+        public posologiaPrescrita?: string,
         public efetividade?: string,
         public tempoUso?: string,
         public seguranca?: string,
