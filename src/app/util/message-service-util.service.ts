@@ -11,7 +11,6 @@ export class MessageServiceUtil {
     public constructor(private messageService: MessageService) { }
 
     public geraMensagensErro(respostaErro: HttpErrorResponse, mensagemPadrao: string) {
-        console.log(respostaErro);
         if (respostaErro) {
             if (respostaErro.error.code == 11000) {
                 const prefixoMsg = '{ : "';
