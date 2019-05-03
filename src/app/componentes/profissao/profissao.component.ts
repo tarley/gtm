@@ -13,7 +13,9 @@ export class ProfissaoComponent implements OnInit {
   titulo: String = 'Lista de Profissão';
   urlDelete = 'v1/profissoes';
 
-  colunas: string[] = ['descricao'];
+  colunas: any[] = [
+    {var: 'descricao', label: 'Descrição'}
+  ];
   profissoes: Profissao[] = [];
 
   constructor(private router: Router, private profissaoService: ProfissaoService) { }

@@ -13,7 +13,9 @@ export class MedicamentoComponent implements OnInit {
   titulo: String = 'Lista de Medicamento';
   urlDelete = 'v1/medicamentos';
 
-  colunas: string[] = ['descricao'];
+  colunas: any[] = [
+    {var: 'descricao', label: 'Descrição'}
+  ];
   medicamentos: Medicamento[] = [];
 
   constructor(private router: Router, private medicamentoService: MedicamentoService) { }

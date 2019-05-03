@@ -16,7 +16,11 @@ export class PacienteComponent implements OnInit {
 
   titulo: string = 'Lista de Pacientes';
 
-  colunas: string[] = ['nome', 'sexo', 'cpf'];
+  colunas: any[] = [
+    {var: 'nome', label: 'Nome'},
+    {var: 'sexo', label: 'Sexo'}, 
+    {var: 'cpf', label: 'CPF'}
+  ];
   botoes: BotaoTabela[] = [{ nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus' }];
 
   pacientes: Paciente[] = [];

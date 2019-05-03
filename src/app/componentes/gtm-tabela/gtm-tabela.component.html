@@ -5,16 +5,16 @@
     [totalRecords]="lista.length">
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let coluna of colunas">{{ formataTituloCabecalho(coluna) }}</th>
+        <th *ngFor="let coluna of colunas">{{ coluna.label }}</th>
         <th *ngIf="existeDelete || existeEdicao || existeImpressao" class="coluna-acoes">Ações</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
       <tr>
         <td *ngFor="let coluna of colunas">{{
-           isDate(elemento[coluna]) ? 
-           (elemento[coluna] | date: 'dd/MM/yyyy') : 
-           elemento[coluna]
+           isDate(elemento[coluna.var]) ? 
+           (elemento[coluna.var] | date: 'dd/MM/yyyy') : 
+           elemento[coluna.var]
           }}</td>
         <td *ngIf="existeDelete || existeEdicao || existeImpressao">
           <button *ngFor="let botao of botoes" [label]="botao.label" pButton class="botao-acao" [icon]="botao.icone"

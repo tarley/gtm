@@ -14,7 +14,10 @@ export class AtendimentoComponent implements OnInit {
 
   titulo = 'Lista de Atendimentos';
 
-  colunas: string[] = ['nomePaciente', 'dataAtendimento'];
+  colunas: any[] = [
+    {var: 'nomePaciente', label: 'Nome'}, 
+    {var: 'dataAtendimento', label: 'Data Atendimento'}
+  ];
 
   atendimentos: Atendimento[] = [];
   rotaImpressao = 'atendimento/imprimir/';

@@ -16,7 +16,11 @@ export class UsuarioComponent implements OnInit {
   urlDelete = 'v1/usuarios';
   rotaEdicao = 'usuario';
 
-  colunas: string[] = ['nome', 'email', 'perfil'];
+  colunas: any[] = [
+    {var: 'nome', label: 'Nome'}, 
+    {var:'email', label: 'E-mail'}, 
+    {var:'perfil', label: 'Perfil'}
+  ];
   usuarios: Usuario[] = [];
 
   constructor(private router: Router, private usuarioService: UsuarioService, private messageService: MessageServiceUtil) { }

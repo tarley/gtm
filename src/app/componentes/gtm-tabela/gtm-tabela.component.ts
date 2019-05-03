@@ -13,7 +13,7 @@ import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 })
 export class GtmTabelaComponent implements OnInit {
 
-  @Input() colunas: string[] = [];
+  @Input() colunas: any[] = [];
   @Input() lista: any[] = [];
 
   @Input() urlDelete: string;
