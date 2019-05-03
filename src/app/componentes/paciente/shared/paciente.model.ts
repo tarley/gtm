@@ -4,7 +4,7 @@ export class Paciente {
         public _id?: string,
         public nome?: string,
         public sexo?: string,
-        public cpf?: number,
+        public cpf?: string,
         public dataNascimento?: Date,
         public estadoCivil?: string,
         public anosEstudo?: number,

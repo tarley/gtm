@@ -11,17 +11,18 @@ export class MessageServiceUtil {
     public constructor(private messageService: MessageService) { }
 
     public geraMensagensErro(respostaErro: HttpErrorResponse, mensagemPadrao: string) {
+        console.log(respostaErro);
         if (respostaErro) {
-            if (respostaErro.error.errors) {
-                respostaErro.error.errors.forEach(error => {
-                    this.messageService.add(MensagemUtil.criaMensagemErro(error.msg));
-                });
-            } else if (respostaErro.error.code == 11000) {
+            if (respostaErro.error.code == 11000) {
                 const prefixoMsg = '{ : "';
                 const sufixoMsg = '" }'
                 const erro = respostaErro.error;
                 const msgErro: string = erro.errmsg.substring(erro.errmsg.indexOf(prefixoMsg), erro.errmsg.indexOf(sufixoMsg)).replace(prefixoMsg, '');
                 this.messageService.add(MensagemUtil.criaMensagemErro(`O valor "${msgErro}" já existe para outro registro`));
+            } else if (respostaErro.error.errors) {
+                respostaErro.error.errors.forEach(error => {
+                    this.messageService.add(MensagemUtil.criaMensagemErro(error.msg));
+                });
             }
         } else {
             this.messageService.add(MensagemUtil.criaMensagemErro(mensagemPadrao));
