@@ -1,3 +1,4 @@
+import { MessageServiceUtil } from './../../../util/message-service-util.service';
 import { Constantes } from 'src/app/util/constantes';
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
@@ -39,7 +40,7 @@ export class PacienteNovoComponent implements OnInit {
   dataNascimento;
 
   constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
-    private router: Router, private messageService: MessageService, private route: ActivatedRoute) { }
+    private router: Router, private messageService: MessageServiceUtil, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarDadosIniciais();
@@ -69,7 +70,8 @@ export class PacienteNovoComponent implements OnInit {
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar()
-    }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR));
+    //this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
   }
 
   voltar() {
