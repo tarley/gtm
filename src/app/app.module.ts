@@ -22,6 +22,7 @@ import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.modul
 import { MessageServiceUtil } from './util/message-service-util.service';
 import { MessageService } from 'primeng/api';
 import { ProfissaoModule } from './componentes/profissao/profissao.module';
+import { BlockUIModule } from 'ng-block-ui';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -34,6 +35,7 @@ registerLocaleData(localePt);
   ],
   imports: [
     BrowserModule,
+    BlockUIModule.forRoot(),
     AppRoutingModule,
     UsuarioModule,
     BrowserAnimationsModule,
