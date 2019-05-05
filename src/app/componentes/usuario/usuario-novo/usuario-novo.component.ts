@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
 import { NgForm } from '@angular/forms';
@@ -7,6 +7,8 @@ import { UsuarioService } from '../shared/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { SelectItem } from 'primeng/api';
+import { NgBlockUI, BlockUI } from 'ng-block-ui';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -14,6 +16,8 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ['./usuario-novo.component.scss']
 })
 export class UsuarioNovoComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo = 'Novo Usuário'
 
@@ -34,29 +38,29 @@ export class UsuarioNovoComponent implements OnInit {
     this.route.params.subscribe(params => {
       if(params['id']) {
         const id = params['id'];
+        this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
           this.usuario.confSenha = usuario.senha;
-        }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!')))
+        }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!'))
+        , () => this.blockUI.stop());
       }
     })
   }
 
-  salvar(form: NgForm) {
-    // if(this.formularioInvalido(form)) {      
-    //   this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.FORMULARIO_INVALIDO));
-    //   return;
-    // }
+  salvar() {
     let requisicao: Observable<Object>;
     if(this.usuario._id) {
       requisicao = this.usuarioService.atualizaUsuario(this.usuario);
     } else {
       requisicao = this.usuarioService.insereUsuario(this.usuario);
     }
+    this.blockUI.start(MensagemUtil.SALVANDO_REGISTRO);
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR));
+    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR),
+    () => this.blockUI.stop());
   }
 
   formularioInvalido(form: NgForm) {

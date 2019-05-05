@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from './shared/usuario.model';
 import { Router } from '@angular/router';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-usuario',
@@ -11,6 +12,8 @@ import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
   styleUrls: ['./usuario.component.scss']
 })
 export class UsuarioComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo: string = 'Lista de Usuários';
   urlDelete = 'v1/usuarios';
@@ -30,9 +33,11 @@ export class UsuarioComponent implements OnInit {
   }
 
   buscarTodos() {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
       this.usuarios = usuarios;
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)))
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+    () => this.blockUI.stop());
   }
 
   navigate(route: string) {
