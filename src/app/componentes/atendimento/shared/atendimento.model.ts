@@ -7,7 +7,7 @@ export class Atendimento {
         public quadroGeral?: string,
         public doencas?: Doenca[],
         public dataResultado?: Date,
-        public finalizado?: boolean
+        public finalizado?: Boolean
     ) {
         this.doencas = new Array<Doenca>();
     }

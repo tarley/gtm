@@ -16,7 +16,8 @@ export class AtendimentoComponent implements OnInit {
 
   colunas: any[] = [
     {var: 'nomePaciente', label: 'Nome'}, 
-    {var: 'dataAtendimento', label: 'Data Atendimento'}
+    {var: 'dataAtendimento', label: 'Data Atendimento'},
+    {var: 'finalizado', label: 'Finalizado'},
   ];
 
   atendimentos: Atendimento[] = [];
@@ -34,6 +35,7 @@ export class AtendimentoComponent implements OnInit {
     this.atendimentoService.buscarTodos().subscribe((atendimentos: Atendimento[]) => {
       atendimentos.forEach(atendimento => {
         atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
+        atendimento.finalizado = new Boolean(atendimento.finalizado);
       })
       this.atendimentos = atendimentos;
     })
