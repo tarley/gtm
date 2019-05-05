@@ -8,6 +8,8 @@ import { Paciente } from '../../paciente/shared/paciente.model';
 import { NgForm } from '@angular/forms';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { Constantes } from 'src/app/util/constantes';
+import { formatDate } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-atendimento-novo',
@@ -16,7 +18,7 @@ import { Constantes } from 'src/app/util/constantes';
 })
 export class AtendimentoNovoComponent implements OnInit {
 
-  titulo = 'Novo Atendimento';
+  titulo: string = '';
 
   atendimento: Atendimento = new Atendimento();
 
@@ -25,6 +27,8 @@ export class AtendimentoNovoComponent implements OnInit {
   prms = Constantes.prms;
   causasPrm;
 
+  isEdicao: boolean;
+
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
     private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
 
@@ -32,10 +36,28 @@ export class AtendimentoNovoComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['idPaciente']) {
         const idPaciente = params['idPaciente'];
+        this.isEdicao = false;
         this.buscaUltimoAtendimento(idPaciente);
       } else if (params['id']) {
         const id = params['id'];
+        this.isEdicao = true;
+        this.editarAtendimento(id);
       }
+    })
+  }
+
+  editarAtendimento(id: string) {
+    this.atendimentoService.buscaPorIdAtendimento(id).subscribe((atendimento: Atendimento) => {
+
+      atendimento.doencas.forEach((doenca: Doenca) => {
+        if (!doenca.planoCuidado) {
+          doenca.planoCuidado = new PlanoCuidado();
+        }
+      });
+      this.atendimento = atendimento;
+      this.defineTitulo(atendimento.nomePaciente);
+      this.adicionaDoencaEFarmacoInicial();
+
     })
   }
 
@@ -65,22 +87,23 @@ export class AtendimentoNovoComponent implements OnInit {
     this.atendimento.dataAtendimento = new Date();
     this.atendimento.nomePaciente = ultimoAtendimento.nomePaciente;
     this.atendimento.idPaciente = ultimoAtendimento.idPaciente;
-    this.defineTitulo(ultimoAtendimento.nomePaciente);
-    this.adicionaDoencaEFarmacoInicial();
-
+    
     if (ultimoAtendimento.quadroGeral) {
       this.atendimento.quadroGeral = ultimoAtendimento.quadroGeral
     }
-
+    
     if (ultimoAtendimento.doencas.length > 0) {
       this.atendimento.doencas = ultimoAtendimento.doencas;
     }
-
-    ultimoAtendimento.doencas.forEach((doenca:Doenca) => {
-      if(!doenca.planoCuidado) {
+    
+    ultimoAtendimento.doencas.forEach((doenca: Doenca) => {
+      if (!doenca.planoCuidado) {
         doenca.planoCuidado = new PlanoCuidado();
       }
     });
+
+    this.defineTitulo(ultimoAtendimento.nomePaciente);
+    this.adicionaDoencaEFarmacoInicial();
   }
 
   setAtributosIniciais(paciente: Paciente) {
@@ -89,8 +112,14 @@ export class AtendimentoNovoComponent implements OnInit {
     this.atendimento.dataAtendimento = new Date();
   }
 
-  salvar(form: NgForm) {
-    this.atendimentoService.salvar(this.atendimento).subscribe(() => {
+  salvar() {
+    let requisicao: Observable<Object>;
+    if(this.atendimento._id) {
+      requisicao = this.atendimentoService.editar(this.atendimento);
+    } else {
+      requisicao = this.atendimentoService.salvar(this.atendimento);
+    }
+    requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
     }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR));
@@ -105,7 +134,8 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   defineTitulo(nomePaciente: string) {
-    this.titulo = `Novo Atendimento - ${nomePaciente} - ${this.atendimento.dataAtendimento.toLocaleDateString()}`;
+    this.titulo = this.isEdicao ? 'Edição Atendimento' : 'Novo Atendimento'
+    this.titulo = this.titulo.concat(` - ${nomePaciente} - ${formatDate(this.atendimento.dataAtendimento, 'dd/MM/yyyy', 'pt-BR')}`);
   }
 
   novaDoenca() {
@@ -113,7 +143,7 @@ export class AtendimentoNovoComponent implements OnInit {
       this.atendimento.doencas = new Array<Doenca>();
     }
     this.atendimento.doencas.push(new Doenca());
-    this.novaFarmaco(this.atendimento.doencas[this.atendimento.doencas.length-1]);
+    this.novaFarmaco(this.atendimento.doencas[this.atendimento.doencas.length - 1]);
   }
 
   deletaDoenca(indexDeletado: number) {
@@ -156,7 +186,9 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['paciente']);
+    this.isEdicao ? 
+      this.router.navigate(['atendimento']) : 
+      this.router.navigate(['paciente']);
   }
 
 }

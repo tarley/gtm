@@ -12,12 +12,20 @@ export class AtendimentoService {
 
   constructor(private httpClient: HttpClient) { }
 
+  salvar(atendimento: Atendimento) {
+    return this.httpClient.post(this.urlServico, atendimento);
+  }
+
+  editar(atendimento: Atendimento) {
+    return this.httpClient.put(`${this.urlServico}/${atendimento._id}`, atendimento);
+  }
+
   buscarTodos() {
     return this.httpClient.get(this.urlServico);
   }
 
-  salvar(atendimento: Atendimento) {
-    return this.httpClient.post(this.urlServico, atendimento);
+  buscaPorIdAtendimento(id: string) {
+    return this.httpClient.get(`${this.urlServico}/${id}`);
   }
 
   buscaUltimoAtendimento(idPaciente: string) {

@@ -2,12 +2,12 @@
   <p-card [header]="titulo"></p-card>
 </div>
 
-<form #f="ngForm" (ngSubmit)="salvar(f)">
+<form #f="ngForm" (ngSubmit)="salvar()">
   <p-accordion [multiple]="true">
     <p-accordionTab header="Avaliação Inicial" [selected]="true">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12">
-          <label>Quadro Geral:</label>
+          <label>Quadro Geral:*</label>
           <textarea rows="5" style="width: 100%;" name="quadroGeral" [(ngModel)]="atendimento.quadroGeral"
             pInputTextarea autoResize="true"></textarea>
         </div>
@@ -41,13 +41,13 @@
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
                 <div class="ui-g-12 ui-md-12">
-                  <label>Medicamento:</label>
+                  <label>Medicamento:*</label>
                   <input name="medicamento{{i}}{{j}}" type="text" name="medicamento{{i}}"
                     [(ngModel)]="farmaco.medicamento" pInputText />
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
-                    <label>Posologia Relatada:</label>
+                    <label>Posologia Relatada:*</label>
                     <input type="text" name="posologiaRelatada{{i}}{{j}}" [(ngModel)]="farmaco.posologiaRelatada" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
-                    <label>Efetividade:</label>
+                    <label>Efetividade:*</label>
                     <input type="text" name="efetividade{{i}}{{j}}" [(ngModel)]="farmaco.efetividade" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
@@ -67,18 +67,18 @@
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
-                    <label>Segurança:</label>
+                    <label>Segurança:*</label>
                     <input type="text" name="seguranca{{i}}{{j}}" [(ngModel)]="farmaco.seguranca" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-6">
-                    <label>Dificuldade no Uso:</label>
+                    <label>Dificuldade no Uso:*</label>
                     <input type="text" name="dificuldadeUso{{i}}{{j}}" [(ngModel)]="farmaco.dificuldadeUso"
                       pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-6">
-                    <label>PRM:</label>
+                    <label>PRM:*</label>
                     <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM" name="prm{{i}}{{j}}"
                       [(ngModel)]="farmaco.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)">
                     </p-dropdown>

@@ -21,7 +21,9 @@ export class AtendimentoComponent implements OnInit {
   ];
 
   atendimentos: Atendimento[] = [];
-  rotaImpressao = 'atendimento/imprimir/';
+
+  rotaImpressao: string = 'atendimento/imprimir/';
+  rotaEdicao: string = 'atendimento';
 
   filtroPesquisa: string;
 
