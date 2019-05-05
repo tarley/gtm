@@ -75,7 +75,7 @@ export class GtmTabelaComponent implements OnInit {
     if(this.isDate(valor)) {
       return formatDate(valor, 'dd/MM/yyyy', 'pt-BR');
     } else if (this.isBoolean(valor)) {
-      return valor ? 'Sim' : 'Não';
+      return valor == true ? 'Sim' : 'Não';
     } else {
       return valor;
     }  
