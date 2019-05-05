@@ -1,7 +1,7 @@
 import { AtendimentoService } from './../shared/atendimento.service';
 import { Component, OnInit } from '@angular/core';
 import { Atendimento, Doenca, PlanoCuidado, Farmacoterapia } from '../shared/atendimento.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { Constantes } from 'src/app/util/constantes';
 
@@ -18,7 +18,7 @@ export class AtendimentoVisualizarComponent implements OnInit {
 
   configCalendar = Constantes.configCalendar;
 
-  constructor(private route: ActivatedRoute, private atendimentoService: AtendimentoService) { }
+  constructor(private route: ActivatedRoute, private atendimentoService: AtendimentoService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -36,6 +36,9 @@ export class AtendimentoVisualizarComponent implements OnInit {
           doenca.planoCuidado = new PlanoCuidado();
         }
       });
+      if(atendimento.dataResultado) {
+        atendimento.dataResultado = new Date(atendimento.dataResultado);
+      }
       this.atendimento = atendimento;
       this.defineTitulo(atendimento);
     });
@@ -67,6 +70,10 @@ export class AtendimentoVisualizarComponent implements OnInit {
     } else {
       return campo;
     }
+  }
+
+  voltar() {
+      this.router.navigate(['atendimento']);
   }
 
 }

@@ -54,6 +54,9 @@ export class AtendimentoNovoComponent implements OnInit {
           doenca.planoCuidado = new PlanoCuidado();
         }
       });
+      if(atendimento.dataResultado) {
+        atendimento.dataResultado = new Date(atendimento.dataResultado);
+      }
       this.atendimento = atendimento;
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
