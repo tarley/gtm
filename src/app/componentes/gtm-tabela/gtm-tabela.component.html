@@ -11,11 +11,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-elemento>
       <tr>
-        <td *ngFor="let coluna of colunas">{{
-           isDate(elemento[coluna.var]) ? 
-           (elemento[coluna.var] | date: 'dd/MM/yyyy') : 
-           elemento[coluna.var]
-          }}</td>
+        <td *ngFor="let coluna of colunas">{{ formataValor(elemento[coluna.var]) }}</td>
         <td *ngIf="existeDelete || existeEdicao || existeImpressao">
           <button *ngFor="let botao of botoes" [label]="botao.label" pButton class="botao-acao" [icon]="botao.icone"
             (click)="clickBotao(botao, elemento._id)" type="button"></button>

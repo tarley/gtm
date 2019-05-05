@@ -13,7 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GtmTabelaModule } from './componentes/gtm-tabela/gtm-tabela.module';
-import {SidebarModule} from 'primeng/sidebar';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
@@ -22,6 +22,11 @@ import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.modul
 import { MessageServiceUtil } from './util/message-service-util.service';
 import { MessageService } from 'primeng/api';
 import { ProfissaoModule } from './componentes/profissao/profissao.module';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -49,7 +54,12 @@ import { ProfissaoModule } from './componentes/profissao/profissao.module';
     MedicamentoModule,
     ProfissaoModule,
   ],
-  providers: [MessageServiceUtil, MessageService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    MessageServiceUtil, 
+    MessageService, 
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

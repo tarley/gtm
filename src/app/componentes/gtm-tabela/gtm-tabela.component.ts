@@ -5,6 +5,7 @@ import { GtmTabelaService } from './gtm-tabela.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-gtm-tabela',
@@ -58,8 +59,6 @@ export class GtmTabelaComponent implements OnInit {
     });
   }
 
-
-
   isExisteAcao() {
     if (this.urlDelete) {
       this.existeDelete = true;
@@ -72,8 +71,26 @@ export class GtmTabelaComponent implements OnInit {
     }
   }
 
+  formataValor(valor) {
+    if(this.isDate(valor)) {
+      return formatDate(valor, 'dd/MM/yyyy', 'pt-BR');
+    } else if (this.isBoolean(valor)) {
+      return valor ? 'Sim' : 'Não';
+    } else {
+      return valor;
+    }  
+  }
+
   isDate(valor) {
     if(valor instanceof Date) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isBoolean(valor) {
+    if(valor instanceof Boolean) {
       return true;
     } else {
       return false;
