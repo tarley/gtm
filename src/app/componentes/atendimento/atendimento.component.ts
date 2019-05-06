@@ -1,3 +1,4 @@
+import { NgBlockUI, BlockUI  } from 'ng-block-ui';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { MessageServiceUtil } from './../../util/message-service-util.service';
 import { Atendimento } from './shared/atendimento.model';
@@ -11,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./atendimento.component.scss']
 })
 export class AtendimentoComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo = 'Lista de Atendimentos';
 
@@ -34,13 +37,15 @@ export class AtendimentoComponent implements OnInit {
   }
 
   buscarTodos() {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscarTodos().subscribe((atendimentos: Atendimento[]) => {
       atendimentos.forEach(atendimento => {
         atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
         atendimento.finalizado = new Boolean(atendimento.finalizado);
       })
       this.atendimentos = atendimentos;
-    })
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)), 
+      () => this.blockUI.stop());
   }
 
   filtraAtendimentos() {
@@ -49,12 +54,14 @@ export class AtendimentoComponent implements OnInit {
         this.messageService.add(MensagemUtil.criaMensagemErro('Digite um CPF válido!'));
         return;
       }
+      this.blockUI.start(MensagemUtil.FILTRANDO_REGISTRO);
       this.atendimentoService.buscaPorCPFPaciente(this.filtroPesquisa).subscribe((atendimentos: Atendimento[]) => {
         atendimentos.forEach(atendimento => {
           atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
         })
         this.atendimentos = atendimentos;
-      });
+      }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_FILTRAR)),
+          () => this.blockUI.stop());
     } else {
       this.buscarTodos();
     }
