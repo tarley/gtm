@@ -9,6 +9,7 @@ import {ButtonModule} from 'primeng/button';
 import { MedicamentoService } from './shared/medicamento.service';
 import {CardModule} from 'primeng/card';
 import { FormsModule } from '@angular/forms';
+import { GtmCadastrosModule } from '../gtm-cadastros/gtm-cadastros.module';
 
 @NgModule({
   declarations: [MedicamentoComponent, MedicamentoNovoComponent],
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     PanelModule,
     FormsModule,
     GtmTabelaModule,
+    GtmCadastrosModule,
     ButtonModule,
     CardModule,
   ],

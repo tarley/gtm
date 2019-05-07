@@ -15,6 +15,6 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ButtonModule,
     FormsModule,
-  ]
+  ], exports: [GtmCadastrosComponent]
 })
 export class GtmCadastrosModule { }

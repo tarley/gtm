@@ -1,15 +1,2 @@
-<form #form="ngForm" (ngSubmit)="salvar(form)">
-  <p-card [header]="titulo">
-      <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
-          <label>Descrição:</label>
-          <input id="descricao" name="descricao" type="text" pInputText [(ngModel)]="form.descricao" required> 
-        </div>  
-      </div>
-      
-      <button pButton class="botao-acao" type="submit" label="Salvar"></button>
-      <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
-  
-    </p-card> 
-</form>
+<app-gtm-cadastros [titulo]="titulo" [caminho]="caminho" [rotaRetorno]="rotaRetorno"></app-gtm-cadastros>
   
