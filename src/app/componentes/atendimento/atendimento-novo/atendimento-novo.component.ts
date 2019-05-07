@@ -10,6 +10,7 @@ import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { Constantes } from 'src/app/util/constantes';
 import { formatDate } from '@angular/common';
 import { Observable } from 'rxjs';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-atendimento-novo',
@@ -17,6 +18,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./atendimento-novo.component.scss']
 })
 export class AtendimentoNovoComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo: string = '';
 
@@ -47,6 +50,7 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   editarAtendimento(id: string) {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscaPorIdAtendimento(id).subscribe((atendimento: Atendimento) => {
 
       atendimento.doencas.forEach((doenca: Doenca) => {
@@ -61,7 +65,8 @@ export class AtendimentoNovoComponent implements OnInit {
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
 
-    })
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+        () => this.blockUI.stop());
   }
 
   adicionaDoencaEFarmacoInicial() {
@@ -71,19 +76,23 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   buscaUltimoAtendimento(idPaciente: string) {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscaUltimoAtendimento(idPaciente).subscribe((ultimoAtendimento: Atendimento) => {
       ultimoAtendimento ?
         this.novoAtendimentoComValores(ultimoAtendimento) :
         this.novoAtendimento(idPaciente);
-    })
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+      () => this.blockUI.stop());
   }
 
   novoAtendimento(idPaciente: string) {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.pacienteService.buscarPorId(idPaciente).subscribe((paciente: Paciente) => {
       this.setAtributosIniciais(paciente);
       this.defineTitulo(paciente.nome);
       this.adicionaDoencaEFarmacoInicial();
-    })
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+        () => this.blockUI.stop())
   }
 
   novoAtendimentoComValores(ultimoAtendimento: Atendimento) {
@@ -122,10 +131,12 @@ export class AtendimentoNovoComponent implements OnInit {
     } else {
       requisicao = this.atendimentoService.salvar(this.atendimento);
     }
+    this.blockUI.start(MensagemUtil.SALVANDO_REGISTRO);
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR));
+    }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR),
+        () => this.blockUI.stop());
   }
 
   carregaCausasPrm(prmSelecionada: string) {
