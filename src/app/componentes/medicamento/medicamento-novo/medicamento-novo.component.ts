@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Medicamento } from '../shared/medicamento.model';
-import { MedicamentoService } from '../shared/medicamento.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { MensagemUtil } from 'src/app/util/mensagem-util';
-import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 
 @Component({
   selector: 'app-medicamento-novo',

@@ -8,6 +8,7 @@ import { Medicamento } from './medicamento.model';
   providedIn: 'root'
 })
 export class MedicamentoService {
+  
   urlApi = environment.urlApi.concat('v1/medicamentos/');
 
   constructor(private httpClient: HttpClient) { }

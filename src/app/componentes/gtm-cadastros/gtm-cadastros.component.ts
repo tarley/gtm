@@ -3,6 +3,7 @@ import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Router } from '@angular/router';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { GtmCadastrosService } from './gtm-cadastros.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-gtm-cadastros',
@@ -10,6 +11,8 @@ import { GtmCadastrosService } from './gtm-cadastros.service';
   styleUrls: ['./gtm-cadastros.component.scss']
 })
 export class GtmCadastrosComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   @Input() titulo: String;
   @Input() caminho: string;
@@ -25,10 +28,12 @@ export class GtmCadastrosComponent implements OnInit {
   }
 
   salvar(){
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.GtmCadastrosService.salvar(this.form, this.caminho).subscribe(() => {
       this.voltar();
       this.mensagem.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
-    }, () => this.mensagem.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_SALVAR)));
+    }, () => this.mensagem.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_SALVAR)),
+    () => this.blockUI.stop());
 }
 
 

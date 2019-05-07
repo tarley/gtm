@@ -9,6 +9,7 @@ import {ButtonModule} from 'primeng/button';
 import { ProfissaoService } from './shared/profissao.service';
 import {CardModule} from 'primeng/card';
 import { FormsModule } from '@angular/forms';
+import { GtmCadastrosModule } from '../gtm-cadastros/gtm-cadastros.module';
 
 @NgModule({
   declarations: [ProfissaoComponent, ProfissaoNovoComponent],
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     PanelModule,
     FormsModule,
     GtmTabelaModule,
+    GtmCadastrosModule,
     ButtonModule,
     CardModule,
   ],
