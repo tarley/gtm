@@ -65,7 +65,10 @@ export class AtendimentoNovoComponent implements OnInit {
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
 
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+    }, () => {
+        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+        this.blockUI.stop();
+      },
         () => this.blockUI.stop());
   }
 
@@ -81,7 +84,10 @@ export class AtendimentoNovoComponent implements OnInit {
       ultimoAtendimento ?
         this.novoAtendimentoComValores(ultimoAtendimento) :
         this.novoAtendimento(idPaciente);
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+    }, () => {
+        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+        this.blockUI.stop();
+      },
       () => this.blockUI.stop());
   }
 
@@ -91,7 +97,10 @@ export class AtendimentoNovoComponent implements OnInit {
       this.setAtributosIniciais(paciente);
       this.defineTitulo(paciente.nome);
       this.adicionaDoencaEFarmacoInicial();
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+    }, () => {
+        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+        this.blockUI.stop();
+      },
         () => this.blockUI.stop())
   }
 
@@ -135,8 +144,10 @@ export class AtendimentoNovoComponent implements OnInit {
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR),
-        () => this.blockUI.stop());
+    }, (erro) => {
+        this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR);
+        this.blockUI.stop();
+      }, () => this.blockUI.stop());
   }
 
   carregaCausasPrm(prmSelecionada: string) {

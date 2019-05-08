@@ -44,7 +44,10 @@ export class AtendimentoComponent implements OnInit {
         atendimento.finalizado = new Boolean(atendimento.finalizado);
       })
       this.atendimentos = atendimentos;
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)), 
+    }, () => {
+          this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+          this.blockUI.stop();
+        }, 
       () => this.blockUI.stop());
   }
 
@@ -60,7 +63,10 @@ export class AtendimentoComponent implements OnInit {
           atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
         })
         this.atendimentos = atendimentos;
-      }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_FILTRAR)),
+      }, () => {
+          this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_FILTRAR));
+          this.blockUI.stop();
+        },
           () => this.blockUI.stop());
     } else {
       this.buscarTodos();

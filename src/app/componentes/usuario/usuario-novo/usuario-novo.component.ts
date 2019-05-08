@@ -42,8 +42,11 @@ export class UsuarioNovoComponent implements OnInit {
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
           this.usuario.confSenha = usuario.senha;
-        }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!'))
-        , () => this.blockUI.stop());
+        }, () => {
+            this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!'));
+            this.blockUI.stop();
+          }, 
+          () => this.blockUI.stop());
       }
     })
   }
@@ -59,7 +62,10 @@ export class UsuarioNovoComponent implements OnInit {
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
-    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR),
+    }, (respostaErro) => {
+        this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR);
+        this.blockUI.stop();
+      },
     () => this.blockUI.stop());
   }
 

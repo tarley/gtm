@@ -36,7 +36,10 @@ export class UsuarioComponent implements OnInit {
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
       this.usuarios = usuarios;
-    }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR)),
+    }, () => {
+          this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+          this.blockUI.stop();
+        },
     () => this.blockUI.stop());
   }
 
