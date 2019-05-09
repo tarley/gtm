@@ -1,5 +1,5 @@
 <p-sidebar  [(visible)]="display" [fullScreen]="false">
-    <p-menu id="menu"  [model]="items"></p-menu>
+    <p-menu id="menu" (click)="clickItemMenu()" [model]="items"></p-menu>
 </p-sidebar>
 
 <div class="menu pointer">

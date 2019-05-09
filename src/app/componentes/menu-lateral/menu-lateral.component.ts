@@ -8,6 +8,8 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuLateralComponent implements OnInit {
 
+  display: boolean = false;
+
   items: MenuItem[] = [
     {label: 'GTM Newton', items: [
       {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
@@ -24,6 +26,10 @@ export class MenuLateralComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clickItemMenu() {
+    this.display = false;
   }
 
 }
