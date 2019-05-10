@@ -4,6 +4,8 @@ import { MessageServiceUtil } from './../../util/message-service-util.service';
 import { Atendimento } from './shared/atendimento.model';
 import { AtendimentoService } from './shared/atendimento.service';
 import { Component, OnInit } from '@angular/core';
+import { BotaoTabela } from '../gtm-tabela/shared/botao-tabela.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,6 +25,10 @@ export class AtendimentoComponent implements OnInit {
     {var: 'finalizado', label: 'Finalizado'},
   ];
 
+  botoes: BotaoTabela[] = [
+    {nome: 'visualizar', icone: 'fa fa-eye'},
+  ]
+
   atendimentos: Atendimento[] = [];
 
   rotaImpressao: string = 'atendimento/imprimir/';
@@ -30,7 +36,7 @@ export class AtendimentoComponent implements OnInit {
 
   filtroPesquisa: string;
 
-  constructor(private atendimentoService: AtendimentoService, private messageService: MessageServiceUtil) { }
+  constructor(private atendimentoService: AtendimentoService, private messageService: MessageServiceUtil, private router: Router) { }
 
   ngOnInit() {
     this.buscarTodos();
@@ -76,6 +82,12 @@ export class AtendimentoComponent implements OnInit {
   isCpfValido(cpf: string) {
     cpf = cpf.replace('.', '').replace('-', '').replace('_', '');
     return cpf.length == 11;
+  }
+
+  clickBotao(evento) {
+    if(evento.nomeBotao == 'visualizar') {
+      this.router.navigate(['atendimento/visualizar', evento.idSelecionado]);
+    }
   }
 
 }
