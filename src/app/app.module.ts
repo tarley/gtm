@@ -26,6 +26,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { DoencaModule } from './componentes/doenca/doenca.module';
 
 registerLocaleData(localePt);
 
@@ -55,6 +56,7 @@ registerLocaleData(localePt);
     MessageModule,
     MedicamentoModule,
     ProfissaoModule,
+    DoencaModule
   ],
   providers: [
     MessageServiceUtil, 

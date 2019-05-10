@@ -14,6 +14,8 @@ import { ProfissaoComponent } from './componentes/profissao/profissao.component'
 import { ProfissaoNovoComponent } from './componentes/profissao/profissao-novo/profissao-novo.component';
 import { AtendimentoImprimirComponent } from './componentes/atendimento/atendimento-imprimir/atendimento-imprimir.component';
 import { AtendimentoVisualizarComponent } from './componentes/atendimento/atendimento-visualizar/atendimento-visualizar.component';
+import { DoencaComponent } from './componentes/doenca/doenca.component';
+import { DoencaNovoComponent } from './componentes/doenca/doenca-novo/doenca-novo.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -43,6 +45,10 @@ const routes: Routes = [
   //Telas Profissões
   {path: 'profissao', component:ProfissaoComponent},
   {path: 'profissao/novo', component: ProfissaoNovoComponent},
+
+  //Telas Doenças
+  {path: 'doenca', component:DoencaComponent},
+  {path: 'doenca/novo', component:DoencaNovoComponent}
 ];
 
 @NgModule({
