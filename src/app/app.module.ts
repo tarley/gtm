@@ -26,6 +26,8 @@ import { BlockUIModule } from 'ng-block-ui';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 registerLocaleData(localePt);
 
@@ -42,6 +44,7 @@ registerLocaleData(localePt);
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ConfirmDialogModule,
     ToastModule,
     UsuarioModule,
     LoginModule,
@@ -58,7 +61,8 @@ registerLocaleData(localePt);
   ],
   providers: [
     MessageServiceUtil, 
-    MessageService, 
+    MessageService,
+    ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

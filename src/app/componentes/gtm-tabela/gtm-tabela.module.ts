@@ -6,8 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { GtmTabelaService } from './gtm-tabela.service';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [GtmTabelaComponent],
@@ -17,9 +15,8 @@ import { ConfirmationService } from 'primeng/api';
     FormsModule,
     ButtonModule,
     TableModule,
-    ConfirmDialogModule,
   ],
   exports: [GtmTabelaComponent],
-  providers: [GtmTabelaService, ConfirmationService]
+  providers: [GtmTabelaService]
 })
 export class GtmTabelaModule { }
