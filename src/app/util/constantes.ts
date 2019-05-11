@@ -73,7 +73,7 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 4 – Dose', value: 'PRM4', causas: [
+            label: 'PRM 4 – Dose Básica', value: 'PRM4', causas: [
                 { label: 'A dose é muito baixa para  produzir a resposta desejada', value: 'A dose é muito baixa para  produzir a resposta desejada' },
                 { label: 'Intervalo entre doses maior que o necessário para se alcançar objetivos', value: 'Intervalo entre doses maior que o necessário para se alcançar objetivos' },
                 { label: 'Uma interação reduz a quantidade disponível do fármaco', value: 'Uma interação reduz a quantidade disponível do fármaco' },
@@ -111,12 +111,12 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 8 - Sem PRM', value: 'PRM8', causas: [
+            label: 'Sem PRM', value: 'SemPRM', causas: [
                 { label: 'Não se aplica', value: 'Não se aplica' },
             ]
         },
         {
-            label: 'PRM 9 - Definir no próximo atendimento', value: 'PRM9', causas: [
+            label: 'Definir no próximo atendimento', value: 'DefinirProximo', causas: [
                 { label: 'Não se aplica', value: 'Não se aplica' },
             ]
         },
