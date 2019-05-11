@@ -28,6 +28,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { DoencaModule } from './componentes/doenca/doenca.module';
 
 registerLocaleData(localePt);
 
@@ -58,6 +59,7 @@ registerLocaleData(localePt);
     MessageModule,
     MedicamentoModule,
     ProfissaoModule,
+    DoencaModule
   ],
   providers: [
     MessageServiceUtil, 

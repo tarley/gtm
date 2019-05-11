@@ -20,6 +20,8 @@ export class MenuLateralComponent implements OnInit {
       {label: 'Profissões', icon: 'fa fa-id-card', routerLink: '/profissao'},
       {separator: true},
       {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'},
+      {separator: true},
+      {label: 'Doença', icon: 'fa fa-plus-square', routerLink: '/doenca'}
     ]}
   ];
   
