@@ -1,3 +1,4 @@
+import { ConfirmationService } from 'primeng/api';
 import { NgBlockUI, BlockUI  } from 'ng-block-ui';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { MessageServiceUtil } from './../../util/message-service-util.service';
@@ -26,6 +27,7 @@ export class AtendimentoComponent implements OnInit {
   ];
 
   botoes: BotaoTabela[] = [
+    {nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle'},
     {nome: 'visualizar', icone: 'fa fa-eye'},
   ]
 
@@ -36,7 +38,8 @@ export class AtendimentoComponent implements OnInit {
 
   filtroPesquisa: string;
 
-  constructor(private atendimentoService: AtendimentoService, private messageService: MessageServiceUtil, private router: Router) { }
+  constructor(private atendimentoService: AtendimentoService, private messageService: MessageServiceUtil, 
+    private router: Router, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.buscarTodos();
@@ -87,6 +90,20 @@ export class AtendimentoComponent implements OnInit {
   clickBotao(evento) {
     if(evento.nomeBotao == 'visualizar') {
       this.router.navigate(['atendimento/visualizar', evento.idSelecionado]);
+    } else if(evento.nomeBotao == 'finalizar') {
+      this.confirmationService.confirm({
+        message: MensagemUtil.CONFIRMA_FINALIZAR_ATENDIMENTO,
+        accept: () => {
+          this.blockUI.start(MensagemUtil.FINALIZANDO_ATENDIMENTO);
+          this.atendimentoService.finalizarAtendimento(evento.idSelecionado).subscribe(() => {
+            this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.ATENDIMENTO_FINALIZADO));
+            this.blockUI.stop();
+          }, (erro) => {
+            this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_FINALIZAR_ATENDIMENTO);
+            this.blockUI.stop();
+          })
+        }
+      })
     }
   }
 

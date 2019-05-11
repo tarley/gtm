@@ -20,6 +20,10 @@ export class AtendimentoService {
     return this.httpClient.put(`${this.urlServico}/${atendimento._id}`, atendimento);
   }
 
+  finalizarAtendimento(id: string) {
+    return this.httpClient.put(`${this.urlServico}/finaliza/${id}`, null);
+  }
+
   buscarTodos() {
     return this.httpClient.get(this.urlServico);
   }
