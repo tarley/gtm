@@ -4,5 +4,6 @@ export class BotaoTabela {
         public nome: string,
         public icone: string,
         public label?: string,
+        public varControlaVisualizacao?: string,
     ) {}
 }

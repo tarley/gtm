@@ -92,6 +92,8 @@ export class GtmTabelaComponent implements OnInit {
   isBoolean(valor) {
     if(valor instanceof Boolean) {
       return true;
+    } else if(valor == true || valor == false) {
+      return true;
     } else {
       return false;
     }

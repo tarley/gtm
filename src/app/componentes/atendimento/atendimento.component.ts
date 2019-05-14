@@ -27,14 +27,14 @@ export class AtendimentoComponent implements OnInit {
   ];
 
   botoes: BotaoTabela[] = [
-    {nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle'},
+    {nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle', varControlaVisualizacao: 'finalizado'},
     {nome: 'visualizar', icone: 'fa fa-eye'},
+    {nome: 'editar', icone: 'fa fa-pencil', varControlaVisualizacao: 'finalizado'},
   ]
 
   atendimentos: Atendimento[] = [];
 
   rotaImpressao: string = 'atendimento/imprimir/';
-  rotaEdicao: string = 'atendimento';
 
   filtroPesquisa: string;
 
@@ -50,7 +50,6 @@ export class AtendimentoComponent implements OnInit {
     this.atendimentoService.buscarTodos().subscribe((atendimentos: Atendimento[]) => {
       atendimentos.forEach(atendimento => {
         atendimento.dataAtendimento = new Date(atendimento.dataAtendimento);
-        atendimento.finalizado = new Boolean(atendimento.finalizado);
       })
       this.atendimentos = atendimentos;
     }, () => {
@@ -90,6 +89,8 @@ export class AtendimentoComponent implements OnInit {
   clickBotao(evento) {
     if(evento.nomeBotao == 'visualizar') {
       this.router.navigate(['atendimento/visualizar', evento.idSelecionado]);
+    } else if(evento.nomeBotao == 'editar') {
+      this.router.navigate(['atendimento', evento.idSelecionado]);
     } else if(evento.nomeBotao == 'finalizar') {
       this.confirmationService.confirm({
         message: MensagemUtil.CONFIRMA_FINALIZAR_ATENDIMENTO,
