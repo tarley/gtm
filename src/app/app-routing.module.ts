@@ -8,14 +8,10 @@ import { LoginComponent } from './componentes/login/login.component';
 import { UsuarioNovoComponent } from './componentes/usuario/usuario-novo/usuario-novo.component';
 import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { PacienteNovoComponent } from './componentes/paciente/paciente-novo/paciente-novo.component';
-import { MedicamentoComponent } from './componentes/medicamento/medicamento.component';
-import { MedicamentoNovoComponent } from './componentes/medicamento/medicamento-novo/medicamento-novo.component';
-import { ProfissaoComponent } from './componentes/profissao/profissao.component';
-import { ProfissaoNovoComponent } from './componentes/profissao/profissao-novo/profissao-novo.component';
 import { AtendimentoImprimirComponent } from './componentes/atendimento/atendimento-imprimir/atendimento-imprimir.component';
 import { AtendimentoVisualizarComponent } from './componentes/atendimento/atendimento-visualizar/atendimento-visualizar.component';
-import { DoencaComponent } from './componentes/doenca/doenca.component';
-import { DoencaNovoComponent } from './componentes/doenca/doenca-novo/doenca-novo.component';
+import { InstituicaoComponent } from './componentes/instituicao/instituicao.component';
+import { NovaInstituicaoComponent } from './componentes/instituicao/nova-instituicao/nova-instituicao.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -38,17 +34,9 @@ const routes: Routes = [
   { path: 'atendimento/visualizar/:id', component: AtendimentoVisualizarComponent},
   { path: 'atendimento/imprimir/:id', component: AtendimentoImprimirComponent},
 
-  //Telas Medicamentos
-  {path: 'medicamento', component:MedicamentoComponent},
-  {path: 'medicamento/novo', component: MedicamentoNovoComponent},
-
-  //Telas Profissões
-  {path: 'profissao', component:ProfissaoComponent},
-  {path: 'profissao/novo', component: ProfissaoNovoComponent},
-
-  //Telas Doenças
-  {path: 'doenca', component:DoencaComponent},
-  {path: 'doenca/novo', component:DoencaNovoComponent}
+  //Telas Instituições
+  {path: 'instituicao', component: InstituicaoComponent},
+  {path: 'instituicao/novo', component: NovaInstituicaoComponent}
 ];
 
 @NgModule({

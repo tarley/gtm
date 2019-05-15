@@ -13,15 +13,12 @@ export class MenuLateralComponent implements OnInit {
   items: MenuItem[] = [
     {label: 'GTM Newton', items: [
       {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
+      {separator: true},
       {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
       {separator: true},
-      {label: 'Medicamentos', icon: 'fa fa-medkit', routerLink: '/medicamento'},
+      {label: 'Instituição', icon: 'fa fa-graduation-cap', routerLink: '/instituicao'},
       {separator: true},
-      {label: 'Profissões', icon: 'fa fa-id-card', routerLink: '/profissao'},
-      {separator: true},
-      {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'},
-      {separator: true},
-      {label: 'Doença', icon: 'fa fa-plus-square', routerLink: '/doenca'}
+      {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
     ]}
   ];
   

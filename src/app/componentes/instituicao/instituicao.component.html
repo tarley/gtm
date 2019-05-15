@@ -1,0 +1,6 @@
+<p-card [header]="titulo">
+  <div class="botoes-topo">
+      <button pButton type="button" label="Nova Instituição" (click)="navigate('instituicao/novo')"></button>
+  </div> 
+  <app-gtm-tabela [colunas]="colunas" [lista]="instituicao" [urlDelete]="urlDelete"></app-gtm-tabela>
+</p-card>

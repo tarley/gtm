@@ -5,7 +5,7 @@ import { GtmCadastrosComponent } from './gtm-cadastros.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [GtmCadastrosComponent],
@@ -15,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ButtonModule,
     FormsModule,
+    DynamicDialogModule,
   ], exports: [GtmCadastrosComponent]
 })
 export class GtmCadastrosModule { }

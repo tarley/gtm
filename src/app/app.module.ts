@@ -17,18 +17,16 @@ import { SidebarModule } from 'primeng/sidebar';
 
 import { FormsModule } from '@angular/forms';
 import { MenuSuperiorModule } from './componentes/menu-superior/menu-superior.module';
-import { MedicamentoModule } from './componentes/medicamento/medicamento.module';
 import { MenuLateralModule } from './componentes/menu-lateral/menu-lateral.module';
 import { MessageServiceUtil } from './util/message-service-util.service';
 import { MessageService } from 'primeng/api';
-import { ProfissaoModule } from './componentes/profissao/profissao.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { DoencaModule } from './componentes/doenca/doenca.module';
+import { InstituicaoModule } from './componentes/instituicao/instituicao.module';
 
 registerLocaleData(localePt);
 
@@ -57,9 +55,7 @@ registerLocaleData(localePt);
     PacienteModule,
     AtendimentoModule,
     MessageModule,
-    MedicamentoModule,
-    ProfissaoModule,
-    DoencaModule
+    InstituicaoModule
   ],
   providers: [
     MessageServiceUtil, 
