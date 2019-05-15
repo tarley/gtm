@@ -5,10 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Paciente } from './../shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
-import { ProfissaoService } from '../../profissao/shared/profissao.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
-import { Profissao } from '../../profissao/shared/profissao.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -39,7 +37,7 @@ export class PacienteNovoComponent implements OnInit {
 
   dataNascimento;
 
-  constructor(private pacienteService: PacienteService, private ProfissaoService: ProfissaoService,
+  constructor(private pacienteService: PacienteService,
     private router: Router, private messageService: MessageServiceUtil, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -95,11 +93,6 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   carregarDadosIniciais() {
-    this.ProfissaoService.buscarTodos().subscribe((profissoes: Profissao[]) => {
-      profissoes.forEach((p) => {
-        this.profissao.push({ label: p.descricao, value: p.descricao });
-      })
-    });
   }
 
   validarCamposObservacao(chkCigarro, chkBebida) {
