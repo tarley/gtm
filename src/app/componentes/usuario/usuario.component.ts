@@ -18,11 +18,13 @@ export class UsuarioComponent implements OnInit {
   titulo: string = 'Lista de Usuários';
   urlDelete = 'v1/usuarios';
   rotaEdicao = 'usuario';
+  inativar = '';
 
   colunas: any[] = [
     {var: 'nome', label: 'Nome'}, 
     {var:'email', label: 'E-mail'}, 
-    {var:'perfil', label: 'Perfil'}
+    {var:'perfil', label: 'Perfil'},
+    {var:'inativo', label: 'Inativo'}
   ];
   usuarios: Usuario[] = [];
 
