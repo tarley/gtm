@@ -198,6 +198,7 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   calcularIMC() {
+    
     let peso = this.paciente.dadosAntropometricos.peso;
     let altura = this.paciente.dadosAntropometricos.altura;
 
