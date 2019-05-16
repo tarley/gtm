@@ -22,9 +22,10 @@ export class UsuarioComponent implements OnInit {
 
   colunas: any[] = [
     {var: 'nome', label: 'Nome'}, 
-    {var:'email', label: 'E-mail'}, 
+    {var:'email', label: 'E-mail'},
+    {var:'instituicao', label: 'Instituição'}, 
     {var:'perfil', label: 'Perfil'},
-    {var:'inativo', label: 'Inativo'}
+    {var:'inativo', label: 'Inativo'},
   ];
   usuarios: Usuario[] = [];
 
