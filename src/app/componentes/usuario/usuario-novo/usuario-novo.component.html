@@ -15,7 +15,9 @@
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-6">
           <label>Senha:</label>
-          <input type="password" (keyup)="validaConfirmacaoSenha(form)" #senha="ngModel" name="senha" pInputText minlength="5" [(ngModel)]="usuario.senha" required />
+          <input type="password" (keyup)="validaConfirmacaoSenha(form)" pPassword 
+                 promptLabel="Entre com sua senha" weakLabel="Fácil" mediumLabel="Médio" strongLabel="Difícil" 
+                 #senha="ngModel" name="senha" pInputText minlength="5" [(ngModel)]="usuario.senha" required />
         </div>
         <div class="ui-g-6 ui-md-6">
           <label>Confirmação Senha:</label>

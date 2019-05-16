@@ -13,6 +13,7 @@ import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   declarations: [UsuarioComponent, UsuarioNovoComponent],
@@ -23,6 +24,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     InputTextModule,
     DropdownModule,
     ButtonModule,
+    PasswordModule,
     CardModule,
     MessagesModule,
     MessageModule,
