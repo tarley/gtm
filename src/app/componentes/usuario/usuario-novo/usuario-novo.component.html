@@ -31,6 +31,11 @@
           <p-dropdown [options]="perfis" styleClass="dropdown" name="perfil" placeholder="Selecione um perfil" [required]="true"
             [(ngModel)]="usuario.perfil"></p-dropdown>
         </div>
+        <div class="ui-g-6 ui-md-6">
+          <label>Instituição:</label>
+          <p-dropdown [options]="instituicao" styleClass="dropdown" name="instituicao" placeholder="Selecione uma instituição" [required]="true"
+            [(ngModel)]="usuario.instituicao"></p-dropdown>
+        </div>
       </div>
     </div>
     <button pButton class="botao-acao" type="submit" label="Salvar"></button>

@@ -9,6 +9,8 @@ import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { SelectItem } from 'primeng/api';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { timeout } from 'q';
+import { InstituicaoService } from '../../instituicao/shared/instituicao.service';
+import { Instituicao } from '../../instituicao/shared/instituicao.model';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -29,12 +31,15 @@ export class UsuarioNovoComponent implements OnInit {
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
     {label: 'Normal', value: 'Normal'},
-  ]
+  ];
+
+  instituicao: SelectItem[] = [];
 
   constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService) { }
 
   ngOnInit() {
+    this.carregarDadosIniciais();
     this.route.params.subscribe(params => {
       if(params['id']) {
         const id = params['id'];
@@ -83,6 +88,14 @@ export class UsuarioNovoComponent implements OnInit {
     } else {
       this.confirmacaoSenhaValida = false;
     }
+  }
+
+  carregarDadosIniciais(){
+    this.instituicaoService.buscarTodos().subscribe((instituicao: Instituicao[]) => {
+      instituicao.forEach((p) => {
+        this.instituicao.push({ label: p.descricao, value: p.descricao})
+      })
+    })
   }
 
   voltar() {
