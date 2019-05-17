@@ -2,7 +2,7 @@ import { MessageServiceUtil } from './../../../util/message-service-util.service
 import { Constantes } from 'src/app/util/constantes';
 import { SelectItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
-import { Paciente } from './../shared/paciente.model';
+import { Paciente, DadosAntropometricos } from './../shared/paciente.model';
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from './../shared/paciente.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -47,6 +47,9 @@ export class PacienteNovoComponent implements OnInit {
         const id = params['id'];
         this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
           this.paciente = paciente;
+          if(!paciente.dadosAntropometricos) {
+            paciente.dadosAntropometricos = new DadosAntropometricos();
+          }
           this.chkCigarroMarcado = paciente.habitosVida.cigarro.fumante;
           this.chkBebidaMarcado = paciente.habitosVida.bebidaAlcoolica.consome;
           this.dataNascimento = this.formatarDataLeitura(this.paciente);
@@ -198,6 +201,7 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   calcularIMC() {
+    
     let peso = this.paciente.dadosAntropometricos.peso;
     let altura = this.paciente.dadosAntropometricos.altura;
 
