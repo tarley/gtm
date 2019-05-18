@@ -25,7 +25,7 @@ export class PacienteComponent implements OnInit {
 
   pacientes: Paciente[] = [];
 
-  urlDelete = 'v1/pacientes';
+  //urlDelete = 'v1/pacientes';
   rotaEdicao = 'paciente';
 
   cpf: string;
