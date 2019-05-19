@@ -28,6 +28,10 @@ export class PacienteNovoComponent implements OnInit {
   chkBebidaMarcado: Boolean = false;
   chkAtividadeFisicaMarcado: Boolean = false;
 
+  pacienteAtivo: Boolean = true;
+  status: String = "Ativo";
+  show = false;
+
   dataNascimento;
 
   constructor(private pacienteService: PacienteService,
@@ -36,6 +40,7 @@ export class PacienteNovoComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.show = true;
         this.titulo = 'Editar Paciente';
         const id = params['id'];
         this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
@@ -218,6 +223,14 @@ export class PacienteNovoComponent implements OnInit {
       let imc = peso / Math.pow(altura, 2);
 
       this.paciente.dadosAntropometricos.imc = parseFloat(imc.toFixed(2));
+    }
+  }
+
+  alterarStatus(){
+    if(this.paciente.ativo == false){
+      this.status = "Inativo"
+    } else {
+      this.status = "Ativo"
     }
   }
 

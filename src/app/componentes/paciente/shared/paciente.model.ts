@@ -2,6 +2,7 @@ export class Paciente {
 
     public constructor(
         public _id?: string,
+        public ativo?: boolean,
         public nome?: string,
         public sexo?: string,
         public cpf?: string,

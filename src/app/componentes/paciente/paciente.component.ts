@@ -19,13 +19,13 @@ export class PacienteComponent implements OnInit {
   colunas: any[] = [
     {var: 'nome', label: 'Nome'},
     {var: 'sexo', label: 'Sexo'}, 
-    {var: 'cpf', label: 'CPF'}
+    {var: 'cpf', label: 'CPF'},
+    {var: 'ativo', label: 'Status'}
   ];
   botoes: BotaoTabela[] = [{ nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus' }];
 
   pacientes: Paciente[] = [];
 
-  //urlDelete = 'v1/pacientes';
   rotaEdicao = 'paciente';
 
   cpf: string;
