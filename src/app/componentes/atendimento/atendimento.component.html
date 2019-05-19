@@ -1,12 +1,32 @@
 <p-card [header]="titulo">
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-md-12">
-      <div class="ui-g-6 ui-md-3 ui-inputgroup">
-        <p-inputMask mask="999.999.999-99" [(ngModel)]="filtroPesquisa" placeholder="Busca por CPF"></p-inputMask>
-        <p-button icon="fa fa-search" (click)="filtraAtendimentos()"></p-button>
+  <form >
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-g-6 ui-md-3">
+          <label>Busca</label>
+          <div class="ui-inputgroup">
+            <p-dropdown [options]="criterioBusca" name="criterioBusca" [(ngModel)]="filtroPesquisa.criterioBusca"></p-dropdown>
+            <p-inputMask *ngIf="filtroPesquisa.criterioBusca == 'CPF'" mask="999.999.999-99" [(ngModel)]="filtroPesquisa.cpf" name="cpf" placeholder="Digite o CPF">
+            </p-inputMask>
+            <input *ngIf="filtroPesquisa.criterioBusca == 'Nome'" name="nomePaciente" [(ngModel)]="filtroPesquisa.nomePaciente" type="text" placeholder="Digite o nome" pInputText />
+          </div>
+        </div>
+        <div class="ui-g-6 ui-md-3">
+          <label>Data Inicial</label>
+          <p-calendar name="filtroPesquisa.dataInicial" [locale]="configCalendar" [dateFormat]="configCalendar.dateFormat" [(ngModel)]="filtroPesquisa.dataInicial"></p-calendar>
+        </div>
+        <div class="ui-g-6 ui-md-3">
+          <label>Data Final</label>
+          <p-calendar name="filtroPesquisa.dataFinal" [locale]="configCalendar" [dateFormat]="configCalendar.dateFormat" [(ngModel)]="filtroPesquisa.dataFinal"></p-calendar>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-g-6 ui-md-3 ui-inputgroup">
+          <p-button icon="fa fa-search" label="Filtrar" (click)="filtraAtendimentos()"></p-button>
+        </div>
       </div>
     </div>
-  </div>
-  <app-gtm-tabela [colunas]="colunas" [lista]="atendimentos" [rotaImpressao]="rotaImpressao"
-    [botoes]="botoes" (clickBotaoEvent)="clickBotao($event)"></app-gtm-tabela>
+  </form>
+  <app-gtm-tabela [colunas]="colunas" [lista]="atendimentos" [rotaImpressao]="rotaImpressao" [botoes]="botoes"
+    (clickBotaoEvent)="clickBotao($event)"></app-gtm-tabela>
 </p-card>

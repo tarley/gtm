@@ -1,4 +1,4 @@
-import { Observable, timer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
 import { NgForm } from '@angular/forms';
@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MessageServiceUtil } from 'src/app/util/message-service-util.service';
 import { SelectItem } from 'primeng/api';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
-import { timeout } from 'q';
 import { InstituicaoService } from '../../instituicao/shared/instituicao.service';
 import { Instituicao } from '../../instituicao/shared/instituicao.model';
 
@@ -30,7 +29,8 @@ export class UsuarioNovoComponent implements OnInit {
 
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
-    {label: 'Normal', value: 'Normal'},
+    {label: 'Profissional da Saúde', value: 'Normal'},
+    {label: 'Academico', value: 'Academico'}
   ];
 
   instituicao: SelectItem[] = [];

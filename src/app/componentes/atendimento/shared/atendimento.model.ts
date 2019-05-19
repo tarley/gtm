@@ -34,10 +34,12 @@ export class Farmacoterapia {
         public tempoUso?: string,
         public seguranca?: string,
         public dificuldadeUso?: string,
-        public prm?: string,
-        public causaPrm?: string,
-        public conduta?: string
-    ) {}
+        public prm?: Prm,
+        public conduta?: string,
+        public experienciaSubjetiva?: string 
+    ) {
+        this.prm = new Prm();
+    }
 }
 
 export class PlanoCuidado {
@@ -45,6 +47,7 @@ export class PlanoCuidado {
         public objetivoTerapeutico?: string,
         public condutas?: Conduta[],
         public scf?: string,
+        public observacaoScf?: string,
         public outrasCondutas?: string
     ) {
         this.condutas = new Array<Conduta>();
@@ -55,5 +58,13 @@ export class Conduta {
     public constructor(
         public medicamento?: string,
         public conduta?: string,
+    ) {}
+}
+
+export class Prm {
+    public constructor(
+        public prm?: string,
+        public causa?: string,
+        public resolvido?: string,
     ) {}
 }
