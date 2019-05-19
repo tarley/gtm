@@ -25,20 +25,16 @@ export class AtendimentoNovoComponent implements OnInit {
 
   atendimento: Atendimento = new Atendimento();
 
+  isEdicao: boolean;
+
   scf = Constantes.scf;
   configCalendar = Constantes.configCalendar;
   prms = Constantes.prms;
   resolvidoPrm = Constantes.resolvidoPrm;
   causasPrm;
 
-  isEdicao: boolean;
+  indexFarmacoSelecionada = 0;
 
-  doencaSelecionada = [
-    {
-    indiceDoencaSelecionada: 0,
-    indiceFarmacoSelecionada: 0,
-    }
-  ]
 
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
     private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
@@ -76,7 +72,7 @@ export class AtendimentoNovoComponent implements OnInit {
       this.atendimento = atendimento;
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
-      this.carregaCausasPrm();
+      this.carregaCausasPrmInicial();
     }, () => {
       this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
       this.blockUI.stop();
@@ -93,7 +89,6 @@ export class AtendimentoNovoComponent implements OnInit {
   buscaUltimoAtendimento(idPaciente: string) {
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscaUltimoAtendimento(idPaciente).subscribe((ultimoAtendimento: Atendimento) => {
-      this.carregaCausasPrm();
       ultimoAtendimento ?
         this.novoAtendimentoComValores(ultimoAtendimento) :
         this.novoAtendimento(idPaciente);
@@ -110,6 +105,7 @@ export class AtendimentoNovoComponent implements OnInit {
       this.setAtributosIniciais(paciente);
       this.defineTitulo(paciente.nome);
       this.adicionaDoencaEFarmacoInicial();
+      this.carregaCausasPrmInicial();
     }, () => {
       this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
       this.blockUI.stop();
@@ -143,6 +139,7 @@ export class AtendimentoNovoComponent implements OnInit {
 
     this.defineTitulo(ultimoAtendimento.nomePaciente);
     this.adicionaDoencaEFarmacoInicial();
+    this.carregaCausasPrmInicial();
   }
 
   setAtributosIniciais(paciente: Paciente) {
@@ -169,19 +166,46 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   selecionaDoenca(indiceDoencaSelecionada: number) {
+    const doenca: Doenca = this.atendimento.doencas[indiceDoencaSelecionada];
+    this.indexFarmacoSelecionada = 0;
+    this.carregaCausasPrm(doenca.farmacoterapias[0].prm.prm);
   }
 
   selecionaFarmaco(indiceDoencaSelecionada: number, indiceFarmacoSelecionada: number) {
+    this.indexFarmacoSelecionada = indiceFarmacoSelecionada;
+    
+    const farmaco: Farmacoterapia = this.atendimento.doencas[indiceDoencaSelecionada]
+      .farmacoterapias[indiceFarmacoSelecionada];
+
+    this.carregaCausasPrm(farmaco.prm.prm);
   }
 
-  carregaCausasPrm() {
-    const prmSelecionada: string = this.atendimento.doencas[this.doencaSelecionada[0].indiceDoencaSelecionada]
-            .farmacoterapias[this.doencaSelecionada[0].indiceFarmacoSelecionada].prm.prm;
-    Constantes.prms.forEach(prm => {
-      if (prm.value == prmSelecionada) {
-        this.causasPrm = prm.causas;
-      }
-    })
+  carregaCausasPrm(prmSelecionada: string, indexDoenca?, indexFarmaco?) {
+    if(indexDoenca && indexFarmaco) {
+      this.limpaCausaPrm(indexDoenca, indexFarmaco);
+    }
+    
+    if(prmSelecionada) {
+      Constantes.prms.forEach(prm => {
+        if (prm.value == prmSelecionada) {
+          this.causasPrm = prm.causas;
+          return;
+        }
+      });
+    } else {
+      this.causasPrm = [];
+    }
+  }
+
+  carregaCausasPrmInicial() {
+    const prmSelecionada: string = this.atendimento.doencas[0]
+            .farmacoterapias[0].prm.prm;
+    this.carregaCausasPrm(prmSelecionada);
+  }
+
+  limpaCausaPrm(indexDoenca: number, indexFarmaco: number) {
+    this.atendimento.doencas[indexDoenca]
+      .farmacoterapias[indexFarmaco].prm.causa = '';
   }
 
   selecionaObservacaoScf(scfSelecionado: string, doenca: Doenca) {

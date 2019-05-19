@@ -36,7 +36,7 @@
           <hr>
           <p-button icon="fa fa-plus-circle" type="button" (click)="novaFarmaco(doenca)" label="Nova Farmacoterapia">
           </p-button>
-          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" (onChange)="selecionaFarmaco(i, $event.index)">
+          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" [activeIndex]="indexFarmacoSelecionada" (onChange)="selecionaFarmaco(i, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
@@ -80,7 +80,7 @@
                   <div class="ui-g-6 ui-md-4">
                     <label>PRM:*</label>
                     <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM" name="prm{{i}}{{j}}"
-                      [(ngModel)]="farmaco.prm.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)">
+                      [(ngModel)]="farmaco.prm.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value, i, j)">
                     </p-dropdown>
                   </div>
                   <div class="ui-g-6 ui-md-4">
