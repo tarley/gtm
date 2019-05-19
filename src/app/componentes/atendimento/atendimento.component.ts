@@ -75,7 +75,6 @@ export class AtendimentoComponent implements OnInit {
         this.filtroPesquisa.cpf = '';
       }
     }
-    console.log(this.filtroPesquisa)
     this.blockUI.start(MensagemUtil.FILTRANDO_REGISTRO);
     this.atendimentoService.filtraAtendimentos(this.filtroPesquisa).subscribe((atendimentos: Atendimento[]) => {
       atendimentos.forEach(atendimento => {
