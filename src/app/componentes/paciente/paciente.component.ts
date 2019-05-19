@@ -17,11 +17,17 @@ export class PacienteComponent implements OnInit {
   titulo: string = 'Lista de Pacientes';
 
   colunas: any[] = [
-    {var: 'nome', label: 'Nome'},
-    {var: 'sexo', label: 'Sexo'}, 
-    {var: 'cpf', label: 'CPF'},
-    {var: 'ativo', label: 'Status'}
+    { var: 'nome', label: 'Nome' },
+    { var: 'sexo', label: 'Sexo' },
+    { var: 'cpf', label: 'CPF' },
+    { var: 'ativo', label: 'Status' }
   ];
+
+  criterioBusca = [
+    { label: 'CPF', value: 'CPF' },
+    { label: 'Nome', value: 'Nome' }
+  ]
+
   botoes: BotaoTabela[] = [{ nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus' }];
 
   pacientes: Paciente[] = [];
@@ -31,6 +37,8 @@ export class PacienteComponent implements OnInit {
   cpf: string;
   nome: string;
   semRetornoPaciente: String;
+
+  tipoBusca = 'CPF';
 
   constructor(private router: Router, private pacienteService: PacienteService, private messageService: MessageService) { }
 
@@ -85,6 +93,19 @@ export class PacienteComponent implements OnInit {
     } else {
       this.buscarTodos();
       this.semRetornoPaciente = null
+    }
+  }
+
+  definirBusca() {
+    switch (this.tipoBusca) {
+      case 'CPF':
+        this.buscarPorCpf();
+        break;
+      case 'Nome':
+        this.buscarPorNome();
+        break;
+      case '':
+        this.buscarTodos();
     }
   }
 

@@ -4,7 +4,7 @@
       <button pButton type="button" icon="fa fa-plus" label="Paciente" (click)="novoPaciente()"></button>
     </div>
   </div>
-<div class="ui-g botoes-topo">
+  <!-- <div class="ui-g botoes-topo">
   <div class="ui-g-12 ui-md-3" style="align-self: center">
     <p-inputMask mask="?999.999.999-99" unmask="true" [(ngModel)]="cpf" placeholder="Buscar por CPF"></p-inputMask>
     <button pButton type="button" icon="fa fa-search" (click)="buscarPorCpf()"></button>
@@ -14,7 +14,21 @@
     <input id="nome" type="text" name="nome" pInputText [(ngModel)]="nome" placeholder="Buscar por Nome"/>
     <button pButton type="button" icon="fa fa-search" (click)="buscarPorNome()"></button>
   </div> 
-</div>
+</div> -->
+
+  <div class="ui-g ui-md-12">
+    <div class="ui-g-6 ui-md-3">
+      <label>Busca</label>
+      <div class="ui-inputgroup">
+        <p-dropdown name="criterioBusca" [options]="criterioBusca" [(ngModel)]="tipoBusca" >
+        </p-dropdown>
+        <p-inputMask *ngIf="tipoBusca == 'CPF'" mask="999.999.999-99" unmask="true" [(ngModel)]="cpf" name="cpf" placeholder="Digite o CPF">
+        </p-inputMask>
+        <input *ngIf="tipoBusca == 'Nome'" name="nome" type="text" [(ngModel)]="nome" placeholder="Digite o nome" pInputText />
+        <button pButton type="button" icon="fa fa-search" (click)="definirBusca()"></button>
+      </div>
+    </div>
+  </div>
 
   <div *ngIf="semRetornoPaciente" class="alinharCentro">
     <h4>{{semRetornoPaciente}}</h4>
