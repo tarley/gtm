@@ -20,7 +20,7 @@ export class PacienteComponent implements OnInit {
     { var: 'nome', label: 'Nome' },
     { var: 'sexo', label: 'Sexo' },
     { var: 'cpf', label: 'CPF' },
-    { var: 'ativo', label: 'Status' }
+    { var: 'ativo', label: 'Ativo' }
   ];
 
   criterioBusca = [
