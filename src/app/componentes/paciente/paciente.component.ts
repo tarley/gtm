@@ -25,10 +25,11 @@ export class PacienteComponent implements OnInit {
 
   pacientes: Paciente[] = [];
 
-  urlDelete = 'v1/pacientes';
+  //urlDelete = 'v1/pacientes';
   rotaEdicao = 'paciente';
 
   cpf: string;
+  nome: string;
   semRetornoPaciente: String;
 
   constructor(private router: Router, private pacienteService: PacienteService, private messageService: MessageService) { }
@@ -56,6 +57,23 @@ export class PacienteComponent implements OnInit {
   buscarPorCpf() {
     if (this.cpf) {
       this.pacienteService.buscarPorCpf(this.cpf).subscribe((pacientes: Paciente[]) => {
+        if (pacientes.length == 0) {
+          this.semRetornoPaciente = "Sua busca nao retornou nenhum paciente."
+          this.pacientes = pacientes;
+        } else {
+          this.pacientes = pacientes;
+          this.semRetornoPaciente = null
+        }
+      }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+    } else {
+      this.buscarTodos();
+      this.semRetornoPaciente = null
+    }
+  }
+
+  buscarPorNome() {
+    if (this.nome) {
+      this.pacienteService.buscarPorNome(this.nome).subscribe((pacientes: Paciente[]) => {
         if (pacientes.length == 0) {
           this.semRetornoPaciente = "Sua busca nao retornou nenhum paciente."
           this.pacientes = pacientes;

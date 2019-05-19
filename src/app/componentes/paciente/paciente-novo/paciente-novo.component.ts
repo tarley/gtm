@@ -16,24 +16,17 @@ import { Observable } from 'rxjs';
 })
 export class PacienteNovoComponent implements OnInit {
 
-  titulo = 'Novo Paciente';
+  titulo: String;
 
   paciente: Paciente = new Paciente()
-
-  profissao: SelectItem[] = []
-
+  
   sexo: SelectItem[] = Constantes.sexo;
 
   estadoCivil: SelectItem[] = Constantes.estadoCivil;
 
-  acessoServico: SelectItem[] = Constantes.acessoServico;
-
-  ubs: SelectItem[] = Constantes.ubs;
-
-  atividadeFisica: SelectItem[] = Constantes.atividadeFisica;
-
   chkCigarroMarcado: Boolean = false;
   chkBebidaMarcado: Boolean = false;
+  chkAtividadeFisicaMarcado: Boolean = false;
 
   dataNascimento;
 
@@ -41,25 +34,29 @@ export class PacienteNovoComponent implements OnInit {
     private router: Router, private messageService: MessageServiceUtil, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.carregarDadosIniciais();
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.titulo = 'Editar Paciente';
         const id = params['id'];
         this.pacienteService.buscarPorId(id).subscribe((paciente: Paciente) => {
           this.paciente = paciente;
-          if(!paciente.dadosAntropometricos) {
+          if (!paciente.dadosAntropometricos) {
             paciente.dadosAntropometricos = new DadosAntropometricos();
           }
           this.chkCigarroMarcado = paciente.habitosVida.cigarro.fumante;
           this.chkBebidaMarcado = paciente.habitosVida.bebidaAlcoolica.consome;
+          this.chkAtividadeFisicaMarcado = paciente.habitosVida.atividadeFisica.pratica;
+
           this.dataNascimento = this.formatarDataLeitura(this.paciente);
         }), (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao Buscar Paciente'))
+      } else {
+        this.titulo = 'Novo Paciente';
       }
     })
   }
 
   salvar() {
-    this.validarCamposObservacao(this.chkCigarroMarcado, this.chkBebidaMarcado);
+    this.validarCamposObservacao(this.chkCigarroMarcado, this.chkBebidaMarcado, this.chkAtividadeFisicaMarcado);
     this.formartarDataGravacao(this.paciente, this.dataNascimento);
 
     let requisicao: Observable<Object>;
@@ -72,7 +69,6 @@ export class PacienteNovoComponent implements OnInit {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar()
     }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR));
-    //this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
   }
 
   voltar() {
@@ -80,30 +76,42 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   validarCheckBox(opcao, evento) {
-    if (opcao == "fumante") {
-      if (evento == false) {
-        this.chkCigarroMarcado = evento;
-      } else {
-        this.chkCigarroMarcado = evento;
-      }
-    } else {
-      if (opcao == "bebida" && evento == false) {
-        this.chkBebidaMarcado = evento;
-      } else {
-        this.chkBebidaMarcado = evento;
-      }
+    switch (opcao) {
+      case "fumante":
+        if (evento == false) {
+          this.chkCigarroMarcado = evento;
+        } else {
+          this.chkCigarroMarcado = evento;
+        }
+        break;
+
+      case "consome":
+        if (evento == false) {
+          this.chkBebidaMarcado = evento;
+        } else {
+          this.chkBebidaMarcado = evento;
+        }
+        break;
+
+      case "pratica":
+        console.log("cheguei")
+        if (evento == false) {
+          this.chkAtividadeFisicaMarcado = evento;
+        } else {
+          this.chkAtividadeFisicaMarcado = evento;
+        }
     }
   }
 
-  carregarDadosIniciais() {
-  }
-
-  validarCamposObservacao(chkCigarro, chkBebida) {
+  validarCamposObservacao(chkCigarro, chkBebida, chkAtividadeFisica) {
     if (chkCigarro == false) {
       this.paciente.habitosVida.cigarro.observacaoCigarro = null;
     }
     if (chkBebida == false) {
       this.paciente.habitosVida.bebidaAlcoolica.observacaoBebidaAlcoolica = null;
+    }
+    if (chkAtividadeFisica == false) {
+      this.paciente.habitosVida.atividadeFisica.observacaoAtividadeFisica = null;
     }
   }
 
@@ -143,21 +151,21 @@ export class PacienteNovoComponent implements OnInit {
     return dataNascimento;
   }
 
-  validarData(data: string){
-    if(data){
+  validarData(data: string) {
+    if (data) {
       let dia = parseInt(data.substring(0, 2));
       let mes = parseInt(data.substring(2, 4));
       let ano = parseInt(data.substring(4, 8));
 
-      if(dia > 31){
+      if (dia > 31) {
         this.dataNascimento = ""
       }
-      if (mes > 12){
+      if (mes > 12) {
         this.dataNascimento = ""
       }
-      
+
       let anoAtual = new Date().getFullYear()
-      if(ano > anoAtual || ano < 1900){
+      if (ano > anoAtual || ano < 1900) {
         this.dataNascimento = ""
       }
     }
@@ -201,7 +209,7 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   calcularIMC() {
-    
+
     let peso = this.paciente.dadosAntropometricos.peso;
     let altura = this.paciente.dadosAntropometricos.altura;
 

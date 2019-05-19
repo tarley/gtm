@@ -38,16 +38,24 @@ export class DadosComplementares {
 
 export class HabitosVida {
     public constructor(
-        public atividadeFisica?: boolean,
         public terapiaAlternativa?: string,
         public alertas?: string,
+        public atividadeFisica?: AtividadeFisica,
         public cigarro?: Cigarro,
         public bebidaAlcoolica?: BebidaAlcoolica
 
     ) {
         this.cigarro = new Cigarro();
         this.bebidaAlcoolica = new BebidaAlcoolica();
+        this.atividadeFisica = new AtividadeFisica();
     }
+}
+
+export class AtividadeFisica {
+    public constructor (
+        public pratica?: Boolean,
+        public observacaoAtividadeFisica?: string
+    ) { }
 }
 
 export class Cigarro {
