@@ -26,15 +26,14 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Data de Nascimento:*</label>
-            <p-inputMask unmask="true" #data mask="99/99/9999" (focusout)="validarData(data.value)" [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa"
-              id="dataNascimento" name="dataNascimento"></p-inputMask>
+            <p-inputMask unmask="true" #data mask="99/99/9999" (focusout)="validarData(data.value)"
+              [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa" id="dataNascimento" name="dataNascimento">
+            </p-inputMask>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Profissão:</label>
-            <p-dropdown [options]="profissao" [(ngModel)]="paciente.profissao" name="profissao"
-              placeholder="Selecione:">
-            </p-dropdown>
+            <input id="profissao" type="text" name="profissao" pInputText [(ngModel)]="paciente.profissao" />
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
@@ -90,11 +89,22 @@
         <fieldset class="fieldsetBorder">
           <h3>Habitos de Vida:</h3>
           <hr>
+          <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+            <div class="chxOpcao ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
+              <p-checkbox name="pratica" #chkAtividadeFisica class="estiloCheckBox"
+                (onChange)="validarCheckBox(chkAtividadeFisica.name, $event)"
+                [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.atividadeFisica && paciente.habitosVida.atividadeFisica.pratica"
+                binary="true" label="Atividade Fisica"></p-checkbox>
+            </div>
 
-          <div class="ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
-            <p-checkbox name="atividadeFisica" class="estiloCheckBox"
-              [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.atividadeFisica" binary="true"
-              label="Atividade Fisica"></p-checkbox>
+            <div class="ui-g-10 ui-sm-12 ui-md-12 ui-lg-10 obsHabitosVida">
+              <span class="ui-float-label" *ngIf="chkAtividadeFisicaMarcado">
+                <textarea class="textArea" name="observacaoAtividadeFisica" rows="4" cols="10"
+                  [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.atividadeFisica && paciente.habitosVida.atividadeFisica.observacaoAtividadeFisica"
+                  pInputTextarea></textarea>
+                <label for="float-input">Obs Atividade Fisica:</label>
+              </span>
+            </div>
           </div>
 
           <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
