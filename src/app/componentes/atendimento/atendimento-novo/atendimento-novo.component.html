@@ -15,7 +15,7 @@
     </p-accordionTab>
     <p-accordionTab header="Doenças e Farmacoterapias" [selected]="true">
       <p-button icon="fa fa-plus-circle" type="button" (click)="novaDoenca()" label="Nova Doença"></p-button>
-      <p-tabView (onClose)="deletaDoenca($event.index)">
+      <p-tabView (onClose)="deletaDoenca($event.index)" (onChange)="selecionaDoenca($event.index)">
         <p-tabPanel *ngFor="let doenca of atendimento.doencas; let i = index" [header]="formataTituloDoenca(doenca)"
           [closable]="true">
           <h3>Doença</h3>
@@ -36,7 +36,7 @@
           <hr>
           <p-button icon="fa fa-plus-circle" type="button" (click)="novaFarmaco(doenca)" label="Nova Farmacoterapia">
           </p-button>
-          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)">
+          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" (onChange)="selecionaFarmaco(i, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
@@ -46,47 +46,53 @@
                     [(ngModel)]="farmaco.medicamento" pInputText />
                 </div>
                 <div class="ui-g-12 ui-md-12">
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Posologia Relatada:*</label>
-                    <input type="text" name="posologiaRelatada{{i}}{{j}}" [(ngModel)]="farmaco.posologiaRelatada" pInputText />
+                    <input type="text" name="posologiaRelatada{{i}}{{j}}" [(ngModel)]="farmaco.posologiaRelatada"
+                      pInputText />
                   </div>
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Posologia Prescrita:</label>
-                    <input type="text" name="posologiaPrescrita{{i}}{{j}}" [(ngModel)]="farmaco.posologiaPrescrita" pInputText />
+                    <input type="text" name="posologiaPrescrita{{i}}{{j}}" [(ngModel)]="farmaco.posologiaPrescrita"
+                      pInputText />
                   </div>
-                </div>
-                <div class="ui-g-12 ui-md-12">
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Efetividade:*</label>
                     <input type="text" name="efetividade{{i}}{{j}}" [(ngModel)]="farmaco.efetividade" pInputText />
                   </div>
-                  <div class="ui-g-6 ui-md-6">
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Tempo de Uso:</label>
                     <input type="text" name="tempoUso{{i}}{{j}}" [(ngModel)]="farmaco.tempoUso" pInputText />
                   </div>
-                </div>
-                <div class="ui-g-12 ui-md-12">
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Segurança:*</label>
                     <input type="text" name="seguranca{{i}}{{j}}" [(ngModel)]="farmaco.seguranca" pInputText />
                   </div>
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Dificuldade no Uso:*</label>
                     <input type="text" name="dificuldadeUso{{i}}{{j}}" [(ngModel)]="farmaco.dificuldadeUso"
                       pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>PRM:*</label>
                     <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM" name="prm{{i}}{{j}}"
-                      [(ngModel)]="farmaco.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)">
+                      [(ngModel)]="farmaco.prm.prm" [options]="prms" (onChange)="carregaCausasPrm($event.value)">
                     </p-dropdown>
                   </div>
-                  <div class="ui-g-6 ui-md-6">
+                  <div class="ui-g-6 ui-md-4">
                     <label>Causa do PRM:</label>
                     <p-dropdown styleClass="dropdown" placeholder="Selecione um PRM para carregar as opções"
-                      name="causaPrm{{i}}{{j}}" [(ngModel)]="farmaco.causaPrm" [options]="causasPrm"></p-dropdown>
+                      name="causa{{i}}{{j}}" [(ngModel)]="farmaco.prm.causa" [options]="causasPrm"></p-dropdown>
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Resolvido:</label>
+                    <p-dropdown styleClass="dropdown" placeholder="Resolução PRM" name="resolvido{{i}}{{j}}"
+                      [(ngModel)]="farmaco.prm.resolvido" [options]="resolvidoPrm">
+                    </p-dropdown>
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
@@ -107,14 +113,20 @@
                 [(ngModel)]="doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
             </div>
             <div class="ui-g-12 ui-md-12">
-              <div class="ui-g-6 ui-md-6">
+              <div class="ui-g-6 ui-md-4">
                 <label>SCF:</label>
                 <p-dropdown placeholder="Selecione um SCF" styleClass="dropdown" name="scf{{i}}"
-                  [(ngModel)]="doenca.planoCuidado.scf" [options]="scf"></p-dropdown>
+                  [(ngModel)]="doenca.planoCuidado.scf" [options]="scf"
+                  (onChange)="selecionaObservacaoScf($event.value, doenca)"></p-dropdown>
               </div>
-              <div class="ui-g-6 ui-md-6">
+              <div class="ui-g-6 ui-md-4">
+                <label>Observação SCF:</label>
+                <input type="text" name="observacaoScf{{i}}" [(ngModel)]="doenca.planoCuidado.observacaoScf"
+                  readonly="true" pInputText />
+              </div>
+              <div class="ui-g-6 ui-md-4">
                 <label>Data Avaliação Resultados:</label>
-                <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado" dateFormat="dd/mm/yy"
+                <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado" [dateFormat]="configCalendar.dateFormat"
                   [locale]="configCalendar"></p-calendar>
               </div>
             </div>
@@ -126,6 +138,16 @@
           </div>
         </p-tabPanel>
       </p-tabView>
+
+      <h3>Experiência Subjetiva</h3>
+      <hr>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <label>Observações:</label>
+          <textarea rows="5" style="width: 100%;" pInputTextarea name="experienciaSubjetiva"
+            [(ngModel)]="atendimento.experienciaSubjetiva"></textarea>
+        </div>
+      </div>
     </p-accordionTab>
   </p-accordion>
 

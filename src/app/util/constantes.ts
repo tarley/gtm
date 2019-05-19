@@ -34,23 +34,23 @@ export class Constantes {
     ]
 
     public static scf = [
-        { label: 'Estável', value: 'Estável' },
-        { label: 'Falha', value: 'Falha' },
-        { label: 'Inicial', value: 'Inicial' },
-        { label: 'Melhora', value: 'Melhora' },
-        { label: 'Melhora Parcial', value: 'Melhora Parcial' },
-        { label: 'Morte', value: 'Morte' },
-        { label: 'Piora', value: 'Piora' },
-        { label: 'Resolvido', value: 'Resolvido' },
-        { label: 'Sem Melhora', value: 'Sem Melhora' },
-        { label: 'Sem Condições de Avaliar', value: 'Sem Condições de Avaliar' },
+        { label: 'Inicial', value: 'Inicial', descricao: 'Objetivos estabelecidos; início de nova farmacoterapia' },
+        { label: 'Resolvido', value: 'Resolvido', descricao: 'Objetivos alcançados, término da farmacoterapia.' },
+        { label: 'Estável', value: 'Estável', descricao: 'Objetivos alcançados, manutenção da farmacoterapia.' },
+        { label: 'Melhora', value: 'Melhora', descricao: 'Progresso adequado, MANUTENÇÃO da farmacoterapia.' },
+        { label: 'Melhora Parcial', value: 'Melhora Parcial', descricao: 'Progresso adequado, mas são necessários AJUSTES na farmacoterapia para alcançar os objetivos terapêuticos.' },
+        { label: 'Sem Melhora', value: 'Sem Melhora', descricao: 'Sem progresso evidenciado até o momento, mas deve-se MANTER a mesma farmacoterapia para tentar obter um efeito melhor.' },
+        { label: 'Piora', value: 'Piora', descricao: 'Piora da saúde enquanto recebia a farmacoterapia; são necessários AJUSTES na farmacoterapia.' },
+        { label: 'Falha', value: 'Falha', descricao: 'Objetivos não alcançados apesar do uso de doses adequadas e pelo tempo adequado. É necessário DESCONTINUAR a farmacoterapia atual e iniciar farmacoterapia diferente.' },
+        { label: 'Morte', value: 'Morte', descricao: 'Paciente faleceu durante o acompanhamento.' },
+        { label: 'Sem Condições de Avaliar', value: 'Sem Condições de Avaliar', descricao: '' },
     ]
 
     public static prms = [
         {
             label: 'PRM 1 - Medicamento desnecessário', value: 'PRM1', causas: [
                 { label: 'Ausência de indicação clínica no momento', value: 'Ausência de indicação clínica no momento' },
-                { label: 'Uso de múltiplos med quando apenas um (ns) resolveria (m)', value: 'Uso de múltiplos med quando apenas um (ns) resolveria (m)' },
+                { label: 'Uso de múltiplos med quando apenas um(ns) resolveria(m)', value: 'Uso de múltiplos med quando apenas um(ns) resolveria(m)' },
                 { label: 'Medicamento não é efetivo para a condição', value: 'Medicamento não é efetivo para a condição' },
                 { label: 'Terapia não medicamentosa mais apropriada', value: 'Terapia não medicamentosa mais apropriada' },
                 { label: 'Tratamento de reação que poderia ter sido prevenida', value: 'Tratamento de reação que poderia ter sido prevenida' },
@@ -120,6 +120,12 @@ export class Constantes {
                 { label: 'Não se aplica', value: 'Não se aplica' },
             ]
         },
+    ]
+
+    public static resolvidoPrm = [
+        {label: 'Sim', value: 'Sim'},
+        {label: 'Não', value: 'Não'},
+        {label: 'N/A', value: 'N/A'},
     ]
 
     public static ubs = [

@@ -1,7 +1,7 @@
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../shared/atendimento.service';
-import { Atendimento, Doenca, Farmacoterapia, PlanoCuidado } from './../shared/atendimento.model';
+import { Atendimento, Doenca, Farmacoterapia, PlanoCuidado, Prm } from './../shared/atendimento.model';
 import { Component, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { PacienteService } from '../../paciente/shared/paciente.service';
 import { Paciente } from '../../paciente/shared/paciente.model';
@@ -28,9 +28,17 @@ export class AtendimentoNovoComponent implements OnInit {
   scf = Constantes.scf;
   configCalendar = Constantes.configCalendar;
   prms = Constantes.prms;
+  resolvidoPrm = Constantes.resolvidoPrm;
   causasPrm;
 
   isEdicao: boolean;
+
+  doencaSelecionada = [
+    {
+    indiceDoencaSelecionada: 0,
+    indiceFarmacoSelecionada: 0,
+    }
+  ]
 
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
     private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
@@ -52,24 +60,28 @@ export class AtendimentoNovoComponent implements OnInit {
   editarAtendimento(id: string) {
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscaPorIdAtendimento(id).subscribe((atendimento: Atendimento) => {
-
       atendimento.doencas.forEach((doenca: Doenca) => {
         if (!doenca.planoCuidado) {
           doenca.planoCuidado = new PlanoCuidado();
         }
+        doenca.farmacoterapias.forEach((farmaco: Farmacoterapia) => {
+          if (!farmaco.prm) {
+            farmaco.prm = new Prm();
+          }
+        });
       });
-      if(atendimento.dataResultado) {
+      if (atendimento.dataResultado) {
         atendimento.dataResultado = new Date(atendimento.dataResultado);
       }
       this.atendimento = atendimento;
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
-
+      this.carregaCausasPrm();
     }, () => {
-        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
-        this.blockUI.stop();
-      },
-        () => this.blockUI.stop());
+      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+      this.blockUI.stop();
+    },
+      () => this.blockUI.stop());
   }
 
   adicionaDoencaEFarmacoInicial() {
@@ -81,13 +93,14 @@ export class AtendimentoNovoComponent implements OnInit {
   buscaUltimoAtendimento(idPaciente: string) {
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.atendimentoService.buscaUltimoAtendimento(idPaciente).subscribe((ultimoAtendimento: Atendimento) => {
+      this.carregaCausasPrm();
       ultimoAtendimento ?
         this.novoAtendimentoComValores(ultimoAtendimento) :
         this.novoAtendimento(idPaciente);
     }, () => {
-        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
-        this.blockUI.stop();
-      },
+      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+      this.blockUI.stop();
+    },
       () => this.blockUI.stop());
   }
 
@@ -98,29 +111,34 @@ export class AtendimentoNovoComponent implements OnInit {
       this.defineTitulo(paciente.nome);
       this.adicionaDoencaEFarmacoInicial();
     }, () => {
-        this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
-        this.blockUI.stop();
-      },
-        () => this.blockUI.stop())
+      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+      this.blockUI.stop();
+    },
+      () => this.blockUI.stop())
   }
 
   novoAtendimentoComValores(ultimoAtendimento: Atendimento) {
     this.atendimento.dataAtendimento = new Date();
     this.atendimento.nomePaciente = ultimoAtendimento.nomePaciente;
     this.atendimento.idPaciente = ultimoAtendimento.idPaciente;
-    
+
     if (ultimoAtendimento.quadroGeral) {
       this.atendimento.quadroGeral = ultimoAtendimento.quadroGeral
     }
-    
+
     if (ultimoAtendimento.doencas.length > 0) {
       this.atendimento.doencas = ultimoAtendimento.doencas;
     }
-    
+
     ultimoAtendimento.doencas.forEach((doenca: Doenca) => {
       if (!doenca.planoCuidado) {
         doenca.planoCuidado = new PlanoCuidado();
       }
+      doenca.farmacoterapias.forEach((farmaco: Farmacoterapia) => {
+        if (!farmaco.prm) {
+          farmaco.prm = new Prm();
+        }
+      });
     });
 
     this.defineTitulo(ultimoAtendimento.nomePaciente);
@@ -135,7 +153,7 @@ export class AtendimentoNovoComponent implements OnInit {
 
   salvar() {
     let requisicao: Observable<Object>;
-    if(this.atendimento._id) {
+    if (this.atendimento._id) {
       requisicao = this.atendimentoService.editar(this.atendimento);
     } else {
       requisicao = this.atendimentoService.salvar(this.atendimento);
@@ -145,17 +163,33 @@ export class AtendimentoNovoComponent implements OnInit {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar();
     }, (erro) => {
-        this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR);
-        this.blockUI.stop();
-      }, () => this.blockUI.stop());
+      this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_SALVAR);
+      this.blockUI.stop();
+    }, () => this.blockUI.stop());
   }
 
-  carregaCausasPrm(prmSelecionada: string) {
+  selecionaDoenca(indiceDoencaSelecionada: number) {
+  }
+
+  selecionaFarmaco(indiceDoencaSelecionada: number, indiceFarmacoSelecionada: number) {
+  }
+
+  carregaCausasPrm() {
+    const prmSelecionada: string = this.atendimento.doencas[this.doencaSelecionada[0].indiceDoencaSelecionada]
+            .farmacoterapias[this.doencaSelecionada[0].indiceFarmacoSelecionada].prm.prm;
     Constantes.prms.forEach(prm => {
       if (prm.value == prmSelecionada) {
         this.causasPrm = prm.causas;
       }
     })
+  }
+
+  selecionaObservacaoScf(scfSelecionado: string, doenca: Doenca) {
+    Constantes.scf.forEach(scf => {
+      if (scf.value == scfSelecionado) {
+        doenca.planoCuidado.observacaoScf = scf.descricao;
+      }
+    });
   }
 
   defineTitulo(nomePaciente: string) {
@@ -211,8 +245,8 @@ export class AtendimentoNovoComponent implements OnInit {
   }
 
   voltar() {
-    this.isEdicao ? 
-      this.router.navigate(['atendimento']) : 
+    this.isEdicao ?
+      this.router.navigate(['atendimento']) :
       this.router.navigate(['paciente']);
   }
 
