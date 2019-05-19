@@ -34,4 +34,8 @@ export class PacienteService {
         return this.httpClient.get(`${this.urlApi}/cpf/${cpf}`)
     }
 
+    public buscarPorNome(nome: string){
+        return this.httpClient.get(`${this.urlApi}/nome/${nome}`)
+    }
+
 }

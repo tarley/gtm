@@ -3,11 +3,19 @@
     <div class="ui-g-12 ui-md-1">
       <button pButton type="button" icon="fa fa-plus" label="Paciente" (click)="novoPaciente()"></button>
     </div>
-    <div class="ui-g-12 ui-md-3" style="align-self: center">
-      <p-inputMask mask="?999.999.999-99" unmask="true" [(ngModel)]="cpf" placeholder="Buscar por CPF"></p-inputMask>
-      <button pButton type="button" icon="fa fa-search" (click)="buscarPorCpf()"></button>
-    </div>
   </div>
+<div class="ui-g botoes-topo">
+  <div class="ui-g-12 ui-md-3" style="align-self: center">
+    <p-inputMask mask="?999.999.999-99" unmask="true" [(ngModel)]="cpf" placeholder="Buscar por CPF"></p-inputMask>
+    <button pButton type="button" icon="fa fa-search" (click)="buscarPorCpf()"></button>
+  </div>
+
+  <div class="ui-g-12 ui-md-3" style="align-self: center">
+    <input id="nome" type="text" name="nome" pInputText [(ngModel)]="nome" placeholder="Buscar por Nome"/>
+    <button pButton type="button" icon="fa fa-search" (click)="buscarPorNome()"></button>
+  </div> 
+</div>
+
   <div *ngIf="semRetornoPaciente" class="alinharCentro">
     <h4>{{semRetornoPaciente}}</h4>
   </div>
