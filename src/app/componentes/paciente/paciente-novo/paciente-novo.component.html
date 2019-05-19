@@ -4,6 +4,11 @@
     <div class="ui-g ui-fluid">
       <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
         <fieldset class="fieldsetBorder">
+          <div *ngIf="show">
+            <h4 style="margin-block-end: 5px">Paciente {{status}}:</h4>
+            <p-inputSwitch name="ativo" [(ngModel)]="paciente.ativo" (onChange)="alterarStatus()"></p-inputSwitch>
+          </div>
+
           <h3>Dados do Paciente:</h3>
           <hr>
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
