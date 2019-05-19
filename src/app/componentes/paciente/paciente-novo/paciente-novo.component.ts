@@ -76,20 +76,6 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   validarCheckBox(opcao, evento) {
-    // if (opcao == "fumante") {
-    //   if (evento == false) {
-    //     this.chkCigarroMarcado = evento;
-    //   } else {
-    //     this.chkCigarroMarcado = evento;
-    //   }
-    // } else {
-    //   if (opcao == "bebida" && evento == false) {
-    //     this.chkBebidaMarcado = evento;
-    //   } else {
-    //     this.chkBebidaMarcado = evento;
-    //   }
-    // }
-
     switch (opcao) {
       case "fumante":
         if (evento == false) {
