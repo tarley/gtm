@@ -1,3 +1,4 @@
+import { AtendimentoFiltro } from './atendimento-filtro.model';
 import { Atendimento } from './atendimento.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -36,8 +37,8 @@ export class AtendimentoService {
     return this.httpClient.get(`${this.urlServico}/paciente/${idPaciente}`);
   }
 
-  buscaPorCPFPaciente(cpfPaciente: string) {
-    return this.httpClient.get(`${this.urlServico}/paciente/cpf/${cpfPaciente}`);
+  filtraAtendimentos(filtro: AtendimentoFiltro) {
+    return this.httpClient.post(`${this.urlServico}/filtro`, filtro);
   }
 
   buscarPorId(id: string) {
