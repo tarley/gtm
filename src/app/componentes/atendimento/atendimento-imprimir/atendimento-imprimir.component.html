@@ -3,10 +3,160 @@
 <div class="card">
     <p-card [header]="titulo">
         <div id="print-section">
-            <h3 style="text-align: center; font-family: Arial;">
-                GTM NEWTON - ATENDIMENTO
+            <h3 class="ajuste_central">
+                Clínica de Atenção Farmacêutica
+            </h3>
+            <h3 class="ajuste_central">
+                Serviço de Gerenciamento da Terapia Medicamentosa
             </h3>
             <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <p-fieldset legend="DADOS">
+                        <div class="p-grid">
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Data:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>{{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Início:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Término:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Duração:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                        </div>
+                    </p-fieldset>   
+                </div>
+
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <p-fieldset legend="DADOS SOCIODEMOGRÁFICOS">
+                        <div class="p-grid">
+                            <div class="p-col-10 p-md-10 p-lg-10">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>UBS:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>{{atendimento.UBS}}</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-2 p-md-2 p-lg-2">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Atendimento:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-10 p-md-10 p-lg-10">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Usuário:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-2 p-md-2 p-lg-2">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Prontuário:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Nascimento:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Idade:</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-6 p-md-6 p-lg-6">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>Escolaridade(anos de estudo):</label>
+                                        </div>
+                                        <div class="p-col-6 p-md-6 p-lg-6">
+                                            <label>VERIFICAR</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                        </div>
+                    </p-fieldset>
+                </div>
+                    
+
                 <div class="p-col-12 p-md-12 p-lg-12">
                     <p-fieldset legend="PACIENTE">
                         <div class="p-grid">
