@@ -26,6 +26,8 @@ export class UsuarioNovoComponent implements OnInit {
   confirmacaoSenhaValida: boolean;
 
   formulario: NgForm;
+  senha: String;
+  confSenha: String;
 
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
@@ -57,21 +59,24 @@ export class UsuarioNovoComponent implements OnInit {
   }
 
   salvar() {
-    let requisicao: Observable<Object>;
-    if(this.usuario._id) {
-      requisicao = this.usuarioService.atualizaUsuario(this.usuario);
-    } else {
-      requisicao = this.usuarioService.insereUsuario(this.usuario);
-    }
-    this.blockUI.start(MensagemUtil.SALVANDO_REGISTRO);
-    requisicao.subscribe(() => {
-      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
-      this.voltar();
-    }, (respostaErro) => {
-        this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR);
-        this.blockUI.stop();
-      },
-    () => this.blockUI.stop());
+    if (this.confirmacaoSenhaValida == true){
+      let requisicao: Observable<Object>;
+      if(this.usuario._id) {
+        requisicao = this.usuarioService.atualizaUsuario(this.usuario);
+      } else {
+        requisicao = this.usuarioService.insereUsuario(this.usuario);
+      }
+      this.blockUI.start(MensagemUtil.SALVANDO_REGISTRO);
+      requisicao.subscribe(() => {
+        this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
+        this.voltar();
+      }, (respostaErro) => {
+          this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_BUSCAR);
+          this.blockUI.stop();
+        },
+      () => this.blockUI.stop());
+    }else 
+      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.CONF_SENHA_INVALIDA));   
   }
 
   formularioInvalido(form: NgForm) {
@@ -82,8 +87,11 @@ export class UsuarioNovoComponent implements OnInit {
     return formularioInvalido;
   }
 
-  validaConfirmacaoSenha(form: NgForm) {
-    if(form.controls.senha.value == form.controls.confSenha.value) {
+  validaConfirmacaoSenha(form: NgForm,) {
+    this.senha = form.controls.senha.value;
+    this.confSenha = form.controls.confSenha.value;
+
+    if(this.senha == this.confSenha) {
       this.confirmacaoSenhaValida = true;
     } else {
       this.confirmacaoSenhaValida = false;
