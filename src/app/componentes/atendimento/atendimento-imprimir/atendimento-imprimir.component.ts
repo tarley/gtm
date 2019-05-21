@@ -27,9 +27,16 @@ export class AtendimentoImprimirComponent implements OnInit {
       if (params['id']) {
         this.atendimentoService.buscarPorId(params['id']).subscribe((atendimento: Atendimento) => {
           this.atendimento = atendimento;
+          this.dadosPaciente(this.atendimento.idPaciente);
         }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar atendimento!')))
       }
     })
+  }
+
+  dadosPaciente(idPaciente: string){
+    this.pacienteService.buscarPorId(idPaciente).subscribe((paciente: Paciente) => {
+      this.paciente = paciente;
+    }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar paciente!')))
   }
 
 
