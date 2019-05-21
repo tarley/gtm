@@ -21,3 +21,22 @@ input {
     padding: 7px; 
     border-radius: 5px;
   }
+
+.ajuste_central{
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+}   
+
+.ajuste_direita{
+    text-align: right;
+    font-family: Arial;
+}
+
+.div_quadrado_observacao{
+    height: 250px;
+ }
+
+ .textArea {
+    resize: none;
+  }
