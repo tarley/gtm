@@ -8,6 +8,7 @@ import { PacienteService } from './../shared/paciente.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Observable } from 'rxjs';
+import { NgBlockUI, BlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-paciente-novo',
@@ -15,6 +16,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./paciente-novo.component.scss']
 })
 export class PacienteNovoComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo: String;
 
@@ -70,10 +73,14 @@ export class PacienteNovoComponent implements OnInit {
     } else {
       requisicao = this.pacienteService.atualizaPaciente(this.paciente);
     }
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     requisicao.subscribe(() => {
       this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
       this.voltar()
-    }, (respostaErro) => this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR));
+    }, (respostaErro) => {
+      this.messageService.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR)
+      this.blockUI.stop();
+    }, () => this.blockUI.stop());
   }
 
   voltar() {
