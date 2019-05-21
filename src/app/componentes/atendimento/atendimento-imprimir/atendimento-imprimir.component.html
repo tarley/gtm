@@ -846,158 +846,159 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-col-6 p-md-6 p-lg-6">
-                            <p-fieldset>
+                        <div class="p-grid" *ngFor="let doenca of atendimento.doencas; let i = index">
+                            <div class="p-col-3 p-md-3 p-lg-3">
+                                <p-fieldset>
+                                    <div class="p-grid">
+                                        <div class="p-col-12 p-md-12 p-lg-12">
+                                            <label>{{doenca.nome}}</label>
+                                        </div>
+                                    </div>
+                                </p-fieldset>
+                            </div>
+                            <div class="p-col-9 p-md-9 p-lg-9">
                                 <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>MEDICAMENTO</label>
+                                    <div class="p-col-3 p-md-3 p-lg-3">
+                                        <p-fieldset>
+                                            <div class="p-grid">
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <label>RELATADA OU PRESCRITA</label>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
+                                    </div> 
+                                    <div class="p-col-2 p-md-2 p-lg-2">
+                                        <p-fieldset>
+                                            <div class="p-grid">
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <label>TEMPO</label>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
+                                    </div> 
+                                    <div class="p-col-2 p-md-2 p-lg-2">
+                                        <p-fieldset>
+                                            <div class="p-grid">
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <label>EFETIVIDADE</label>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
+                                    </div> 
+                                    <div class="p-col-2 p-md-2 p-lg-2">
+                                        <p-fieldset>
+                                            <div class="p-grid">
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <label>SEGURANÇA</label>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
+                                    </div> 
+                                    <div class="p-col-3 p-md-3 p-lg-3">
+                                        <p-fieldset>
+                                            <div class="p-grid">
+                                                <div class="p-col-12 p-md-12 p-lg-12">
+                                                    <label>ADESÃO</label>
+                                                </div>
+                                            </div>
+                                        </p-fieldset>
                                     </div>
                                 </div>
-                            </p-fieldset>
-                        </div> 
-                        <div class="p-col-6 p-md-6 p-lg-6">
-                            <p-fieldset>
-                                <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>POSOLOGIA</label>
+                            </div>
+                            <div class="p-col-12 p-md-12 p-lg-12">
+                                <p-fieldset legend="PLANO DE CUIDADO">
+                                    <div class="p-grid" *ngFor="let farmaco of doenca.farmacoterapias; let i = index">
+                                        <div class="p-col-12 p-md-12 p-lg-12">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-4 p-md-4 p-lg-4">
+                                                        <label>Obejtivo terapêutico:</label>
+                                                    </div>
+                                                    <div class="p-col-8 p-md-8 p-lg-8">
+                                                        <label>VERIFICAR</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-4 p-md-4 p-lg-4">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-4 p-md-4 p-lg-4">
+                                                        <label>PRM identificado:</label>
+                                                    </div>
+                                                    <div class="p-col-8 p-md-8 p-lg-8">
+                                                        <label>{{farmaco.prm.prm}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-3 p-md-3 p-lg-3">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-2 p-md-2 p-lg-2">
+                                                        <label>Causa:</label>
+                                                    </div>
+                                                    <div class="p-col-10 p-md-10 p-lg-10">
+                                                        <label>{{farmaco.prm.causa}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-5 p-md-5 p-lg-5">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-4 p-md-4 p-lg-4">
+                                                        <label>Medicamento:</label>
+                                                    </div>
+                                                    <div class="p-col-8 p-md-8 p-lg-8">
+                                                        <label>{{farmaco.medicamento}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-12 p-md-12 p-lg-12">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-4 p-md-4 p-lg-4">
+                                                        <label>Condutas:</label>
+                                                    </div>
+                                                    <div class="p-col-8 p-md-8 p-lg-8">
+                                                        <label>{{farmaco.conduta}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-5 p-md-5 p-lg-5">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-4 p-md-4 p-lg-4">
+                                                        <label>SCF:</label>
+                                                    </div>
+                                                    <div class="p-col-8 p-md-8 p-lg-8">
+                                                        <label>{{doenca.planoCuidado.scf}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
+                                        <div class="p-col-7 p-md-7 p-lg-7">
+                                            <p-fieldset>
+                                                <div class="p-grid">
+                                                    <div class="p-col-5 p-md-5 p-lg-5">
+                                                        <label>Data para avaliar resultados:</label>
+                                                    </div>
+                                                    <div class="p-col-7 p-md-7 p-lg-7">
+                                                        <label>{{atendimento.dataResultado | date: 'dd/MM/yyyy'}}</label>
+                                                    </div>
+                                                </div>
+                                            </p-fieldset>
+                                        </div>
                                     </div>
-                                </div>
-                            </p-fieldset>
-                        </div> 
-                        <div class="p-col-2 p-md-2 p-lg-2">
-                            <p-fieldset>
-                                <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>TEMPO</label>
-                                    </div>
-                                </div>
-                            </p-fieldset>
-                        </div> 
-                        <div class="p-col-2 p-md-2 p-lg-2">
-                            <p-fieldset>
-                                <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>EFETIVIDADE</label>
-                                    </div>
-                                </div>
-                            </p-fieldset>
-                        </div> 
-                        <div class="p-col-2 p-md-2 p-lg-2">
-                            <p-fieldset>
-                                <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>SEGURANÇA</label>
-                                    </div>
-                                </div>
-                            </p-fieldset>
-                        </div> 
-                        <div class="p-col-2 p-md-2 p-lg-2">
-                            <p-fieldset>
-                                <div class="p-grid">
-                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                        <label>ADESÃO</label>
-                                    </div>
-                                </div>
-                            </p-fieldset>
-                        </div>     
-                    </p-fieldset>                
+                                </p-fieldset>  
+                            </div> 
+                        </div>    
+                    </p-fieldset>               
                 </div>
             </div>
         </div>
     </p-card>
-</div>
-
-
-<div class="p-col-12 p-md-12 p-lg-12">
-    <p-fieldset legend="PACIENTE">
-        <div class="p-grid">
-            <div class="p-col-12 p-md-12 p-lg-12">
-                <div>
-                    <label>NOME: {{atendimento.nomePaciente}}</label>
-                </div>
-                <div>
-                    <label>DATA ATENDIMENTO: {{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
-                </div>
-            </div>
-        </div>
-    </p-fieldset>
-</div>
-<div class="p-col-12 p-md-12 p-lg-12">
-    <p-fieldset legend="AVALIAÇÃO">
-        <p-fieldset legend="QUADRO GERAL">
-            <div class="p-grid">
-                <div class="p-col-12 p-md-12 p-lg-12">
-                    <label>{{atendimento.quadroGeral}}</label>
-                </div>
-            </div>
-        </p-fieldset>
-    </p-fieldset>
-</div>
-<div class="p-col-12 p-md-12 p-lg-12">
-    <p-fieldset legend="DOENÇAS E FARMACOTERAPIAS">
-        <div class="p-grid" *ngFor="let doenca of atendimento.doencas; let i = index">
-            <div class="p-col-12 p-md-12 p-lg-12">
-                <p-fieldset legend="{{doenca.nome}}">
-                    <div class="p-grid">
-                        <p-fieldset legend="DESCRIÇÃO">
-                            <div class="p-col-12 p-md-12 p-lg-12">
-                                <label>{{doenca.descricao}}</label>
-                            </div>
-                        </p-fieldset>
-                    </div>
-                    <div *ngFor="let farmaco of doenca.farmacoterapias; let i = index">
-                        <p-fieldset legend="FARMACOTERAPIA">
-                            <div class="p-grid p-dir-rev">
-
-                                <div class="p-col-12 p-md-12 p-lg-12">
-                                    <div>
-                                        <label>MEDICAMENTO: {{farmaco.medicamento}}</label>
-                                    </div>
-                                    <div>
-                                        <label>POSOLOGIA: {{farmaco.posologia}}</label>
-                                    </div>
-                                    <div>
-                                        <label>EFETIVIDADE: {{farmaco.efetividade}}</label>
-                                    </div>
-                                    <div>
-                                        <label>TEMPO DE USO: {{farmaco.tempoUso}}</label>
-                                    </div>
-                                    <div>
-                                        <label>SEGURANÇA: {{farmaco.seguranca}}</label>
-                                    </div>
-                                    <div>
-                                        <label>DIFICULDADE DE USO: {{farmaco.dificuldadeUso}}</label>
-                                    </div>
-                                    <div>
-                                        <label>PRM: {{farmaco.prm}}</label>
-                                    </div>
-                                    <div>
-                                        <label>CAUSA DO PRM {{farmaco.causaPrm}}</label>
-                                    </div>
-                                    <div>
-                                        <label>CONDUTA: {{farmaco.conduta}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </p-fieldset>
-                    </div>
-                    <p-fieldset legend="PLANO DE CUIDADO">
-                        <div class="p-grid">
-                            <div class="p-col-12 p-md-12 p-lg-12">
-                                <div>
-                                    <label>OBJETIVO TERAPEUTICO</label>
-                                </div>
-                                <div>
-                                    <label>SCF</label>
-                                </div>
-                                <div>
-                                    <label>DATA AVALIAÇÃO RESULTADOS</label>
-                                </div>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </p-fieldset>
-            </div>
-        </div>
-    </p-fieldset>
 </div>
