@@ -25,7 +25,6 @@ export class UsuarioComponent implements OnInit {
     {var:'email', label: 'E-mail'},
     {var:'instituicao', label: 'Instituição'}, 
     {var:'perfil', label: 'Perfil'},
-    {var:'inativo', label: 'Inativo'},
   ];
   usuarios: Usuario[] = [];
 
