@@ -4,6 +4,7 @@ import { PacienteService } from './shared/paciente.service';
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from './shared/paciente.model';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
+import { NgBlockUI, BlockUI } from 'ng-block-ui';
 
 import { Router } from '@angular/router';
 
@@ -13,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./paciente.component.scss']
 })
 export class PacienteComponent implements OnInit {
+
+  @BlockUI() blockUI: NgBlockUI;
 
   titulo: string = 'Lista de Pacientes';
 
@@ -57,13 +60,19 @@ export class PacienteComponent implements OnInit {
   }
 
   buscarTodos() {
+    this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.pacienteService.buscarTodos().subscribe((pacientes: Paciente[]) => {
       this.pacientes = pacientes;
-    });
+    }, () => {
+      this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.ERRO_BUSCAR));
+      this.blockUI.stop();
+    },
+      () => this.blockUI.stop());
   }
 
   buscarPorCpf() {
     if (this.cpf) {
+      this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
       this.pacienteService.buscarPorCpf(this.cpf).subscribe((pacientes: Paciente[]) => {
         if (pacientes.length == 0) {
           this.semRetornoPaciente = "Sua busca nao retornou nenhum paciente."
@@ -72,7 +81,8 @@ export class PacienteComponent implements OnInit {
           this.pacientes = pacientes;
           this.semRetornoPaciente = null
         }
-      }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+      }, (respostaErro) => {this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg))},
+      () => this.blockUI.stop());
     } else {
       this.buscarTodos();
       this.semRetornoPaciente = null
@@ -81,6 +91,7 @@ export class PacienteComponent implements OnInit {
 
   buscarPorNome() {
     if (this.nome) {
+      this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
       this.pacienteService.buscarPorNome(this.nome).subscribe((pacientes: Paciente[]) => {
         if (pacientes.length == 0) {
           this.semRetornoPaciente = "Sua busca nao retornou nenhum paciente."
@@ -89,7 +100,8 @@ export class PacienteComponent implements OnInit {
           this.pacientes = pacientes;
           this.semRetornoPaciente = null
         }
-      }, (respostaErro) => this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)));
+      }, (respostaErro) => {this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg))},
+      () => this.blockUI.stop());      
     } else {
       this.buscarTodos();
       this.semRetornoPaciente = null
