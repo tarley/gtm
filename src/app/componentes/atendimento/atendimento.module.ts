@@ -23,8 +23,10 @@ import { NgxPrintModule } from 'ngx-print';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PanelModule } from 'primeng/panel';
 import { AtendimentoVisualizarComponent } from './atendimento-visualizar/atendimento-visualizar.component';
+import { AtendimentoImprimirPacienteComponent } from './atendimento-imprimir/atendimento-imprimir-paciente/atendimento-imprimir-paciente.component';
+import { AtendimentoImprimirAtendimentoComponent } from './atendimento-imprimir/atendimento-imprimir-atendimento/atendimento-imprimir-atendimento.component';
 @NgModule({
-  declarations: [AtendimentoComponent, AtendimentoNovoComponent, AtendimentoImprimirComponent, AtendimentoVisualizarComponent],
+  declarations: [AtendimentoComponent, AtendimentoNovoComponent, AtendimentoImprimirComponent, AtendimentoVisualizarComponent, AtendimentoImprimirPacienteComponent, AtendimentoImprimirAtendimentoComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -45,6 +47,6 @@ import { AtendimentoVisualizarComponent } from './atendimento-visualizar/atendim
     FieldsetModule,
     PanelModule
   ],
-  providers: [AtendimentoService, PacienteService]
+  providers: [AtendimentoService, PacienteService, AtendimentoImprimirPacienteComponent, AtendimentoImprimirAtendimentoComponent]
 })
 export class AtendimentoModule { }
