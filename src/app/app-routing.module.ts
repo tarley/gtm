@@ -12,6 +12,8 @@ import { AtendimentoImprimirComponent } from './componentes/atendimento/atendime
 import { AtendimentoVisualizarComponent } from './componentes/atendimento/atendimento-visualizar/atendimento-visualizar.component';
 import { InstituicaoComponent } from './componentes/instituicao/instituicao.component';
 import { NovaInstituicaoComponent } from './componentes/instituicao/nova-instituicao/nova-instituicao.component';
+import { MedicamentoComponent } from './componentes/medicamento/medicamento.component';
+import { NovoMedicamentoComponent } from './componentes/medicamento/novo-medicamento/novo-medicamento.component';
 
 const routes: Routes = [
   //Rotas Login
@@ -36,7 +38,11 @@ const routes: Routes = [
 
   //Telas Instituições
   {path: 'instituicao', component: InstituicaoComponent},
-  {path: 'instituicao/novo', component: NovaInstituicaoComponent}
+  {path: 'instituicao/novo', component: NovaInstituicaoComponent},
+
+    //Telas Medicamento
+    {path: 'medicamento', component: MedicamentoComponent},
+    {path: 'medicamento/novo', component: NovoMedicamentoComponent}
 ];
 
 @NgModule({
