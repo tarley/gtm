@@ -31,7 +31,8 @@ export class PacienteNovoComponent implements OnInit {
   chkBebidaMarcado: Boolean = false;
   chkAtividadeFisicaMarcado: Boolean = false;
 
-  pacienteAtivo: Boolean = true;
+  switchSituacao: Boolean;
+
   status: String = "Ativo";
   show = false;
 
@@ -64,9 +65,9 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   salvar() {
-    this.validarCamposObservacao(this.chkCigarroMarcado, this.chkBebidaMarcado, this.chkAtividadeFisicaMarcado);
+    this.validarCamposObservacao(this.chkCigarroMarcado, this.chkBebidaMarcado, this.chkAtividadeFisicaMarcado, this.switchSituacao);
     this.formartarDataGravacao(this.paciente, this.dataNascimento);
-
+    
     let requisicao: Observable<Object>;
     if (!this.paciente._id) {
       requisicao = this.pacienteService.inserirPaciente(this.paciente);
@@ -87,7 +88,11 @@ export class PacienteNovoComponent implements OnInit {
     this.router.navigate(['paciente']);
   }
 
-  validarCheckBox(opcao, evento) {
+  validarSituacao(evento){
+    
+  }
+
+  validarCheckBoxSwitch(opcao, evento) {
     switch (opcao) {
       case "fumante":
         if (evento == false) {
@@ -106,7 +111,6 @@ export class PacienteNovoComponent implements OnInit {
         break;
 
       case "pratica":
-        console.log("cheguei")
         if (evento == false) {
           this.chkAtividadeFisicaMarcado = evento;
         } else {
@@ -115,7 +119,7 @@ export class PacienteNovoComponent implements OnInit {
     }
   }
 
-  validarCamposObservacao(chkCigarro, chkBebida, chkAtividadeFisica) {
+  validarCamposObservacao(chkCigarro, chkBebida, chkAtividadeFisica, switchSituacao) {
     if (chkCigarro == false) {
       this.paciente.habitosVida.cigarro.observacaoCigarro = null;
     }
@@ -124,6 +128,9 @@ export class PacienteNovoComponent implements OnInit {
     }
     if (chkAtividadeFisica == false) {
       this.paciente.habitosVida.atividadeFisica.observacaoAtividadeFisica = null;
+    }
+    if(switchSituacao == true){
+      this.paciente.situacao.motivo = null;
     }
   }
 
@@ -234,10 +241,12 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   alterarStatus(){
-    if(this.paciente.ativo == false){
+    if(this.paciente.situacao.ativo == false){
       this.status = "Inativo"
+      this.switchSituacao = false
     } else {
       this.status = "Ativo"
+      this.switchSituacao = true
     }
   }
 

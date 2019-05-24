@@ -4,11 +4,19 @@
     <div class="ui-g ui-fluid">
       <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
         <fieldset class="fieldsetBorder">
-          <div *ngIf="show">
-            <h4 style="margin-block-end: 5px">Paciente {{status}}:</h4>
-            <p-inputSwitch name="ativo" [(ngModel)]="paciente.ativo" (onChange)="alterarStatus()"></p-inputSwitch>
-          </div>
+          <div class="ui-g-12 divSemPaddingLeft tamanhoMinDiv" *ngIf="show">
+            <h3 style="margin-block-end: 5px;">Paciente {{status}}:</h3>
 
+            <div class="ui-g-1 ui-sm-12 divSemPaddingLeft tamanhoMinDiv">
+              <p-inputSwitch name="ativo" [(ngModel)]="paciente && paciente.situacao && paciente.situacao.ativo"
+                (onChange)="alterarStatus()"></p-inputSwitch>
+            </div>
+
+            <div class="ui-g-3 ui-sm-12 divSemPaddingLeft" style="min-width: 380px;" >
+              <input id="motivoInativo" [(ngModel)]="paciente && paciente.situacao && paciente.situacao.motivo"
+                type="text" name="motivo" pInputText placeholder="Motivo" *ngIf="!paciente.situacao.ativo"/>
+            </div>
+          </div>
           <h3>Dados do Paciente:</h3>
           <hr>
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">

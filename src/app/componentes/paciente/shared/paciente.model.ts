@@ -2,7 +2,6 @@ export class Paciente {
 
     public constructor(
         public _id?: string,
-        public ativo?: boolean,
         public nome?: string,
         public sexo?: string,
         public cpf?: string,
@@ -15,14 +14,23 @@ export class Paciente {
         public dadosComplementares?: DadosComplementares,
         public habitosVida?: HabitosVida,
         public dadosAntropometricos?: DadosAntropometricos,
-        public rotina?: Rotina
+        public rotina?: Rotina,
+        public situacao?: Situacao,
+
 
     ) {
+        this.situacao = new Situacao()
         this.dadosComplementares = new DadosComplementares()
         this.habitosVida = new HabitosVida()
         this.dadosAntropometricos = new DadosAntropometricos()
         this.rotina = new Rotina()
     }
+}
+export class Situacao {
+    public constructor (
+        public ativo?: boolean,
+        public motivo?: string
+    ) { }
 }
 
 export class DadosComplementares {
