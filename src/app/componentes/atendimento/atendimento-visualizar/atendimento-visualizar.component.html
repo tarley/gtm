@@ -1,129 +1,144 @@
 <div class="card">
-    <p-card [header]="titulo"></p-card>
-  </div>
-  
-  <form #f="ngForm">
-    <p-accordion [multiple]="true">
-      <p-accordionTab header="Avaliação Inicial" [selected]="true">
-        <div class="ui-g">
-          <div class="ui-g-12 ui-md-12">
-            <label>Quadro Geral:</label>
-            <textarea rows="5" style="width: 100%;" name="quadroGeral" disabled="true" [(ngModel)]="atendimento.quadroGeral"
-              pInputTextarea autoResize="true"></textarea>
-          </div>
+  <p-card [header]="titulo"></p-card>
+</div>
+
+<form #f="ngForm" (ngSubmit)="salvar()">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Avaliação Inicial" [selected]="true">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12">
+          <label>Quadro Geral:*</label>
+          <textarea rows="5" style="width: 100%;" name="quadroGeral" disabled="true" [(ngModel)]="atendimento.quadroGeral"
+            pInputTextarea autoResize="true"></textarea>
         </div>
-      </p-accordionTab>
-      <p-accordionTab header="Doenças e Farmacoterapias" [selected]="true">
-        <p-tabView>
-          <p-tabPanel *ngFor="let doenca of atendimento.doencas; let i = index" [header]="formataTituloDoenca(doenca)">
-            <h3>Doença</h3>
-            <hr>
-            <div class="ui-g">
-              <div class="ui-g-12 ui-md-12">
-                <label>Nome:</label>
-                <input style="width: 100%;" disabled="true" name="nome{{i}}" [(ngModel)]="doenca.nome" pInputText />
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Doenças e Farmacoterapias" [selected]="true">
+      <p-tabView>
+        <p-tabPanel *ngFor="let doenca of atendimento.doencas; let i = index" [header]="formataTituloDoenca(doenca)">
+          <h3>Doença</h3>
+          <hr>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-12">
+              <label>Nome:</label>
+              <input style="width: 100%;" name="nome{{i}}" disabled="true" [(ngModel)]="doenca.nome" pInputText />
+            </div>
+            <div class="ui-g-12 ui-md-12">
+              <label>Descrição:</label>
+              <textarea rows="8" style="width: 100%;" disabled="true" name="descricao{{i}}" [(ngModel)]="doenca.descricao"
+                pInputTextarea></textarea>
+            </div>
+          </div>
+
+          <h3>Farmacoterapias e Plano de Cuidado 1</h3>
+          <hr>
+          <p-tabView [activeIndex]="indexFarmacoSelecionada">
+            <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
+              [header]="formataTituloFarmaco(farmaco)">
+              <div class="ui-g">
+                <div class="ui-g-12 ui-md-12">
+                  <label>Medicamento:*</label>
+                  <input name="medicamento{{i}}{{j}}" disabled="true" type="text" name="medicamento{{i}}"
+                    [(ngModel)]="farmaco.medicamento" pInputText />
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Posologia Relatada:*</label>
+                    <input type="text" name="posologiaRelatada{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.posologiaRelatada"
+                      pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Posologia Prescrita:</label>
+                    <input type="text" name="posologiaPrescrita{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.posologiaPrescrita"
+                      pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Tempo de Uso:</label>
+                    <input type="text" name="tempoUso{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.tempoUso" pInputText />
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Efetividade:*</label>
+                    <input type="text" name="efetividade{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.efetividade" pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Segurança:*</label>
+                    <input type="text" name="seguranca{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.seguranca" pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Dificuldade no Uso:*</label>
+                    <input type="text" name="dificuldadeUso{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.dificuldadeUso"
+                      pInputText />
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <div class="ui-g-6 ui-md-4">
+                    <label>PRM:*</label>
+                    <input type="text" name="prm{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.prm.prm" pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Causa do PRM:</label>
+                    <input type="text" name="causa{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.prm.causa" pInputText />
+                  </div>
+                  <div class="ui-g-6 ui-md-4">
+                    <label>Resolvido:</label>
+                    <input type="text" name="resolvido{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.prm.resolvido" pInputText />
+                  </div>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                  <label>Conduta:</label>
+                  <textarea rows="6" style="width: 100%;" disabled="true" pInputTextarea name="conduta{{i}}{{j}}"
+                    [(ngModel)]="farmaco.conduta"></textarea>
+                </div>
               </div>
-              <div class="ui-g-12 ui-md-12">
-                <label>Descrição:</label>
-                <textarea rows="8" style="width: 100%;" disabled="true" name="descricao{{i}}" [(ngModel)]="doenca.descricao"
-                  pInputTextarea></textarea>
+            </p-tabPanel>
+          </p-tabView>
+
+          <h3>Plano de Cuidado 2</h3>
+          <hr>
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12">
+              <label>Objetivo Terapêutico:</label>
+              <textarea rows="5" style="width: 100%;" disabled="true" name="objetivoTerapeutico{{i}}"
+                [(ngModel)]="doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
+            </div>
+            <div class="ui-g-12 ui-md-12">
+              <div class="ui-g-6 ui-md-4">
+                <label>SCF:</label>
+                <input type="text" name="scf{{i}}" disabled="true" [(ngModel)]="doenca.planoCuidado.scf"
+                  readonly="true" pInputText />
+              </div>
+              <div class="ui-g-6 ui-md-4">
+                <label>Observação SCF:</label>
+                <input type="text" name="observacaoScf{{i}}" disabled="true" [(ngModel)]="doenca.planoCuidado.observacaoScf"
+                  readonly="true" pInputText />
+              </div>
+              <div class="ui-g-6 ui-md-4">
+                <label>Data Avaliação Resultados:</label>
+                <p-calendar name="dataResultado" disabled="true" [(ngModel)]="atendimento.dataResultado" [dateFormat]="configCalendar.dateFormat"
+                  [locale]="configCalendar"></p-calendar>
               </div>
             </div>
-  
-            <h3>Farmacoterapias</h3>
-            <hr>
-            <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)">
-              <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
-                [header]="formataTituloFarmaco(farmaco)">
-                <div class="ui-g">
-                  <div class="ui-g-12 ui-md-12">
-                    <label>Medicamento:</label>
-                    <input name="medicamento{{i}}{{j}}" disabled="true" type="text" name="medicamento{{i}}"
-                      [(ngModel)]="farmaco.medicamento" pInputText />
-                  </div>
-                  <div class="ui-g-12 ui-md-12">
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Posologia Relatada:</label>
-                      <input type="text" name="posologiaRelatada{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.posologiaRelatada" pInputText />
-                    </div>
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Posologia Prescrita:</label>
-                      <input type="text" name="posologiaPrescrita{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.posologiaPrescrita" pInputText />
-                    </div>
-                  </div>
-                  <div class="ui-g-12 ui-md-12">
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Efetividade:</label>
-                      <input type="text" name="efetividade{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.efetividade" pInputText />
-                    </div>
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Tempo de Uso:</label>
-                      <input type="text" name="tempoUso{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.tempoUso" pInputText />
-                    </div>
-                  </div>
-                  <div class="ui-g-12 ui-md-12">
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Segurança:</label>
-                      <input type="text" name="seguranca{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.seguranca" pInputText />
-                    </div>
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Dificuldade no Uso:</label>
-                      <input type="text" name="dificuldadeUso{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.dificuldadeUso"
-                        pInputText />
-                    </div>
-                  </div>
-                  <div class="ui-g-12 ui-md-12">
-                    <div class="ui-g-6 ui-md-6">
-                      <label>PRM:</label>
-                      <input type="text" name="prm{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.prm" pInputText />
-                    </div>
-                    <div class="ui-g-6 ui-md-6">
-                      <label>Causa do PRM:</label>
-                      <input type="text" name="causaPrm{{i}}{{j}}" disabled="true" [(ngModel)]="farmaco.causaPrm" pInputText />
-                    </div>
-                  </div>
-                  <div class="ui-g-12 ui-md-12">
-                    <label>Conduta:</label>
-                    <textarea rows="6" style="width: 100%;" disabled="true" pInputTextarea name="conduta{{i}}{{j}}"
-                      [(ngModel)]="farmaco.conduta"></textarea>
-                  </div>
-                </div>
-              </p-tabPanel>
-            </p-tabView>
-  
-            <h3>Plano de Cuidado</h3>
-            <hr>
-            <div class="ui-g ui-fluid">
-              <div class="ui-g-12 ui-md-12">
-                <label>Objetivo Terapêutico:</label>
-                <textarea rows="5" style="width: 100%;" disabled="true" name="objetivoTerapeutico{{i}}"
-                  [(ngModel)]="doenca.planoCuidado.objetivoTerapeutico" pInputTextarea></textarea>
-              </div>
-              <div class="ui-g-12 ui-md-12">
-                <div class="ui-g-6 ui-md-6">
-                  <label>SCF:</label>
-                  <input type="text" name="scf{{i}}" disabled="true" [(ngModel)]="doenca.planoCuidado.scf" pInputText />
-                </div>
-                <div class="ui-g-6 ui-md-6">
-                  <label>Data Avaliação Resultados:</label>
-                  <p-calendar name="dataResultado" disabled="true" [(ngModel)]="atendimento.dataResultado" dateFormat="dd/mm/yy"
-                    [locale]="configCalendar"></p-calendar>
-                </div>
-              </div>
-              <div class="ui-g-12 ui-md-12">
-                <label>Outras Condutas:</label>
-                <textarea rows="5" style="width: 100%;" disabled="true" pInputTextarea name="outrasCondutas{{i}}"
-                  [(ngModel)]="doenca.planoCuidado.outrasCondutas"></textarea>
-              </div>
+            <div class="ui-g-12 ui-md-12">
+              <label>Outras Condutas:</label>
+              <textarea rows="5" style="width: 100%;" disabled="true" pInputTextarea name="outrasCondutas{{i}}"
+                [(ngModel)]="doenca.planoCuidado.outrasCondutas"></textarea>
             </div>
-          </p-tabPanel>
-        </p-tabView>
-      </p-accordionTab>
-    </p-accordion>
-  
-    <div class="card">
-      <p-card>
-        <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
-      </p-card>
-    </div>
-  </form>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+      <h3>Experiência Subjetiva com Uso de Medicamentos</h3>
+      <hr>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <label>Observações:</label>
+          <textarea rows="5" style="width: 100%;" disabled="true" pInputTextarea name="experienciaSubjetiva"
+            [(ngModel)]="atendimento.experienciaSubjetiva"></textarea>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+</form>

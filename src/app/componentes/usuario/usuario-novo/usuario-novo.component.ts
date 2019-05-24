@@ -31,6 +31,7 @@ export class UsuarioNovoComponent implements OnInit {
 
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
+    {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
     {label: 'Profissional da Saúde', value: 'Normal'},
     {label: 'Academico', value: 'Academico'}
   ];

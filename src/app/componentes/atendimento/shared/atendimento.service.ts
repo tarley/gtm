@@ -44,4 +44,8 @@ export class AtendimentoService {
   buscarPorId(id: string) {
     return this.httpClient.get(`${this.urlServico}/${id}`);
   }
+
+  contaAtendimentosPaciente(idPaciente: string){
+    return this.httpClient.get(`${this.urlServico}/atendimento/${idPaciente}`);
+  }
 }

@@ -32,11 +32,12 @@
             </div>
           </div>
 
-          <h3>Farmacoterapias</h3>
+          <h3>Farmacoterapias e Plano de Cuidado 1</h3>
           <hr>
           <p-button icon="fa fa-plus-circle" type="button" (click)="novaFarmaco(doenca)" label="Nova Farmacoterapia">
           </p-button>
-          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" [activeIndex]="indexFarmacoSelecionada" (onChange)="selecionaFarmaco(i, $event.index)">
+          <p-tabView (onClose)="deletaFarmaco(doenca, $event.index)" [activeIndex]="indexFarmacoSelecionada"
+            (onChange)="selecionaFarmaco(i, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
               <div class="ui-g">
@@ -57,14 +58,14 @@
                       pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-4">
-                    <label>Efetividade:*</label>
-                    <input type="text" name="efetividade{{i}}{{j}}" [(ngModel)]="farmaco.efetividade" pInputText />
+                    <label>Tempo de Uso:</label>
+                    <input type="text" name="tempoUso{{i}}{{j}}" [(ngModel)]="farmaco.tempoUso" pInputText />
                   </div>
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-4">
-                    <label>Tempo de Uso:</label>
-                    <input type="text" name="tempoUso{{i}}{{j}}" [(ngModel)]="farmaco.tempoUso" pInputText />
+                    <label>Efetividade:*</label>
+                    <input type="text" name="efetividade{{i}}{{j}}" [(ngModel)]="farmaco.efetividade" pInputText />
                   </div>
                   <div class="ui-g-6 ui-md-4">
                     <label>Segurança:*</label>
@@ -104,7 +105,7 @@
             </p-tabPanel>
           </p-tabView>
 
-          <h3>Plano de Cuidado</h3>
+          <h3>Plano de Cuidado 2</h3>
           <hr>
           <div class="ui-g ui-fluid">
             <div class="ui-g-12 ui-md-12">
@@ -126,8 +127,8 @@
               </div>
               <div class="ui-g-6 ui-md-4">
                 <label>Data Avaliação Resultados:</label>
-                <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado" [dateFormat]="configCalendar.dateFormat"
-                  [locale]="configCalendar"></p-calendar>
+                <p-calendar name="dataResultado" [(ngModel)]="atendimento.dataResultado"
+                  [dateFormat]="configCalendar.dateFormat" [locale]="configCalendar"></p-calendar>
               </div>
             </div>
             <div class="ui-g-12 ui-md-12">
@@ -139,7 +140,7 @@
         </p-tabPanel>
       </p-tabView>
 
-      <h3>Experiência Subjetiva</h3>
+      <h3>Experiência Subjetiva com Uso de Medicamentos</h3>
       <hr>
       <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-12">

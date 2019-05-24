@@ -6,75 +6,8 @@
 </h3>
 <div class="p-grid">
     <div class="p-col-12 p-md-12 p-lg-12">
-        <p-fieldset legend="DADOS">
-            <div class="p-grid">
-                <div class="p-col-3 p-md-3 p-lg-3">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Data:</label>
-                            </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>{{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-3 p-md-3 p-lg-3">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Início:</label>
-                            </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-3 p-md-3 p-lg-3">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Término:</label>
-                            </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-3 p-md-3 p-lg-3">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Duração:</label>
-                            </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-            </div>
-        </p-fieldset>   
-    </div>
-
-    <div class="p-col-12 p-md-12 p-lg-12">
         <p-fieldset legend="DADOS SOCIODEMOGRÁFICOS">
             <div class="p-grid">
-                <div class="p-col-2 p-md-2 p-lg-2">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Atendimento:</label>
-                            </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
                 <div class="p-col-8 p-md-8 p-lg-8">
                     <p-fieldset>
                         <div class="p-grid">
@@ -87,14 +20,14 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-2 p-md-2 p-lg-2">
+                <div class="p-col-4 p-md-4 p-lg-4">
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>Prontuário:</label>
+                                <label>Data:</label>
                             </div>
                             <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
+                                <label>{{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -159,18 +92,6 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-12 p-md-12 p-lg-12">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-3 p-md-3 p-lg-3">
-                                <label>Endereço:</label>
-                            </div>
-                            <div class="p-col-9 p-md-9 p-lg-9">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
                 <div class="p-col-4 p-md-4 p-lg-4">
                     <p-fieldset>
                         <div class="p-grid">
@@ -191,30 +112,6 @@
                             </div>
                             <div class="p-col-8 p-md-8 p-lg-8">
                                 <label>{{paciente.profissao}}</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-12 p-md-12 p-lg-12">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Serviços/Profissionais de saúde:</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-12 p-md-12 p-lg-12">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Aquisição Medicamentos:</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -251,7 +148,7 @@
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Tipo? Duração? Frequência? Incomodo?</label>
+                                <label>Observação:</label>
                             </div>
                             <div class="p-col-8 p-md-8 p-lg-8">
                                 <label>{{paciente.habitosVida.atividadeFisica.observacaoAtividadeFisica}}</label>
@@ -271,6 +168,18 @@
                         </div>
                     </p-fieldset>
                 </div>
+                <div class="p-col-8 p-md-8 p-lg-8">
+                        <p-fieldset>
+                            <div class="p-grid">
+                                <div class="p-col-4 p-md-4 p-lg-4">
+                                    <label>Observação:</label>
+                                </div>
+                                <div class="p-col-8 p-md-8 p-lg-8">
+                                    <label>{{paciente.habitosVida.cigarro.observacaoCigarro}}</label>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </div>
                 <div class="p-col-4 p-md-4 p-lg-4">
                     <p-fieldset>
                         <div class="p-grid">
@@ -283,7 +192,19 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
+                <div class="p-col-8 p-md-8 p-lg-8">
+                        <p-fieldset>
+                            <div class="p-grid">
+                                <div class="p-col-4 p-md-4 p-lg-4">
+                                    <label>Observação:</label>
+                                </div>
+                                <div class="p-col-8 p-md-8 p-lg-8">
+                                    <label>{{paciente.habitosVida.bebidaAlcoolica.observacaoBebidaAlcoolica}}</label>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </div>
+                <div class="p-col-6 p-md-6 p-lg-6">
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-12 p-md-12 p-lg-12 ajuste_central">
@@ -292,31 +213,7 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Qde Usada?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Qde Usada?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
+                <div class="p-col-2 p-md-2 p-lg-2">
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-6 p-md-6 p-lg-6">
@@ -328,31 +225,7 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Anos/Uso:</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Tempo uso:</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
+                <div class="p-col-2 p-md-2 p-lg-2">
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-6 p-md-6 p-lg-6">
@@ -364,31 +237,7 @@
                         </div>
                     </p-fieldset>
                 </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Anos/Maço:</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Parou quando?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
+                <div class="p-col-2 p-md-2 p-lg-2">
                     <p-fieldset>
                         <div class="p-grid">
                             <div class="p-col-6 p-md-6 p-lg-6">
@@ -396,54 +245,6 @@
                             </div>
                             <div class="p-col-6 p-md-6 p-lg-6">
                                 <label>{{paciente.dadosAntropometricos.imc}}</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Parou quando?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-8 p-md-8 p-lg-8">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Bebida</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-4 p-md-4 p-lg-4">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Tentou parar?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
-                            </div>
-                        </div>
-                    </p-fieldset>
-                </div>
-                <div class="p-col-8 p-md-8 p-lg-8">
-                    <p-fieldset>
-                        <div class="p-grid">
-                            <div class="p-col-4 p-md-4 p-lg-4">
-                                <label>Tentou parar?</label>
-                            </div>
-                            <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>VERIFICAR</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -573,7 +374,7 @@
                                             <label>Uso de Plantas, Fisioterápicas (Indicação, nome, qde, nº vezes/dia, parte usada) Terapia Alternativa:</label>
                                         </div>
                                         <div class="p-col-12 p-md-12 p-lg-12">
-                                            <textarea rows="5" cols="190" class="textArea"></textarea>
+                                            <textarea rows="5" cols="180" class="textArea"></textarea>
                                         </div>
                                     </div>
                                 </p-fieldset>
@@ -585,7 +386,7 @@
                                             <label>Alertas (RAM importantes. Outras informações pertinentes: estrutura familiar, limitações, cuidador, nesse caso anotar o nome e contato):</label>
                                         </div>
                                         <div class="p-col-12 p-md-12 p-lg-12">
-                                            <textarea rows="5" cols="190" class="textArea"></textarea>
+                                            <textarea rows="5" cols="180" class="textArea"></textarea>
                                         </div>
                                     </div>
                                 </p-fieldset>
@@ -597,7 +398,7 @@
                                             <label>Experiência subjetiva com o uso do medicamento (Expectativa, compreensão, preocupações, crenças e comportamento):</label>
                                         </div>
                                         <div class="p-col-12 p-md-12 p-lg-12">
-                                            <textarea rows="5" cols="190" class="textArea"></textarea>
+                                            <textarea rows="5" cols="180" class="textArea"></textarea>
                                         </div>
                                     </div>
                                 </p-fieldset>
@@ -609,7 +410,7 @@
                                             <label>Assinatura e carimbo do profissional:</label>
                                         </div>
                                         <div class="p-col-12 p-md-12 p-lg-12">
-                                            <textarea rows="10" cols="190" class="textArea"></textarea>
+                                            <textarea rows="10" cols="180" class="textArea"></textarea>
                                         </div>
                                     </div>
                                 </p-fieldset>

@@ -12,15 +12,15 @@ export class InstituicaoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public inserirMedicamento(medicamento: Instituicao){
-    return this.httpClient.post(this.urlApi, medicamento);
+  public inserirInstituicao(instituicao: Instituicao){
+    return this.httpClient.post(this.urlApi, instituicao);
   }
 
   public buscarTodos(){
    return this.httpClient.get(this.urlApi); 
   }
 
-  public excluir(medicamento: Instituicao){
-    return this.httpClient.put(`${this.urlApi}/${medicamento._id}`, medicamento);
+  public excluir(instituicao: Instituicao){
+    return this.httpClient.put(`${this.urlApi}/${instituicao._id}`, instituicao);
   }
 }
