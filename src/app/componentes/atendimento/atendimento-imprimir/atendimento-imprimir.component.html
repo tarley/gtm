@@ -4,7 +4,7 @@
     <p-card [header]="titulo">
         <div id="print-section">
             <!-- RELATORIO DO PACIENTE --> 
-                <app-atendimento-imprimir-paciente></app-atendimento-imprimir-paciente>
+                <app-atendimento-imprimir-paciente *ngIf="isPrimeiroAtendimento"></app-atendimento-imprimir-paciente>
             <!-- FIM RELATORIO PACIENTE -->
                 
             <!-- RELATORIO DO ATENDIMENTO --> 

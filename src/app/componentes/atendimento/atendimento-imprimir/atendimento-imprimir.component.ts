@@ -11,6 +11,8 @@ export class AtendimentoImprimirComponent implements OnInit {
 
   titulo = 'Imprimir atendimento';
 
+  isPrimeiroAtendimento: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
