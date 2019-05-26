@@ -48,7 +48,7 @@ export class Constantes {
 
     public static prms = [
         {
-            label: 'PRM 1 - Medicamento desnecessário', value: 'PRM1', causas: [
+            label: 'PRM 1 - Medicamento desnecessário', value: 'PRM 1 - Medicamento desnecessário', causas: [
                 { label: 'Ausência de indicação clínica no momento', value: 'Ausência de indicação clínica no momento' },
                 { label: 'Uso de múltiplos med quando apenas um(ns) resolveria(m)', value: 'Uso de múltiplos med quando apenas um(ns) resolveria(m)' },
                 { label: 'Medicamento não é efetivo para a condição', value: 'Medicamento não é efetivo para a condição' },
@@ -58,14 +58,14 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 2 - Necessidade de medicamento', value: 'PRM2', causas: [
+            label: 'PRM 2 - Necessidade de medicamento', value: 'PRM 2 - Necessidade de medicamento', causas: [
                 { label: 'Presença de uma condição clínica que requer o uso de meds', value: 'Presença de uma condição clínica que requer o uso de meds' },
                 { label: 'Tratamento profilático necessário para reduzir risco de outro problema', value: 'Tratamento profilático necessário para reduzir risco de outro problema' },
                 { label: 'Tratamento adicional/sinérgico necessário para obter efeito desejado', value: 'Tratamento adicional/sinérgico necessário para obter efeito desejado' },
             ]
         },
         {
-            label: 'PRM 3 - Medicamento não é efetivo para a condição', value: 'PRM3', causas: [
+            label: 'PRM 3 - Medicamento não é efetivo para a condição', value: 'PRM 3 - Medicamento não é efetivo para a condição', causas: [
                 { label: 'O medicamento usado não é o mais efetivo para a condição tratada', value: 'O medicamento usado não é o mais efetivo para a condição tratada' },
                 { label: 'A condição tratada é refratária ao medicamento usado', value: 'A condição tratada é refratária ao medicamento usado' },
                 { label: 'O medicamento não efetivo para o transtorno', value: 'O medicamento não efetivo para o transtorno' },
@@ -73,7 +73,7 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 4 – Dose Baixa', value: 'PRM4', causas: [
+            label: 'PRM 4 - Dose Baixa', value: 'PRM4 - Dose Baixa', causas: [
                 { label: 'A dose é muito baixa para  produzir a resposta desejada', value: 'A dose é muito baixa para  produzir a resposta desejada' },
                 { label: 'Intervalo entre doses maior que o necessário para se alcançar objetivos', value: 'Intervalo entre doses maior que o necessário para se alcançar objetivos' },
                 { label: 'Uma interação reduz a quantidade disponível do fármaco', value: 'Uma interação reduz a quantidade disponível do fármaco' },
@@ -83,7 +83,7 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 5 - Reação adversa ao medicamento', value: 'PRM5', causas: [
+            label: 'PRM 5 - Reação adversa ao medicamento', value: 'PRM5 - Reação adversa ao medicamento', causas: [
                 { label: 'O medicamento produz efeito indesejável que não é relacionado com a dose', value: 'O medicamento produz efeito indesejável que não é relacionado com a dose' },
                 { label: 'O medicamento produz uma reação alérgica', value: 'O medicamento produz uma reação alérgica' },
                 { label: 'O medicamento não é seguro (presença de fatores risco/contra indicação)', value: 'O medicamento não é seguro (presença de fatores risco/contra indicação)' },
@@ -92,7 +92,7 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 6 - Dose alta', value: 'PRM6', causas: [
+            label: 'PRM 6 - Dose alta', value: 'PRM6 - Dose alta', causas: [
                 { label: 'A dose é muito alta', value: 'A dose é muito alta' },
                 { label: 'O intervalo entre as doses é menor que o recomendado', value: 'O intervalo entre as doses é menor que o recomendado' },
                 { label: 'A duração do tratamento é maior que o necessário', value: 'A duração do tratamento é maior que o necessário' },
@@ -101,7 +101,7 @@ export class Constantes {
             ]
         },
         {
-            label: 'PRM 7 - Não adesão', value: 'PRM7', causas: [
+            label: 'PRM 7 - Não adesão', value: 'PRM7 - Não adesão', causas: [
                 { label: 'O paciente não compreendeu as instruções', value: 'O paciente não compreendeu as instruções' },
                 { label: 'O paciente prefere não utilizar o medicamento', value: 'O paciente prefere não utilizar o medicamento' },
                 { label: 'O paciente esquece de utilizar o medicamento', value: 'O paciente esquece de utilizar o medicamento' },
