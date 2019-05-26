@@ -29,6 +29,8 @@ export class UsuarioNovoComponent implements OnInit {
   senha: String;
   confSenha: String;
 
+  formDesabilitado: boolean = true;
+
   perfis: SelectItem[] = [
     {label: 'Administrador', value: 'Administrador'},
     {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
@@ -105,6 +107,10 @@ export class UsuarioNovoComponent implements OnInit {
         this.instituicao.push({ label: p.descricao, value: p.descricao})
       })
     })
+  }
+
+  habilitaFormulario() {
+    this.formDesabilitado = false;
   }
 
   voltar() {
