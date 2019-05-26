@@ -60,15 +60,16 @@ export class AtendimentoNovoComponent implements OnInit {
         if (!doenca.planoCuidado) {
           doenca.planoCuidado = new PlanoCuidado();
         }
+        if(doenca.dataResultado) {
+          doenca.dataResultado = new Date(doenca.dataResultado);
+        }
         doenca.farmacoterapias.forEach((farmaco: Farmacoterapia) => {
           if (!farmaco.prm) {
             farmaco.prm = new Prm();
           }
         });
       });
-      if (atendimento.dataResultado) {
-        atendimento.dataResultado = new Date(atendimento.dataResultado);
-      }
+
       this.atendimento = atendimento;
       this.defineTitulo(atendimento.nomePaciente);
       this.adicionaDoencaEFarmacoInicial();
@@ -129,6 +130,9 @@ export class AtendimentoNovoComponent implements OnInit {
     ultimoAtendimento.doencas.forEach((doenca: Doenca) => {
       if (!doenca.planoCuidado) {
         doenca.planoCuidado = new PlanoCuidado();
+      }
+      if(doenca.dataResultado) {
+        doenca.dataResultado = new Date(doenca.dataResultado);
       }
       doenca.farmacoterapias.forEach((farmaco: Farmacoterapia) => {
         if (!farmaco.prm) {
