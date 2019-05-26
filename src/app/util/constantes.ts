@@ -111,12 +111,12 @@ export class Constantes {
             ]
         },
         {
-            label: 'Sem PRM', value: 'SemPRM', causas: [
+            label: 'Sem PRM', value: 'Sem PRM', causas: [
                 { label: 'Não se aplica', value: 'Não se aplica' },
             ]
         },
         {
-            label: 'Definir no próximo atendimento', value: 'DefinirProximo', causas: [
+            label: 'Definir no próximo atendimento', value: 'Definir no próximo atendimento', causas: [
                 { label: 'Não se aplica', value: 'Não se aplica' },
             ]
         },
