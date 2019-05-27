@@ -105,7 +105,7 @@
           <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
             <div class="chxOpcao ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
               <p-checkbox name="pratica" #chkAtividadeFisica class="estiloCheckBox"
-                (onChange)="validarCheckBox(chkAtividadeFisica.name, $event)"
+                (onChange)="validarCheckBoxSwitch(chkAtividadeFisica.name, $event)"
                 [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.atividadeFisica && paciente.habitosVida.atividadeFisica.pratica"
                 binary="true" label="Atividade Fisica"></p-checkbox>
             </div>
@@ -124,7 +124,7 @@
 
             <div class="chxOpcao ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
               <p-checkbox name="fumante" #chkCigarro class="estiloCheckBox"
-                (onChange)="validarCheckBox(chkCigarro.name, $event)"
+                (onChange)="validarCheckBoxSwitch(chkCigarro.name, $event)"
                 [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.cigarro && paciente.habitosVida.cigarro.fumante"
                 binary="true" label="Cigarro"></p-checkbox>
             </div>
@@ -144,7 +144,7 @@
 
             <div class="chxOpcao ui-g-2 ui-sm-12 ui-md-2 ui-lg-2 tamanhoMinDivCheckBox">
               <p-checkbox name="consome" class="estiloCheckBox" #chkBebida
-                (onChange)="validarCheckBox(chkBebida.name, $event)"
+                (onChange)="validarCheckBoxSwitch(chkBebida.name, $event)"
                 [(ngModel)]="paciente && paciente.habitosVida && paciente.habitosVida.bebidaAlcoolica && paciente.habitosVida.bebidaAlcoolica.consome"
                 binary="true" label="Bebida Alcoólica">
               </p-checkbox>
