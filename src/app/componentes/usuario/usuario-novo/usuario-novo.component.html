@@ -4,24 +4,24 @@
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-6">
           <label>Nome:</label>
-          <input id="nome" type="text" minlength="5" name="nome" pInputText [(ngModel)]="usuario.nome" required />
+          <input id="nome" type="text" minlength="5" name="nome" [readonly]="formDesabilitado" (click)="habilitaFormulario()" pInputText [(ngModel)]="usuario.nome" required />
         </div>
         <div class="ui-g-6 ui-md-6">
           <label>E-Mail:</label>
-          <input type="text" name="email" pInputText pKeyFilter="email" [(ngModel)]="usuario.email" #email="ngModel"
+          <input type="text" name="email" pInputText pKeyFilter="email" [readonly]="formDesabilitado" (click)="habilitaFormulario()" [(ngModel)]="usuario.email" #email="ngModel"
             required />
         </div>
       </div>
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-6">
           <label>Senha:</label>
-          <input type="password" (keyup)="validaConfirmacaoSenha(form)" pPassword 
+          <input type="password" (keyup)="validaConfirmacaoSenha(form)" [readonly]="formDesabilitado" (click)="habilitaFormulario()" pPassword 
                  promptLabel="Entre com sua senha" weakLabel="Fácil" mediumLabel="Médio" strongLabel="Difícil" 
                  #senha="ngModel" name="senha" pInputText minlength="5" [(ngModel)]="usuario.senha" required />
         </div>
         <div class="ui-g-6 ui-md-6">
           <label>Confirmação Senha:</label>
-          <input type="password" name="confSenha" minlength="5" #confSenha="ngModel"
+          <input type="password" name="confSenha" minlength="5" [readonly]="formDesabilitado" (click)="habilitaFormulario()" #confSenha="ngModel"
             (keyup)="validaConfirmacaoSenha(form)" [(ngModel)]="usuario.confSenha" pInputText required />
           <p-message *ngIf="!confirmacaoSenhaValida && (confSenha.touched || senha.touched)" severity="error"
             text="A confirmação não é igual a senha"></p-message>

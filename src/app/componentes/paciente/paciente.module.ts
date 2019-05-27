@@ -16,9 +16,10 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { PhonePipe } from './phone.pipe';
 
 @NgModule({
-  declarations: [PacienteComponent, PacienteNovoComponent],
+  declarations: [PacienteComponent, PacienteNovoComponent, PhonePipe],
   imports: [
     CommonModule,
     CardModule,
@@ -33,7 +34,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     MessagesModule,
     MessageModule,
     CheckboxModule,
-    InputSwitchModule
+    InputSwitchModule,
   ]
 })
 export class PacienteModule { }

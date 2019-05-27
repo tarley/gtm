@@ -51,7 +51,7 @@
                                 <label>Idade:</label>
                             </div>
                             <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>CALCULAR?</label>
+                                <label>{{idade}}</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -139,7 +139,7 @@
                                 <label>Atividade física:</label>
                             </div>
                             <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>{{paciente.habitosVida.atividadeFisica.pratica}}</label>
+                                <label>{{this.retornoAtvFisica}}</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -163,7 +163,7 @@
                                 <label>Cigarro:</label>
                             </div>
                             <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>{{paciente.habitosVida.cigarro.fumante}}</label>
+                                <label>{{this.retornoCigarro}}</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -187,7 +187,7 @@
                                 <label>Bebidas Alcoólicas:</label>
                             </div>
                             <div class="p-col-8 p-md-8 p-lg-8">
-                                <label>{{paciente.habitosVida.bebidaAlcoolica.consome}}</label>
+                                <label>{{this.retornoBebida}}</label>
                             </div>
                         </div>
                     </p-fieldset>

@@ -1,12 +1,13 @@
 export class Atendimento {
     constructor(
         public _id?: string,
+        public idUsuario?: string,
+        public idInstituicao?: string,
         public idPaciente?: string,
         public nomePaciente?: string,
         public dataAtendimento?: Date,
         public quadroGeral?: string,
         public doencas?: Doenca[],
-        public dataResultado?: Date,
         public finalizado?: Boolean
     ) {
         this.doencas = new Array<Doenca>();
@@ -19,6 +20,7 @@ export class Doenca {
         public descricao?: string,
         public farmacoterapias?: Farmacoterapia[],
         public planoCuidado?: PlanoCuidado,
+        public dataResultado?: Date,
     ) {
         this.farmacoterapias = new Array<Farmacoterapia>();
         this.planoCuidado = new PlanoCuidado();
