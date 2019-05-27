@@ -18,6 +18,11 @@ export class PacienteImprimirPacienteComponent implements OnInit {
   atendimento: Atendimento = new Atendimento();
   paciente: Paciente = new Paciente();
 
+  dataNascimento: Date = new Date();
+  retornoAtvFisica: String = null;
+  retornoCigarro: String = null;
+  retornoBebida: String = null;
+
   constructor(private pacienteService: PacienteService, private messageService: MessageService, 
               private route: ActivatedRoute, private atendimentoService: AtendimentoService) { }
 
@@ -35,7 +40,48 @@ export class PacienteImprimirPacienteComponent implements OnInit {
   dadosPaciente(idPaciente: string){
     this.pacienteService.buscarPorId(idPaciente).subscribe((paciente: Paciente) => {
       this.paciente = paciente;
+      this.calculaIdadePaciente(paciente.dataNascimento);
+      this.formataAtvFisica(paciente.habitosVida.atividadeFisica.pratica);
+      this.formataCigarro(paciente.habitosVida.cigarro.fumante);
+      this.formataBebida(paciente.habitosVida.bebidaAlcoolica.consome);
     }, () => this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar paciente!')))
+  }
+
+  calculaIdadePaciente(dataNascimento: Date){
+    //this.dataNascimento = dataNascimento;
+    const hoje = new Date();
+
+    const idade = hoje.getFullYear() - this.dataNascimento.getFullYear();
+
+    console.log(idade);
+    console.log(hoje);
+    console.log(this.dataNascimento);
+  }
+
+  formataAtvFisica(campo: Boolean){
+    console.log (campo);
+      if(campo == true){
+        this.retornoAtvFisica = 'Sim'; 
+      }else{
+        this.retornoAtvFisica = 'Não';
+      }
+  }
+  formataCigarro(campo: Boolean){
+    console.log (campo);
+      if(campo == true){
+        this.retornoCigarro = 'Sim'; 
+      }else{
+        this.retornoCigarro = 'Não';
+      }
+  }
+
+  formataBebida(campo: Boolean){
+    console.log (campo);
+      if(campo == true){
+        this.retornoBebida = 'Sim'; 
+      }else{
+        this.retornoBebida = 'Não';
+      }
   }
 
 }
