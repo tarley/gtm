@@ -52,14 +52,9 @@ export class PacienteImprimirPacienteComponent implements OnInit {
     const hoje = new Date();
 
     const idade = hoje.getFullYear() - this.dataNascimento.getFullYear();
-
-    console.log(idade);
-    console.log(hoje);
-    console.log(this.dataNascimento);
   }
 
   formataAtvFisica(campo: Boolean){
-    console.log (campo);
       if(campo == true){
         this.retornoAtvFisica = 'Sim'; 
       }else{
@@ -67,7 +62,6 @@ export class PacienteImprimirPacienteComponent implements OnInit {
       }
   }
   formataCigarro(campo: Boolean){
-    console.log (campo);
       if(campo == true){
         this.retornoCigarro = 'Sim'; 
       }else{
@@ -76,7 +70,6 @@ export class PacienteImprimirPacienteComponent implements OnInit {
   }
 
   formataBebida(campo: Boolean){
-    console.log (campo);
       if(campo == true){
         this.retornoBebida = 'Sim'; 
       }else{
