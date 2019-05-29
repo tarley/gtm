@@ -8,13 +8,13 @@
             <h3 style="margin-block-end: 5px;">Paciente {{status}}:</h3>
 
             <div class="ui-g-1 ui-sm-12 divSemPaddingLeft tamanhoMinDiv">
-              <p-inputSwitch name="ativo" [(ngModel)]="paciente && paciente.situacao && paciente.situacao.ativo"
+              <p-inputSwitch name="ativo" [(ngModel)]="paciente.ativo"
                 (onChange)="alterarStatus()"></p-inputSwitch>
             </div>
 
             <div class="ui-g-3 ui-sm-12 divSemPaddingLeft" style="min-width: 380px;" >
-              <input id="motivoInativo" [(ngModel)]="paciente && paciente.situacao && paciente.situacao.motivo"
-                type="text" name="motivo" pInputText placeholder="Motivo" *ngIf="!paciente.situacao.ativo"/>
+              <input id="motivoInativo" [(ngModel)]="paciente.motivoInativo"
+                type="text" name="motivo" pInputText placeholder="Motivo" *ngIf="!paciente.ativo"/>
             </div>
           </div>
           <h3>Dados do Paciente:</h3>

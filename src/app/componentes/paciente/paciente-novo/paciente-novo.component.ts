@@ -130,7 +130,7 @@ export class PacienteNovoComponent implements OnInit {
       this.paciente.habitosVida.atividadeFisica.observacaoAtividadeFisica = null;
     }
     if(switchSituacao == true){
-      this.paciente.situacao.motivo = null;
+      this.paciente.motivoInativo = null;
     }
   }
 
@@ -241,7 +241,7 @@ export class PacienteNovoComponent implements OnInit {
   }
 
   alterarStatus(){
-    if(this.paciente.situacao.ativo == false){
+    if(this.paciente.ativo == false){
       this.status = "Inativo"
       this.switchSituacao = false
     } else {

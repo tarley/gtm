@@ -23,7 +23,7 @@ export class GtmTabelaComponent implements OnInit {
 
   @Input() botoes: BotaoTabela[];
   @Output() clickBotaoEvent = new EventEmitter<any>();
-  
+
   existeEdicao: boolean = false;
   existeDelete: boolean = false;
   existeImpressao: boolean = false;
@@ -72,17 +72,17 @@ export class GtmTabelaComponent implements OnInit {
   }
 
   formataValor(valor) {
-    if(this.isDate(valor)) {
+    if (this.isDate(valor)) {
       return formatDate(valor, 'dd/MM/yyyy', 'pt-BR');
     } else if (this.isBoolean(valor)) {
       return valor == true ? 'Sim' : 'Não';
     } else {
       return valor;
-    }  
+    }
   }
 
   isDate(valor) {
-    if(valor instanceof Date) {
+    if (valor instanceof Date) {
       return true;
     } else {
       return false;
@@ -90,9 +90,9 @@ export class GtmTabelaComponent implements OnInit {
   }
 
   isBoolean(valor) {
-    if(valor instanceof Boolean) {
+    if (valor instanceof Boolean) {
       return true;
-    } else if(valor == true || valor == false) {
+    } else if (valor == true || valor == false) {
       return true;
     } else {
       return false;
@@ -110,5 +110,17 @@ export class GtmTabelaComponent implements OnInit {
 
   imprimeItem(id: string) {
     this.router.navigate([this.rotaImpressao, id]);
+  }
+
+  defineDisable(elemento, botao) {
+    if (botao.varControlaVisualizacao) {
+      if (botao.inverteVarControlaVisualizacao) {
+        return !elemento[botao.varControlaVisualizacao];
+      }
+
+      return elemento[botao.varControlaVisualizacao];
+    } else {
+      return false;
+    }
   }
 }

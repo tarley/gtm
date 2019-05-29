@@ -31,7 +31,9 @@ export class PacienteComponent implements OnInit {
     { label: 'Nome', value: 'Nome' }
   ]
 
-  botoes: BotaoTabela[] = [{ nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus' }];
+  botoes: BotaoTabela[] = [
+    { nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus', varControlaVisualizacao: "ativo", inverteVarControlaVisualizacao: true }
+  ];
 
   pacientes: Paciente[] = [];
 
@@ -81,8 +83,8 @@ export class PacienteComponent implements OnInit {
           this.pacientes = pacientes;
           this.semRetornoPaciente = null
         }
-      }, (respostaErro) => {this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg))},
-      () => this.blockUI.stop());
+      }, (respostaErro) => { this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) },
+        () => this.blockUI.stop());
     } else {
       this.buscarTodos();
       this.semRetornoPaciente = null
@@ -100,8 +102,8 @@ export class PacienteComponent implements OnInit {
           this.pacientes = pacientes;
           this.semRetornoPaciente = null
         }
-      }, (respostaErro) => {this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg))},
-      () => this.blockUI.stop());      
+      }, (respostaErro) => { this.messageService.add(MensagemUtil.criaMensagemErro(respostaErro.error.errors[0].msg)) },
+        () => this.blockUI.stop());
     } else {
       this.buscarTodos();
       this.semRetornoPaciente = null

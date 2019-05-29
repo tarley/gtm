@@ -10,27 +10,21 @@ export class Paciente {
         public anosEstudo?: number,
         public telefone?: number,
         public profissao?: string,
+        public ativo?: boolean,
+        public motivoInativo?: string,
 
         public dadosComplementares?: DadosComplementares,
         public habitosVida?: HabitosVida,
         public dadosAntropometricos?: DadosAntropometricos,
         public rotina?: Rotina,
-        public situacao?: Situacao,
 
 
     ) {
-        this.situacao = new Situacao()
         this.dadosComplementares = new DadosComplementares()
         this.habitosVida = new HabitosVida()
         this.dadosAntropometricos = new DadosAntropometricos()
         this.rotina = new Rotina()
     }
-}
-export class Situacao {
-    public constructor (
-        public ativo?: boolean,
-        public motivo?: string
-    ) { }
 }
 
 export class DadosComplementares {
