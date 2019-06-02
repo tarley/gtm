@@ -1,8 +1,8 @@
-<button pButton class="botao-acao" printSectionId="print-section" label="Imprimir" ngxPrint></button>
-<button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+<button pButton class="no-print botao-acao" label="Imprimir"  (click)="print()"></button>
+<button pButton class="no-print botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
 <div class="card">
-    <p-card [header]="titulo">
-        <div id="print-section">
+    <p-card>
+        <div class="print-selection">
             <!-- RELATORIO DO PACIENTE --> 
                 <app-paciente-imprimir-paciente *ngIf="isPrimeiroAtendimento"></app-paciente-imprimir-paciente>
             <!-- FIM RELATORIO PACIENTE -->

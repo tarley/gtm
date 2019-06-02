@@ -6,6 +6,7 @@ import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { Atendimento } from '../shared/atendimento.model';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageService } from 'primeng/api';
+ 
 
 @Component({
   selector: 'app-atendimento-imprimir',
@@ -43,6 +44,11 @@ export class AtendimentoImprimirComponent implements OnInit {
 
   voltar() {
     this.router.navigate(['atendimento']);
+  }
+
+  print()
+  {
+    window.print();
   }
 
 }

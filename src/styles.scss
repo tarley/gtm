@@ -34,3 +34,12 @@ html{
 .body{
   margin:3px;
 }
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+        opacity: 0.0;
+    }
+}
