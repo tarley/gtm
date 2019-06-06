@@ -1,3 +1,4 @@
+import { InterceptorToken } from './componentes/login/shared/interceptor-token.service';
 import { MessageModule } from 'primeng/message';
 import { AtendimentoModule } from './componentes/atendimento/atendimento.module';
 import { PacienteModule } from './componentes/paciente/paciente.module';
@@ -8,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsuarioModule } from './componentes/usuario/usuario.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { LoginModule } from './componentes/login/login.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -64,7 +65,8 @@ registerLocaleData(localePt);
     MessageService,
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorToken, multi: true }
   ],
   bootstrap: [AppComponent]
 })
