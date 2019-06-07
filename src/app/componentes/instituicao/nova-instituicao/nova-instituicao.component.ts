@@ -13,6 +13,10 @@ export class NovaInstituicaoComponent implements OnInit {
 
   rotaRetorno: String = 'instituicao';
   
+  campos: any [] = [
+    {descricao: 'Nome Instituição'}
+  ];
+  
   constructor() { }
 
   ngOnInit() {

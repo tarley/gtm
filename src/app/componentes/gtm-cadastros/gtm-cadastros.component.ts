@@ -17,9 +17,11 @@ export class GtmCadastrosComponent implements OnInit {
   @Input() titulo: String;
   @Input() caminho: string;
   @Input() rotaRetorno: string;
+  @Input() campos: any[] = [];
 
   form: any = {
-    descricao: ''
+    descricao: '',
+    formaFarmaceuticaDosagem: ''
   };
 
   constructor(private GtmCadastrosService: GtmCadastrosService, private router: Router, private mensagem: MessageServiceUtil) { }
