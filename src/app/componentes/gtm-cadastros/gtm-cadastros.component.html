@@ -1,9 +1,10 @@
 <form #f="ngForm" (ngSubmit)="salvar()">
   <p-card [header]="titulo">
       <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12">
-          <label>Descrição:</label>
-          <input id="descricao" name="descricao" type="text" pInputText [(ngModel)]="form.descricao" required> 
+        <div class="ui-g-12 ui-md-3 ui-lg-3 ui-sm-12" *ngFor="let campo of campos; let i = index">
+          <label>{{campo.label}}</label>
+          <input id="id{{i}}" name="nome{{i}}" type="text" pInputText 
+          [(ngModel)]="campo.descricao" required> 
         </div> 
       </div>
       
