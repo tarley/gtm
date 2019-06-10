@@ -19,10 +19,7 @@ export class GtmCadastrosComponent implements OnInit {
   @Input() rotaRetorno: string;
   @Input() campos: any[] = [];
 
-  form: any = {
-    descricao: '',
-    formaFarmaceuticaDosagem: ''
-  };
+  form: any = {};
 
   constructor(private GtmCadastrosService: GtmCadastrosService, private router: Router, private mensagem: MessageServiceUtil) { }
 
@@ -32,6 +29,7 @@ export class GtmCadastrosComponent implements OnInit {
   salvar(){
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.GtmCadastrosService.salvar(this.form, this.caminho).subscribe(() => {
+      console.log(this.form);
       this.voltar();
       this.mensagem.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
     }, (respostaErro) => {this.mensagem.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR);
