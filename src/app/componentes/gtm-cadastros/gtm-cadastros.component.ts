@@ -29,7 +29,6 @@ export class GtmCadastrosComponent implements OnInit {
   salvar(){
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.GtmCadastrosService.salvar(this.form, this.caminho).subscribe(() => {
-      console.log(this.form);
       this.voltar();
       this.mensagem.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.REGISTRO_SALVO));
     }, (respostaErro) => {this.mensagem.geraMensagensErro(respostaErro, MensagemUtil.ERRO_SALVAR);
