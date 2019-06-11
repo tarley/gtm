@@ -1,3 +1,5 @@
+import { HomeModule } from './componentes/home/home.module';
+import { AuthGuard } from './guard/auth.guard';
 import { InterceptorToken } from './componentes/login/shared/interceptor-token.service';
 import { MessageModule } from 'primeng/message';
 import { AtendimentoModule } from './componentes/atendimento/atendimento.module';
@@ -58,12 +60,14 @@ registerLocaleData(localePt);
     AtendimentoModule,
     MessageModule,
     InstituicaoModule,
-    MedicamentoModule
+    MedicamentoModule,
+    HomeModule,
   ],
   providers: [
     MessageServiceUtil, 
     MessageService,
     ConfirmationService,
+    AuthGuard,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorToken, multi: true }

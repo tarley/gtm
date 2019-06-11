@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { AuthService } from './componentes/login/shared/auth.service';
 
 @Component({
@@ -10,15 +10,17 @@ import { AuthService } from './componentes/login/shared/auth.service';
 
 export class AppComponent {
 
-    constructor(private auth: AuthService) { }
-    
-  title = 'gtm';
-  isUsuarioAutenticado: boolean;
-    
-    ngOnInit() {
-        this.isUsuarioAutenticado = false;
-        this.isUsuarioAutenticado = this.auth.isUsuarioAutenticado();
-    }
+  constructor() { }
 
-  
+  title = 'gtm';
+  isUsuarioAutenticado: boolean = false;
+
+  ngOnInit() {
+    AuthService.statusUsuarioAlterado.subscribe((isUsuarioAutenticado) => {
+      this.isUsuarioAutenticado = isUsuarioAutenticado;
+    });
+  }
+
+
+
 }

@@ -1,3 +1,5 @@
+import { HomeComponent } from './componentes/home/home.component';
+import { AuthGuard } from './guard/auth.guard';
 import { AtendimentoNovoComponent } from './componentes/atendimento/atendimento-novo/atendimento-novo.component';
 import { AtendimentoComponent } from './componentes/atendimento/atendimento.component';
 import { NgModule } from '@angular/core';
@@ -17,32 +19,35 @@ import { NovoMedicamentoComponent } from './componentes/medicamento/novo-medicam
 
 const routes: Routes = [
   //Rotas Login
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
+
+  //Rotas Home
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 
   //Rotas Usuário
-  { path: 'usuario/novo', component: UsuarioNovoComponent },
-  { path: 'usuario/:id', component: UsuarioNovoComponent },
-  { path: 'usuario', component: UsuarioComponent },
+  { path: 'usuario/novo', component: UsuarioNovoComponent, canActivate: [AuthGuard] },
+  { path: 'usuario/:id', component: UsuarioNovoComponent, canActivate: [AuthGuard] },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
 
   //Rotas Paciente
-  { path: 'paciente', component: PacienteComponent },
-  { path: 'paciente/novo', component: PacienteNovoComponent },
-  { path: 'paciente/:id', component: PacienteNovoComponent },
+  { path: 'paciente', component: PacienteComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/novo', component: PacienteNovoComponent, canActivate: [AuthGuard] },
+  { path: 'paciente/:id', component: PacienteNovoComponent, canActivate: [AuthGuard] },
 
   //Rotas Atendimento
-  { path: 'atendimento', component: AtendimentoComponent },
-  { path: 'atendimento/novo/:idPaciente', component: AtendimentoNovoComponent},
-  { path: 'atendimento/:id', component: AtendimentoNovoComponent},
-  { path: 'atendimento/visualizar/:id', component: AtendimentoVisualizarComponent},
-  { path: 'atendimento/imprimir/:id', component: AtendimentoImprimirComponent},
+  { path: 'atendimento', component: AtendimentoComponent, canActivate: [AuthGuard] },
+  { path: 'atendimento/novo/:idPaciente', component: AtendimentoNovoComponent, canActivate: [AuthGuard] },
+  { path: 'atendimento/:id', component: AtendimentoNovoComponent, canActivate: [AuthGuard] },
+  { path: 'atendimento/visualizar/:id', component: AtendimentoVisualizarComponent, canActivate: [AuthGuard] },
+  { path: 'atendimento/imprimir/:id', component: AtendimentoImprimirComponent, canActivate: [AuthGuard] },
 
   //Telas Instituições
-  {path: 'instituicao', component: InstituicaoComponent},
-  {path: 'instituicao/novo', component: NovaInstituicaoComponent},
+  {path: 'instituicao', component: InstituicaoComponent, canActivate: [AuthGuard] },
+  {path: 'instituicao/novo', component: NovaInstituicaoComponent, canActivate: [AuthGuard] },
 
     //Telas Medicamento
-    {path: 'medicamento', component: MedicamentoComponent},
-    {path: 'medicamento/novo', component: NovoMedicamentoComponent}
+    {path: 'medicamento', component: MedicamentoComponent, canActivate: [AuthGuard] },
+    {path: 'medicamento/novo', component: NovoMedicamentoComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

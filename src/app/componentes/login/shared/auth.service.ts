@@ -1,32 +1,74 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../../environments/environment';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+
+import * as jwt_decode from "jwt-decode";
+import { getToken } from '@angular/router/src/utils/preactivation';
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private usuarioAutenticado: boolean = true;
+  private usuarioAutenticado: boolean = false;
   private nomeUsuarioLogado: string = 'Usuário';
 
-  constructor(private router: Router) { }
+  private urlLogin = environment.urlApi.concat('v1/usuarios/login');
+
+  static statusUsuarioAlterado = new EventEmitter<boolean>();
+  static nomeUsuarioAlterado = new EventEmitter<string>();
+
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   isUsuarioAutenticado() {
     return this.usuarioAutenticado;
   }
   
+  login(dadosLogin) {
+    return this.httpClient.post(this.urlLogin, dadosLogin);
+  }
 
-  login() {
-    this.usuarioAutenticado = true;
-    this.router.navigate(['/usuario/novo'])
+  setUsuarioAutenticado(isUsuarioAutenticado: boolean) {
+    AuthService.statusUsuarioAlterado.emit(isUsuarioAutenticado);
+    this.usuarioAutenticado = isUsuarioAutenticado;
+  }
+
+  setNomeUsuario(nomeUsuario: string) {
+    AuthService.nomeUsuarioAlterado.emit(nomeUsuario);
+    this.nomeUsuarioLogado = nomeUsuario;
+  }
+
+  getNomeUsuario() {
+    return this.nomeUsuarioLogado;
   }
 
   logout() {
-    this.usuarioAutenticado = false;
-    this.router.navigate(['/login'])
+    this.removeTokenLocalStorage();
+    this.setUsuarioAutenticado(false);
+    this.router.navigate(['/']);
   }
 
-  getUsuarioLogado() {
-    return this.nomeUsuarioLogado;
+  getPerfilUsuario() {
+    return 'Administrador';
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  decodeToken() {
+    return jwt_decode(this.getToken());
+  }
+
+  criaTokenLocalStorage(token: string) {
+    if(token.length > 0) {
+      localStorage.setItem('token', token);
+    }
+  }
+
+  removeTokenLocalStorage() {
+    localStorage.removeItem('token');
   }
 }
