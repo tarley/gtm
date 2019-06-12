@@ -52,7 +52,9 @@ export class PacienteImprimirPacienteComponent implements OnInit {
     this.dataNascimento = new Date(dataNascimento);
     const hoje = new Date();
 
-    if(hoje.getMonth()+1 <= this.dataNascimento.getMonth()){
+    if(hoje.getMonth()+1 == this.dataNascimento.getMonth() && hoje.getDate() <= this.dataNascimento.getDate()){
+      this.idade = hoje.getFullYear() - 1 - this.dataNascimento.getFullYear();
+    }else if(hoje.getMonth()+1 <= this.dataNascimento.getMonth()){
       this.idade = hoje.getFullYear() - 1 - this.dataNascimento.getFullYear();
     }else{
       this.idade = hoje.getFullYear() - this.dataNascimento.getFullYear();
