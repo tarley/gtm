@@ -22,6 +22,7 @@ export class PacienteImprimirPacienteComponent implements OnInit {
   retornoAtvFisica: String = null;
   retornoCigarro: String = null;
   retornoBebida: String = null;
+  idade: Number = 0;
 
   constructor(private pacienteService: PacienteService, private messageService: MessageService, 
               private route: ActivatedRoute, private atendimentoService: AtendimentoService) { }
@@ -48,10 +49,28 @@ export class PacienteImprimirPacienteComponent implements OnInit {
   }
 
   calculaIdadePaciente(dataNascimento: Date){
-    //this.dataNascimento = dataNascimento;
+    this.dataNascimento = new Date(dataNascimento);
     const hoje = new Date();
 
-    const idade = hoje.getFullYear() - this.dataNascimento.getFullYear();
+    console.log(hoje);
+    console.log(hoje.getDate());
+    console.log(hoje.getMonth()+1);
+    console.log(hoje.getFullYear());
+
+    console.log(this.dataNascimento);
+    console.log(this.dataNascimento.getDate());
+    console.log(this.dataNascimento.getMonth()+1);
+    console.log(this.dataNascimento.getFullYear());
+
+
+
+    if(hoje.getMonth()+1 <= this.dataNascimento.getMonth()){
+      this.idade = hoje.getFullYear() - 1 - this.dataNascimento.getFullYear();
+    }else{
+      this.idade = hoje.getFullYear() - this.dataNascimento.getFullYear();
+    }
+    
+    
   }
 
   formataAtvFisica(campo: Boolean){
