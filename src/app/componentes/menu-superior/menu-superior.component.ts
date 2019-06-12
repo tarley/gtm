@@ -9,7 +9,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuSuperiorComponent implements OnInit {
 
-  usuarioLogado: string = '';
+  usuarioLogado: string = 'Usuário';
   msgUsuario: string;
 
   itens = [
@@ -21,12 +21,19 @@ export class MenuSuperiorComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.usuarioLogado = this.authService.getUsuarioLogado();
+    this.criaMensagem();
+    AuthService.nomeUsuarioAlterado.subscribe(nomeUsuario => {
+      console.log(nomeUsuario)
+      this.usuarioLogado = nomeUsuario;
+    })
+  }
+
+  criaMensagem() {
     this.msgUsuario = `Olá, ${this.usuarioLogado}`;
   }
 
   logout() {
-    
+    this.authService.logout();
   }
 
 }
