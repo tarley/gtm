@@ -14,7 +14,7 @@ export class NovaInstituicaoComponent implements OnInit {
   rotaRetorno: String = 'instituicao';
   
   campos: any [] = [
-    {var: 'titulo', label: 'Nome Instituição'}
+    {var: 'descricao', label: 'Nome Instituição'}
   ];
   
   constructor() { }

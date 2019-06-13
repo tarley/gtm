@@ -11,10 +11,10 @@
                 <div class="p-col-3 p-md-3 p-lg-3">
                     <p-fieldset>
                         <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
+                            <div class="p-col-4 p-md-6 p-lg-6">
                                 <label>Data:</label>
                             </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
+                            <div class="p-col-8 p-md-6 p-lg-6">
                                 <label>{{atendimento.dataAtendimento | date: 'dd/MM/yyyy'}}</label>
                             </div>
                         </div>
@@ -23,11 +23,11 @@
                 <div class="p-col-6 p-md-6 p-lg-6">
                     <p-fieldset>
                         <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
+                            <div class="p-col-3 p-md-6 p-lg-6">
                                 <label>Usuário:</label>
                             </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
+                            <div class="p-col-9 p-md-6 p-lg-6">
+                                <label>Nome do usuário</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -35,11 +35,11 @@
                 <div class="p-col-3 p-md-3 p-lg-3">
                     <p-fieldset>
                         <div class="p-grid">
-                            <div class="p-col-6 p-md-6 p-lg-6">
+                            <div class="p-col-7 p-md-6 p-lg-6">
                                 <label>Prontuário:</label>
                             </div>
-                            <div class="p-col-6 p-md-6 p-lg-6">
-                                <label>VERIFICAR</label>
+                            <div class="p-col-5 p-md-6 p-lg-6">
+                                <label>O que colocar?</label>
                             </div>
                         </div>
                     </p-fieldset>
@@ -50,10 +50,10 @@
             <div class="p-col-12 p-md-12 p-lg-12">
                 <p-fieldset>
                     <div class="p-grid">
-                        <div class="p-col-2 p-md-2 p-lg-2">
+                        <div class="p-col-3 p-md-3 p-lg-2">
                             <label>Quadro Geral:</label>
                         </div>
-                        <div class="p-col-10 p-md-10 p-lg-10">
+                        <div class="p-col-9 p-md-9 p-lg-10">
                             <label>{{atendimento.quadroGeral}}</label>
                         </div>
                     </div>
@@ -67,23 +67,25 @@
                         <p-fieldset legend="CABEÇALHO MEDICAMENTO">
                                 <div class="ui-g">
                                     <div class="ui-g-12 ui-md-2">
-                                        <div class="p-col-12 p-md-12 p-lg-12">
-                                            <p-fieldset>
-                                                <div class="p-grid">
-                                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                                        <label>Medicamento/Apresentação:</label>
+                                        <div class="p-grid">
+                                            <div class="p-col-6 p-md-12 p-lg-12">
+                                                <p-fieldset>
+                                                    <div class="p-grid">
+                                                        <div class="p-col-12 p-md-12 p-lg-12">
+                                                            <label>Medicamento/Apresentação:</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </p-fieldset>
-                                        </div> 
-                                        <div class="p-col-12 p-md-12 p-lg-12">
-                                            <p-fieldset>
-                                                <div class="p-grid">
-                                                    <div class="p-col-12 p-md-12 p-lg-12">
-                                                        <label>{{farmaco.medicamento}}</label>
+                                                </p-fieldset>
+                                            </div> 
+                                            <div class="p-col-6 p-md-12 p-lg-12">
+                                                <p-fieldset>
+                                                    <div class="p-grid">
+                                                        <div class="p-col-12 p-md-12 p-lg-12">
+                                                            <label>{{farmaco.medicamento}}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </p-fieldset>
+                                                </p-fieldset>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ui-g-12 ui-md-10 ui-g-nopad">
@@ -124,8 +126,8 @@
                                                 <!--Fim Divisor-->
                                                 <!--Divisor-->
                                                 <div class="ui-g-12 ui-md-12">
-                                                    <div class="ui-g">
-                                                        <div class="p-col-6 p-md-6 p-lg-4">
+                                                    <div class="p-grid">
+                                                        <div class="p-col-3 p-md-6 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -143,7 +145,7 @@
                                                                 </div>
                                                             </p-fieldset>
                                                         </div>
-                                                        <div class="p-col-12 p-md-12 p-lg-4">
+                                                        <div class="p-col-3 p-md-12 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -157,8 +159,8 @@
                                                 <!--Fim Divisor-->
                                                 <!--Divisor-->
                                                 <div class="ui-g-12 ui-md-12">
-                                                    <div class="ui-g">
-                                                        <div class="p-col-6 p-md-6 p-lg-4">
+                                                    <div class="p-grid">
+                                                        <div class="p-col-3 p-md-6 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -176,7 +178,7 @@
                                                                 </div>
                                                             </p-fieldset>
                                                         </div>
-                                                        <div class="p-col-12 p-md-12 p-lg-4">
+                                                        <div class="p-col-3 p-md-12 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -190,8 +192,8 @@
                                                 <!--Fim Divisor-->
                                                 <!--Divisor-->
                                                 <div class="ui-g-12 ui-md-12">
-                                                    <div class="ui-g">
-                                                        <div class="p-col-6 p-md-6 p-lg-4">
+                                                    <div class="p-grid">
+                                                        <div class="p-col-3 p-md-6 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -209,7 +211,7 @@
                                                                 </div>
                                                             </p-fieldset>
                                                         </div>
-                                                        <div class="p-col-12 p-md-12 p-lg-4">
+                                                        <div class="p-col-3 p-md-12 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -223,8 +225,8 @@
                                                 <!--Fim Divisor-->
                                                 <!--Divisor-->
                                                 <div class="ui-g-12 ui-md-12">
-                                                    <div class="ui-g">
-                                                        <div class="p-col-5 p-md-6 p-lg-4">
+                                                    <div class="p-grid">
+                                                        <div class="p-col-4 p-md-6 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -233,7 +235,7 @@
                                                                 </div>
                                                             </p-fieldset>
                                                         </div>
-                                                        <div class="p-col-7 p-md-6 p-lg-4">
+                                                        <div class="p-col-8 p-md-6 p-lg-4">
                                                             <p-fieldset>
                                                                 <div class="p-grid">
                                                                     <div class="p-col-12 p-md-12 p-lg-12">
@@ -377,7 +379,7 @@
                                     <label>Assinatura e carimbo do profissional:</label>
                                 </div>
                                 <div class="p-col-12 p-md-12 p-lg-12">
-                                    <textarea rows="10" cols="55" class="textArea"></textarea>
+                                    <textarea rows="10" cols="50" class="textArea"></textarea>
                                 </div>
                             </div>
                         </p-fieldset>
