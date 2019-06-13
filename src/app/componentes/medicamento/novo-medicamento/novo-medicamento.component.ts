@@ -8,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class NovoMedicamentoComponent implements OnInit {
 
   titulo: String = 'Novo Medicamento';
-
   caminho: String = 'v1/medicamento/';
-
   rotaRetorno: String = 'medicamento';
-
+  campos: any [] = [
+    {var: 'descricao', label: 'Apresentação'},
+    {var: 'formaFarmaceuticaDosagem', label: 'Forma Farmaceutica/Dosagem'}
+  ];
   constructor() { }
 
   ngOnInit() {

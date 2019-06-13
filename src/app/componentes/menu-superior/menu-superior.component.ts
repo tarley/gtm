@@ -1,3 +1,4 @@
+import { UsuarioLogado } from './../login/shared/usuario-logado.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../login/shared/auth.service';
 import { MenuItem } from 'primeng/api';
@@ -9,9 +10,6 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuSuperiorComponent implements OnInit {
 
-  usuarioLogado: string = '';
-  msgUsuario: string;
-
   itens = [
     {label: 'Logout', icon: 'fa fa-sign-out', command: () => {
         this.logout();
@@ -21,12 +19,15 @@ export class MenuSuperiorComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.usuarioLogado = this.authService.getUsuarioLogado();
-    this.msgUsuario = `Olá, ${this.usuarioLogado}`;
+  }
+
+  criaMensagem() {
+    const usuarioLogado: UsuarioLogado = this.authService.getUsuarioLogado();
+    return `Olá, ${usuarioLogado ? usuarioLogado.nome : ''}`;
   }
 
   logout() {
-    
+    this.authService.logout();
   }
 
 }

@@ -14,9 +14,11 @@ export class MedicamentoComponent implements OnInit {
   urlDelete = 'v1/medicamento';
 
   colunas: any[] = [
-    {label: 'Descrição/Forma Farmaceutica/Dosagem', var: 'descricao'}
+    {label: 'Descrição', var: 'descricao'},
+    {label: 'Forma Farmaceutica/Dosagem', var: 'formaFarmaceuticaDosagem'}
   ];
 
+  
   medicamento: Medicamento[] = [];
 
   constructor(private router: Router, private medicamentoService: MedicamentoService) { }
