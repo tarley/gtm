@@ -1,3 +1,4 @@
+import { UsuarioLogado } from './usuario-logado.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
 import { Injectable, EventEmitter } from '@angular/core';
@@ -12,13 +13,9 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class AuthService {
 
-  private usuarioAutenticado: boolean = false;
-  private nomeUsuarioLogado: string = 'Usuário';
-
   private urlLogin = environment.urlApi.concat('v1/usuarios/login');
 
-  static statusUsuarioAlterado = new EventEmitter<boolean>();
-  static nomeUsuarioAlterado = new EventEmitter<string>();
+  private usuarioLogado: UsuarioLogado;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -30,13 +27,8 @@ export class AuthService {
     return this.httpClient.post(this.urlLogin, dadosLogin);
   }
 
-  setNomeUsuario(nomeUsuario: string) {
-    AuthService.nomeUsuarioAlterado.emit(nomeUsuario);
-    this.nomeUsuarioLogado = nomeUsuario;
-  }
-
-  getNomeUsuario() {
-    return this.nomeUsuarioLogado;
+  getUsuarioLogado(): UsuarioLogado {
+    return this.getDecodedToken();
   }
 
   logout() {
@@ -52,7 +44,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  decodeToken() {
+  getDecodedToken() {
     return jwt_decode(this.getToken());
   }
 

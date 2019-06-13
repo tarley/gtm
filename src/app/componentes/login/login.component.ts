@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
       this.auth.login(form.value).subscribe((resposta: any) => {
         if(resposta && resposta.auth) {
           this.auth.criaTokenLocalStorage(resposta.token);
-          this.auth.setNomeUsuario(this.auth.decodeToken().nome);
           this.router.navigate(['/home']);
         }
       });
