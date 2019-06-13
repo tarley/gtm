@@ -15,7 +15,7 @@ export class InterceptorToken implements HttpInterceptor {
         if (this.router.url != '/') {
             request = request.clone({
                 setHeaders: {
-                    token: this.getToken()
+                    'x-access-token': this.getToken()
                 }
             });
         }
