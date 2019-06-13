@@ -23,16 +23,11 @@ export class AuthService {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   isUsuarioAutenticado() {
-    return this.usuarioAutenticado;
+    return this.getToken() != null ? true : false;
   }
   
   login(dadosLogin) {
     return this.httpClient.post(this.urlLogin, dadosLogin);
-  }
-
-  setUsuarioAutenticado(isUsuarioAutenticado: boolean) {
-    AuthService.statusUsuarioAlterado.emit(isUsuarioAutenticado);
-    this.usuarioAutenticado = isUsuarioAutenticado;
   }
 
   setNomeUsuario(nomeUsuario: string) {
@@ -46,7 +41,6 @@ export class AuthService {
 
   logout() {
     this.removeTokenLocalStorage();
-    this.setUsuarioAutenticado(false);
     this.router.navigate(['/']);
   }
 

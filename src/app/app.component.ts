@@ -10,15 +10,15 @@ import { AuthService } from './componentes/login/shared/auth.service';
 
 export class AppComponent {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   title = 'gtm';
-  isUsuarioAutenticado: boolean = false;
 
   ngOnInit() {
-    AuthService.statusUsuarioAlterado.subscribe((isUsuarioAutenticado) => {
-      this.isUsuarioAutenticado = isUsuarioAutenticado;
-    });
+  }
+
+  isUsuarioLogado(): boolean {
+    return this.authService.isUsuarioAutenticado();
   }
 
 
