@@ -21,50 +21,73 @@
           <hr>
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Nome:*</label>
-            <input id="nome" type="text" name="nome" pInputText [(ngModel)]="paciente.nome" />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input id="nome" type="text" name="nome" pInputText [(ngModel)]="paciente.nome" />
+            </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>CPF:*</label>
-            <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12" id="cpf"
-              name="cpf">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">CPF</span>
+                  <p-inputMask mask="999.999.999-99" [(ngModel)]="paciente.cpf" placeholder="123.456.789-12" id="cpf"
+                    name="cpf">
+                  </p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Sexo:</label>
-            <p-dropdown [options]="sexo" [(ngModel)]="paciente.sexo" name="sexo" placeholder="Selecione:">
-            </p-dropdown>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-transgender"></i></span>
+                  <p-dropdown [options]="sexo" [(ngModel)]="paciente.sexo" name="sexo" placeholder="Selecione:"></p-dropdown>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Data de Nascimento:*</label>
-            <p-inputMask unmask="true" #data mask="99/99/9999" (focusout)="validarData(data.value)"
-              [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa" id="dataNascimento" name="dataNascimento">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                  <p-inputMask unmask="true" #data mask="99/99/9999" (focusout)="validarData(data.value)"
+                    [(ngModel)]="dataNascimento" placeholder="dd/mm/aaaa" id="dataNascimento" name="dataNascimento">
+                  </p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Profissão:</label>
-            <input id="profissao" type="text" name="profissao" pInputText [(ngModel)]="paciente.profissao" />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-circle"></i></span>
+                  <input id="profissao" type="text" name="profissao" pInputText [(ngModel)]="paciente.profissao" />
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Telefone:*</label>
-            <p-inputMask unmask="true" mask="(99)99999-999?9" [(ngModel)]="paciente.telefone"
-              placeholder="(00)00000-0000" id="telefone" name="telefone"></p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+                  <p-inputMask unmask="true" mask="(99)99999-999?9" [(ngModel)]="paciente.telefone"
+                    placeholder="(00)00000-0000" id="telefone" name="telefone"></p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Anos de Estudo:*</label>
-            <input id="anosEstudo" type="number" min="0" max="35" name="anosEstudo" pInputText
-              [(ngModel)]="paciente.anosEstudo" />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+                  <input id="anosEstudo" type="number" min="0" max="35" name="anosEstudo" pInputText
+                    [(ngModel)]="paciente.anosEstudo" />
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-4 ui-sm-12 tamanhoMinDiv">
             <label>Estado Civil:*</label>
-            <p-dropdown [options]="estadoCivil" [(ngModel)]="paciente.estadoCivil" name="estadoCivil"
-              placeholder="Selecione:"></p-dropdown>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-square"></i></span>
+                  <p-dropdown [options]="estadoCivil" [(ngModel)]="paciente.estadoCivil" name="estadoCivil"
+                    placeholder="Selecione:"></p-dropdown>
+              </div>
           </div>
 
         </fieldset>
@@ -186,22 +209,31 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Peso(Kg):</label>
-            <input id="peso" type="number" min="0" name="peso" (keyup)="calcularIMC()"
-              [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.peso"
-              pInputText />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">KG:</span>
+                  <input id="peso" type="number" min="0" name="peso" (keyup)="calcularIMC()"
+                    [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.peso"
+                    pInputText />
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>Altura(cm):</label>
-            <input id="altura" type="number" min="0" name="altura" (keyup)="calcularIMC()"
-              [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.altura"
-              pInputText />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">CM:</span>
+                  <input id="altura" type="number" min="0" name="altura" (keyup)="calcularIMC()"
+                    [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.altura"
+                    pInputText />
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 ui-sm-12 tamanhoMinDiv">
             <label>IMC:</label>
-            <input id="imc" type="number" min="0" name="imc" readonly="true"
-              [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.imc" pInputText />
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">IMC:</span>
+                  <input id="imc" type="number" min="0" name="imc" readonly="true"
+                    [(ngModel)]="paciente && paciente.dadosAntropometricos && paciente.dadosAntropometricos.imc" pInputText />
+              </div>
           </div>
 
         </fieldset>
@@ -217,54 +249,74 @@
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Acorda:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.acorda" #horaAcorda
-              (focusout)="validarHora(horaAcorda.value, horaAcorda.name)" placeholder="--:--" id="acorda" name="acorda">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.acorda" #horaAcorda
+                    (focusout)="validarHora(horaAcorda.value, horaAcorda.name)" placeholder="--:--" id="acorda" name="acorda">
+                  </p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Café da Manhã:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.cafedaManha"
-              placeholder="--:--" id="cafedaManha" name="cafedaManha" #horaCafeManha
-              (focusout)="validarHora(horaCafeManha.value, horaCafeManha.name)"></p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.cafedaManha"
+                    placeholder="--:--" id="cafedaManha" name="cafedaManha" #horaCafeManha
+                    (focusout)="validarHora(horaCafeManha.value, horaCafeManha.name)"></p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Lanche da Manhã:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaManha"
-              placeholder="--:--" id="lanchedaManha" name="lanchedaManha" #horaLancheManha
-              (focusout)="validarHora(horaLancheManha.value, horaLancheManha.name)"></p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaManha"
+                    placeholder="--:--" id="lanchedaManha" name="lanchedaManha" #horaLancheManha
+                    (focusout)="validarHora(horaLancheManha.value, horaLancheManha.name)"></p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Almoço:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.almoco"
-              placeholder="--:--" id="almoco" name="almoco" #horaAlmoco
-              (focusout)="validarHora(horaAlmoco.value, horaAlmoco.name)">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.almoco"
+                    placeholder="--:--" id="almoco" name="almoco" #horaAlmoco
+                    (focusout)="validarHora(horaAlmoco.value, horaAlmoco.name)">
+                  </p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Lanche da Tarde:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaTarde"
-              placeholder="--:--" id="lanchedaTarde" name="lanchedaTarde" #horaLancheTarde
-              (focusout)="validarHora(horaLancheTarde.value, horaLancheTarde.name)"></p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.lanchedaTarde"
+                    placeholder="--:--" id="lanchedaTarde" name="lanchedaTarde" #horaLancheTarde
+                    (focusout)="validarHora(horaLancheTarde.value, horaLancheTarde.name)"></p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Jantar:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.jantar"
-              placeholder="--:--" id="jantar" name="jantar" #horaJantar
-              (focusout)="validarHora(horaJantar.value, horaJantar.name)">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.jantar"
+                    placeholder="--:--" id="jantar" name="jantar" #horaJantar
+                    (focusout)="validarHora(horaJantar.value, horaJantar.name)">
+                  </p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-4 ui-lg-3 ui-sm-12 tamanhoMinDiv">
             <label>Dorme:</label>
-            <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.dorme"
-              placeholder="--:--" id="dorme" name="dorme" #horaDorme
-              (focusout)="validarHora(horaDorme.value, horaDorme.name)">
-            </p-inputMask>
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                  <p-inputMask mask="99:99" [(ngModel)]="paciente && paciente.rotina && paciente.rotina.dorme"
+                    placeholder="--:--" id="dorme" name="dorme" #horaDorme
+                    (focusout)="validarHora(horaDorme.value, horaDorme.name)"></p-inputMask>
+              </div>
           </div>
 
           <div class="ui-g-12 ui-md-12 ui-lg-12 ui-sm-12">
@@ -277,8 +329,8 @@
       </div>
     </div>
 
-    <button pButton class="botao-acao" type="submit" label="Salvar"></button>
-    <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
+    <button pButton class="botao-acao" type="submit" label="Salvar" icon="fa fa-save"></button>
+    <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()" icon="fa fa-reply"></button>
 
 
     <!-- <p-message *ngIf="form.controls['nome'].hasError('required') && form.controls['nome'].touched" severity="error"
