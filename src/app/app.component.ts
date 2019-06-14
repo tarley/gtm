@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from './componentes/login/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { AuthService } from './componentes/login/shared/auth.service';
 
 export class AppComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   title = 'gtm';
 
@@ -18,6 +19,9 @@ export class AppComponent {
   }
 
   isUsuarioLogado(): boolean {
+    if(this.authService.isUsuarioAutenticado()) {
+      this.router.navigate(['home']);
+    }  
     return this.authService.isUsuarioAutenticado();
   }
 
