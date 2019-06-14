@@ -29,6 +29,7 @@ export class MenuLateralComponent implements OnInit {
 
   ngOnInit() {
     this.restricaoPerfil();
+    this.authService.getUsuarioLogado();
   }
 
   clickItemMenu() {
@@ -36,9 +37,11 @@ export class MenuLateralComponent implements OnInit {
   }
 
   restricaoPerfil(){
-    var perfil = this.authService.getPerfilUsuario();
-   
-    if(perfil == 'Gestor da Instituicao' || perfil == 'Profissional Saude'){
+    var usuario = this.authService.getUsuarioLogado();
+
+    console.log(usuario);
+
+    if(usuario.perfil == 'Gestor da Instituicao' || usuario.perfil == 'Profissional Saude'){
       this.items = [
         {label: 'GTM Teste', items: [
           {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
@@ -51,7 +54,7 @@ export class MenuLateralComponent implements OnInit {
         ]}
       ];
     }else 
-        if(perfil == 'Academico'){
+        if(usuario.perfil == 'Academico'){
           this.items = [
             {label: 'GTM Teste', items: [
               {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
