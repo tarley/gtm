@@ -1,3 +1,5 @@
+import { MensagemUtil } from './../../util/mensagem-util';
+import { MessageServiceUtil } from './../../util/message-service-util.service';
 import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './shared/auth.service';
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private messageService: MessageServiceUtil) { }
 
   ngOnInit() {
   }
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
           this.auth.criaTokenLocalStorage(resposta.token);
           this.router.navigate(['/home']);
         }
-      });
+      }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.LOGIN_INVALIDO)));
     }
   }
 

@@ -16,6 +16,7 @@ export class MensagemUtil {
     public static ATENDIMENTO_FINALIZADO = 'Atendimento Finalizado com Sucesso!';
     public static ERRO_FINALIZAR_ATENDIMENTO = 'Erro ao finalizar atendimento!';
     public static CONF_SENHA_INVALIDA = 'Senha e confirmação não conferem.';
+    public static LOGIN_INVALIDO = 'Usuário ou senha inválidos';
 
     public static criaMensagemSucesso(mensagem: string) {
         return {severity:'success', summary:'Sucesso!', detail: mensagem};
