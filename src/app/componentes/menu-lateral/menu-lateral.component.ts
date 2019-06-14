@@ -29,7 +29,6 @@ export class MenuLateralComponent implements OnInit {
 
   ngOnInit() {
     this.restricaoPerfil();
-    this.authService.getUsuarioLogado();
   }
 
   clickItemMenu() {
@@ -38,8 +37,6 @@ export class MenuLateralComponent implements OnInit {
 
   restricaoPerfil(){
     var usuario = this.authService.getUsuarioLogado();
-
-    console.log(usuario);
 
     if(usuario.perfil == 'Gestor da Instituicao' || usuario.perfil == 'Profissional Saude'){
       this.items = [
