@@ -19,9 +19,6 @@ export class AppComponent {
   }
 
   isUsuarioLogado(): boolean {
-    if(this.authService.isUsuarioAutenticado()) {
-      this.router.navigate(['home']);
-    }  
     return this.authService.isUsuarioAutenticado();
   }
 
