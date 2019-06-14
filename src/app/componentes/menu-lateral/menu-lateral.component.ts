@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../login/shared/auth.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -24,13 +25,41 @@ export class MenuLateralComponent implements OnInit {
     ]}
   ];
   
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.restricaoPerfil();
   }
 
   clickItemMenu() {
     this.display = false;
+  }
+
+  restricaoPerfil(){
+    var perfil = this.authService.getPerfilUsuario();
+   
+    if(perfil == 'Gestor da Instituicao' || perfil == 'Profissional Saude'){
+      this.items = [
+        {label: 'GTM Teste', items: [
+          {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
+          {separator: true},
+          {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
+          {separator: true},
+          {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
+          {separator: true},
+          {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
+        ]}
+      ];
+    }else 
+        if(perfil == 'Academico'){
+          this.items = [
+            {label: 'GTM Teste', items: [
+              {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
+              {separator: true},
+              {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'}
+            ]}
+          ];
+        }
   }
 
 }
