@@ -14,17 +14,28 @@ import { AppComponent } from 'src/app/app.component';
 export class AuthService {
 
   private urlLogin = environment.urlApi.concat('v1/usuarios/login');
-
-  private usuarioLogado: UsuarioLogado;
+  private urlValidacaoToken = environment.urlApi.concat('v1/usuarios/token');
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   isUsuarioAutenticado() {
-    return this.getToken() != null ? true : false;
+    if(this.getToken() != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   login(dadosLogin) {
     return this.httpClient.post(this.urlLogin, dadosLogin);
+  }
+
+  isTokenValido() {
+    this.validaToken().subscribe();
+  }
+
+  validaToken() {
+    return this.httpClient.get(this.urlValidacaoToken);
   }
 
   getUsuarioLogado(): UsuarioLogado {
@@ -33,11 +44,7 @@ export class AuthService {
 
   logout() {
     this.removeTokenLocalStorage();
-    this.router.navigate(['/']);
-  }
-
-  getPerfilUsuario() {
-    return 'Administrador';
+    this.router.navigate(['/login']);
   }
 
   getToken() {

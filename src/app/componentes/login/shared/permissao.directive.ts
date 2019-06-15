@@ -9,7 +9,7 @@ export class HasRoleDirective {
 
 
     @Input() set appHasRole(perfis: string[]) {
-        const perfilLogado = this.authService.getPerfilUsuario();
+        const perfilLogado = this.authService.getUsuarioLogado();
 
         let exibe = false;
 

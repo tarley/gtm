@@ -19,10 +19,10 @@ import { NovoMedicamentoComponent } from './componentes/medicamento/novo-medicam
 
 const routes: Routes = [
   //Rotas Login
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
   //Rotas Home
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
 
   //Rotas Usuário
   { path: 'usuario/novo', component: UsuarioNovoComponent, canActivate: [AuthGuard] },

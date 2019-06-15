@@ -19,8 +19,8 @@ export class InterceptorToken implements HttpInterceptor {
     constructor(private auth: AuthService, private router: Router) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        if (this.router.url != '/') {
+        
+        if (this.router.url != '/login') {
             request = request.clone({
                 setHeaders: {
                     'x-access-token': this.getToken()
