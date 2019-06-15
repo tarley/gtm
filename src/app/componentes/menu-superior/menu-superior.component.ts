@@ -23,7 +23,14 @@ export class MenuSuperiorComponent implements OnInit {
 
   criaMensagem() {
     const usuarioLogado: UsuarioLogado = this.authService.getUsuarioLogado();
-    return `Olá, ${usuarioLogado ? usuarioLogado.nome : ''}`;
+    return `Olá, ${usuarioLogado ? this.formataNome(usuarioLogado.nome) : ''}`;
+  }
+
+  formataNome(nome: string) {
+    if(nome.indexOf(" ") != -1) {
+      return nome.split(" ")[0];
+    }
+    return nome;
   }
 
   logout() {
