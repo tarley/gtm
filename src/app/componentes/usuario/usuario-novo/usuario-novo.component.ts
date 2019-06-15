@@ -10,6 +10,7 @@ import { SelectItem } from 'primeng/api';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { InstituicaoService } from '../../instituicao/shared/instituicao.service';
 import { Instituicao } from '../../instituicao/shared/instituicao.model';
+import { AuthService } from '../../login/shared/auth.service';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -41,10 +42,12 @@ export class UsuarioNovoComponent implements OnInit {
   instituicao: SelectItem[] = [];
 
   constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
-    private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService) { }
+    private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.carregarDadosIniciais();
+    this.carregarPerfil();
     this.route.params.subscribe(params => {
       if(params['id']) {
         const id = params['id'];
@@ -117,4 +120,22 @@ export class UsuarioNovoComponent implements OnInit {
     this.router.navigate(['usuario']);
   }
 
+  carregarPerfil(){
+    var tipoPerfil = this.auth.getUsuarioLogado();
+
+console.log(tipoPerfil);
+
+    if(tipoPerfil.perfil == 'Gestor da Instituicao'){
+      this.perfis = [
+        {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
+        {label: 'Profissional da Saúde', value: 'Profissional Saude'},
+        {label: 'Academico', value: 'Academico'}
+      ];
+    }else if (tipoPerfil.perfil == 'Profissional Saude'){
+      this.perfis = [
+        {label: 'Profissional da Saúde', value: 'Profissional Saude'},
+        {label: 'Academico', value: 'Academico'}
+      ];
+    }
+  }
 }
