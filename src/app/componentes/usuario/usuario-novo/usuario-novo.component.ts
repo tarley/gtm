@@ -1,3 +1,4 @@
+import { PerfilUsuario } from './../../../util/perfil-usuario';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
@@ -123,15 +124,13 @@ export class UsuarioNovoComponent implements OnInit {
   carregarPerfil(){
     var tipoPerfil = this.auth.getUsuarioLogado();
 
-console.log(tipoPerfil);
-
-    if(tipoPerfil.perfil == 'Gestor da Instituicao'){
+    if(tipoPerfil.perfil == PerfilUsuario.GESTOR_INSTITUICAO){
       this.perfis = [
         {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
         {label: 'Profissional da Saúde', value: 'Profissional Saude'},
         {label: 'Academico', value: 'Academico'}
       ];
-    }else if (tipoPerfil.perfil == 'Profissional Saude'){
+    }else if (tipoPerfil.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
       this.perfis = [
         {label: 'Profissional da Saúde', value: 'Profissional Saude'},
         {label: 'Academico', value: 'Academico'}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../login/shared/auth.service';
+import { PerfilUsuario } from 'src/app/util/perfil-usuario';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -37,8 +38,7 @@ export class MenuLateralComponent implements OnInit {
 
   restricaoPerfil(){
     var usuario = this.authService.getUsuarioLogado();
-
-    if(usuario.perfil == 'Gestor da Instituicao' || usuario.perfil == 'Profissional Saude'){
+    if(usuario.perfil == PerfilUsuario.GESTOR_INSTITUICAO || usuario.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
       this.items = [
         {label: 'GTM Teste', items: [
           {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
@@ -51,7 +51,7 @@ export class MenuLateralComponent implements OnInit {
         ]}
       ];
     }else 
-        if(usuario.perfil == 'Academico'){
+        if(usuario.perfil == PerfilUsuario.ACADEMICO){
           this.items = [
             {label: 'GTM Teste', items: [
               {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
