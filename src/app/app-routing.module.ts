@@ -1,3 +1,4 @@
+import { AdministradorGuard } from './guard/administrador.guard';
 import { HomeComponent } from './componentes/home/home.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AtendimentoNovoComponent } from './componentes/atendimento/atendimento-novo/atendimento-novo.component';
@@ -16,6 +17,7 @@ import { InstituicaoComponent } from './componentes/instituicao/instituicao.comp
 import { NovaInstituicaoComponent } from './componentes/instituicao/nova-instituicao/nova-instituicao.component';
 import { MedicamentoComponent } from './componentes/medicamento/medicamento.component';
 import { NovoMedicamentoComponent } from './componentes/medicamento/novo-medicamento/novo-medicamento.component';
+import { ExcetoAcademicoGuard } from './guard/exceto-academico.guard';
 
 const routes: Routes = [
   //Rotas Login
@@ -25,9 +27,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
 
   //Rotas Usuário
-  { path: 'usuario/novo', component: UsuarioNovoComponent, canActivate: [AuthGuard] },
-  { path: 'usuario/:id', component: UsuarioNovoComponent, canActivate: [AuthGuard] },
-  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
+  { path: 'usuario/novo', component: UsuarioNovoComponent, canActivate: [AuthGuard, ExcetoAcademicoGuard] },
+  { path: 'usuario/:id', component: UsuarioNovoComponent, canActivate: [AuthGuard, ExcetoAcademicoGuard] },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard, ExcetoAcademicoGuard] },
 
   //Rotas Paciente
   { path: 'paciente', component: PacienteComponent, canActivate: [AuthGuard] },
@@ -42,12 +44,12 @@ const routes: Routes = [
   { path: 'atendimento/imprimir/:id', component: AtendimentoImprimirComponent, canActivate: [AuthGuard] },
 
   //Telas Instituições
-  {path: 'instituicao', component: InstituicaoComponent, canActivate: [AuthGuard] },
-  {path: 'instituicao/novo', component: NovaInstituicaoComponent, canActivate: [AuthGuard] },
+  {path: 'instituicao', component: InstituicaoComponent, canActivate: [AuthGuard, AdministradorGuard] },
+  {path: 'instituicao/novo', component: NovaInstituicaoComponent, canActivate: [AuthGuard, AdministradorGuard] },
 
     //Telas Medicamento
-    {path: 'medicamento', component: MedicamentoComponent, canActivate: [AuthGuard] },
-    {path: 'medicamento/novo', component: NovoMedicamentoComponent, canActivate: [AuthGuard] }
+    {path: 'medicamento', component: MedicamentoComponent, canActivate: [AuthGuard, ExcetoAcademicoGuard] },
+    {path: 'medicamento/novo', component: NovoMedicamentoComponent, canActivate: [AuthGuard, ExcetoAcademicoGuard] }
 ];
 
 @NgModule({

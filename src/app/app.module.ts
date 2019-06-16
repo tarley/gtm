@@ -31,6 +31,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { InstituicaoModule } from './componentes/instituicao/instituicao.module';
 import { MedicamentoModule } from './componentes/medicamento/medicamento.module';
+import { AdministradorGuard } from './guard/administrador.guard';
+import { ExcetoAcademicoGuard } from './guard/exceto-academico.guard';
 
 registerLocaleData(localePt);
 
@@ -68,6 +70,8 @@ registerLocaleData(localePt);
     MessageService,
     ConfirmationService,
     AuthGuard,
+    AdministradorGuard,
+    ExcetoAcademicoGuard,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorToken, multi: true }
