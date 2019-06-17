@@ -56,6 +56,7 @@ export class UsuarioNovoComponent implements OnInit {
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
           this.usuario.confSenha = usuario.senha;
+          this.confirmacaoSenhaValida = true;
         }, () => {
             this.messageService.add(MensagemUtil.criaMensagemErro('Erro ao buscar usuário!'));
             this.blockUI.stop();
@@ -126,13 +127,11 @@ export class UsuarioNovoComponent implements OnInit {
 
     if(tipoPerfil.perfil == PerfilUsuario.GESTOR_INSTITUICAO){
       this.perfis = [
-        {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
         {label: 'Profissional da Saúde', value: 'Profissional Saude'},
         {label: 'Academico', value: 'Academico'}
       ];
     }else if (tipoPerfil.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
       this.perfis = [
-        {label: 'Profissional da Saúde', value: 'Profissional Saude'},
         {label: 'Academico', value: 'Academico'}
       ];
     }
