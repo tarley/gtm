@@ -12,19 +12,7 @@ export class MenuLateralComponent implements OnInit {
 
   display: boolean = false;
 
-  items: MenuItem[] = [
-    {label: 'GTM Newton', items: [
-      {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
-      {separator: true},
-      {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
-      {separator: true},
-      {label: 'Instituições', icon: 'fa fa-graduation-cap', routerLink: '/instituicao'},
-      {separator: true},
-      {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
-      {separator: true},
-      {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
-    ]}
-  ];
+  items: MenuItem[] = [];
   
   constructor(private authService: AuthService) { }
 
@@ -38,12 +26,15 @@ export class MenuLateralComponent implements OnInit {
 
   restricaoPerfil(){
     var usuario = this.authService.getUsuarioLogado();
-    if(usuario.perfil == PerfilUsuario.GESTOR_INSTITUICAO || usuario.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
+  
+    if(usuario.perfil == PerfilUsuario.ADMINISTRADOR){
       this.items = [
         {label: 'GTM Teste', items: [
           {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
           {separator: true},
           {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
+          {separator: true},
+          {label: 'Instituições', icon: 'fa fa-graduation-cap', routerLink: '/instituicao'},
           {separator: true},
           {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
           {separator: true},
@@ -51,15 +42,28 @@ export class MenuLateralComponent implements OnInit {
         ]}
       ];
     }else 
-        if(usuario.perfil == PerfilUsuario.ACADEMICO){
+        if(usuario.perfil == PerfilUsuario.GESTOR_INSTITUICAO || usuario.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
           this.items = [
             {label: 'GTM Teste', items: [
               {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
               {separator: true},
-              {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'}
+              {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
+              {separator: true},
+              {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
+              {separator: true},
+              {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
             ]}
           ];
-        }
+        }else 
+            if(usuario.perfil == PerfilUsuario.ACADEMICO){
+              this.items = [
+                {label: 'GTM Teste', items: [
+                  {label: 'Pacientes', icon: 'fa fa-user', routerLink: '/paciente'},
+                  {separator: true},
+                  {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'}
+                ]}
+              ];
+            }
   }
 
 }

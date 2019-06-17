@@ -11,7 +11,7 @@ export class AdministradorGuard implements CanActivate {
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const usuarioLogado: UsuarioLogado = this.authService.getUsuarioLogado();
-        if(usuarioLogado && usuarioLogado.perfil == PerfilUsuario.ADMINISTARDOR) {
+        if(usuarioLogado && usuarioLogado.perfil == PerfilUsuario.ADMINISTRADOR) {
             return true;
         }
         return false;

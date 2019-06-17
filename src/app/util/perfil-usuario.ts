@@ -1,6 +1,6 @@
 export enum PerfilUsuario {
-    ADMINISTARDOR = 'Administrador', 
-    GESTOR_INSTITUICAO = 'Gestor da Instituição', 
-    PROFISSIONAL_SAUDE = 'Profissional da Saúde', 
+    ADMINISTRADOR = 'Administrador', 
+    GESTOR_INSTITUICAO = 'Gestor da Instituicao', 
+    PROFISSIONAL_SAUDE = 'Profissional Saude', 
     ACADEMICO = 'Academico'
 }

@@ -33,14 +33,10 @@ export class UsuarioNovoComponent implements OnInit {
 
   formDesabilitado: boolean = true;
 
-  perfis: SelectItem[] = [
-    {label: 'Administrador', value: 'Administrador'},
-    {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
-    {label: 'Profissional da Saúde', value: 'Profissional Saude'},
-    {label: 'Academico', value: 'Academico'}
-  ];
+  perfis: SelectItem[] = [];
 
   instituicao: SelectItem[] = [];
+  au: any;
 
   constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
     private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService,
@@ -125,15 +121,24 @@ export class UsuarioNovoComponent implements OnInit {
   carregarPerfil(){
     var tipoPerfil = this.auth.getUsuarioLogado();
 
-    if(tipoPerfil.perfil == PerfilUsuario.GESTOR_INSTITUICAO){
-      this.perfis = [
-        {label: 'Profissional da Saúde', value: 'Profissional Saude'},
-        {label: 'Academico', value: 'Academico'}
-      ];
-    }else if (tipoPerfil.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
-      this.perfis = [
-        {label: 'Academico', value: 'Academico'}
-      ];
-    }
+    if(tipoPerfil.perfil == PerfilUsuario.ADMINISTRADOR){
+        this.perfis = [
+          {label: 'Administrador', value: 'Administrador'},
+          {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
+          {label: 'Profissional da Saúde', value: 'Profissional Saude'},
+          {label: 'Academico', value: 'Academico'}
+        ];
+    }else
+        if(tipoPerfil.perfil == PerfilUsuario.GESTOR_INSTITUICAO){
+            this.perfis = [
+              {label: 'Profissional da Saúde', value: 'Profissional Saude'},
+              {label: 'Academico', value: 'Academico'}
+            ];
+        }else 
+            if (tipoPerfil.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
+                this.perfis = [
+                  {label: 'Academico', value: 'Academico'}
+                ];
+        }
   }
 }
