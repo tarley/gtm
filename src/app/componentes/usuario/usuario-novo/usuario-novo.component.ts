@@ -105,7 +105,7 @@ export class UsuarioNovoComponent implements OnInit {
   carregarDadosIniciais(){
     this.instituicaoService.buscarTodos().subscribe((instituicao: Instituicao[]) => {
       instituicao.forEach((p) => {
-        this.instituicao.push({ label: p.descricao, value: p.descricao})
+        this.instituicao.push({ label: p.descricao, value: p._id})
       })
     })
   }
