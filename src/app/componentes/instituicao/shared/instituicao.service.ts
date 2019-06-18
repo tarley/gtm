@@ -20,6 +20,10 @@ export class InstituicaoService {
    return this.httpClient.get(this.urlApi); 
   }
 
+  public buscarPorId(id: string) {
+    return this.httpClient.get(`${this.urlApi}/${id}`)
+  }
+
   public excluir(instituicao: Instituicao){
     return this.httpClient.put(`${this.urlApi}/${instituicao._id}`, instituicao);
   }
