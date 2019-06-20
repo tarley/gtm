@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(form.value).subscribe((resposta: any) => {
         if(resposta && resposta.auth) {
           this.auth.criaTokenLocalStorage(resposta.token);
-          this.router.navigate(['/paciente']);
+          this.navegaTelaInicial();
         }
       }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.LOGIN_INVALIDO)));
     }
@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
 
   verificaUsuarioLogado() {
     if(this.auth.isUsuarioAutenticado()) {
-      this.router.navigate(['/paciente']);
+      this.navegaTelaInicial();
     }
+  }
+
+  navegaTelaInicial() {
+    this.router.navigate(['/paciente']);
   }
 
 
