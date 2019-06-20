@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private messageService: MessageServiceUtil) { }
 
   ngOnInit() {
+    this.verificaUsuarioLogado();
   }
 
   OnSubmit(form: NgForm) {
@@ -26,6 +27,12 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/paciente']);
         }
       }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.LOGIN_INVALIDO)));
+    }
+  }
+
+  verificaUsuarioLogado() {
+    if(this.auth.isUsuarioAutenticado()) {
+      this.router.navigate(['/paciente']);
     }
   }
 
