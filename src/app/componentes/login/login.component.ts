@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private messageService: MessageServiceUtil) { }
 
   ngOnInit() {
+    this.verificaUsuarioLogado();
   }
 
   OnSubmit(form: NgForm) {
@@ -23,10 +24,20 @@ export class LoginComponent implements OnInit {
       this.auth.login(form.value).subscribe((resposta: any) => {
         if(resposta && resposta.auth) {
           this.auth.criaTokenLocalStorage(resposta.token);
-          this.router.navigate(['/']);
+          this.navegaTelaInicial();
         }
       }, () => this.messageService.add(MensagemUtil.criaMensagemErro(MensagemUtil.LOGIN_INVALIDO)));
     }
+  }
+
+  verificaUsuarioLogado() {
+    if(this.auth.isUsuarioAutenticado()) {
+      this.navegaTelaInicial();
+    }
+  }
+
+  navegaTelaInicial() {
+    this.router.navigate(['/paciente']);
   }
 
 
