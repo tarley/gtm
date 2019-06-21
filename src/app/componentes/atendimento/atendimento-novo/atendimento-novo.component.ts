@@ -1,3 +1,4 @@
+import { Medicamento } from './../../medicamento/shared/medicamento.model';
 import { MensagemUtil } from 'src/app/util/mensagem-util';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AtendimentoService } from './../shared/atendimento.service';
@@ -11,6 +12,7 @@ import { Constantes } from 'src/app/util/constantes';
 import { formatDate } from '@angular/common';
 import { Observable } from 'rxjs';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MedicamentoService } from '../../medicamento/shared/medicamento.service';
 
 @Component({
   selector: 'app-atendimento-novo',
@@ -35,9 +37,11 @@ export class AtendimentoNovoComponent implements OnInit {
 
   indexFarmacoSelecionada = 0;
 
+  medicamentosCadastrados: string[] = [''];
+  med: string[] = [];
 
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
-    private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil) { }
+    private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil, private medicamentoService: MedicamentoService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -276,6 +280,17 @@ export class AtendimentoNovoComponent implements OnInit {
     this.isEdicao ?
       this.router.navigate(['atendimento']) :
       this.router.navigate(['paciente']);
+  }
+
+  buscarMedicamento(evento){
+    this.medicamentoService.buscarPorNome(evento.query).subscribe((medicamentos: Medicamento[]) => {
+      this.med = [];
+      medicamentos.forEach(medicamento => {
+        let descricaoCompleta = medicamento.descricao + " " + medicamento.formaFarmaceuticaDosagem;
+        this.med.push(descricaoCompleta);
+      });
+      this.medicamentosCadastrados = this.med;
+    })
   }
 
 }
