@@ -1,3 +1,5 @@
+import { PerfilUsuario } from './../../util/perfil-usuario';
+import { AuthService } from './../login/shared/auth.service';
 import { Constantes } from 'src/app/util/constantes';
 import { AtendimentoFiltro } from './shared/atendimento-filtro.model';
 import { ConfirmationService } from 'primeng/api';
@@ -37,7 +39,12 @@ export class AtendimentoComponent implements OnInit {
   ];
 
   botoes: BotaoTabela[] = [
-    { nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle', varControlaVisualizacao: 'finalizado' },
+    { nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle', varControlaVisualizacao: 'finalizado', funcControlaExibicao: () => {
+      if(this.authService.getUsuarioLogado().perfil === PerfilUsuario.ACADEMICO) {
+        return false;
+      }
+      return true;
+    }},
     { nome: 'visualizar', icone: 'fa fa-eye' },
     { nome: 'editar', icone: 'fa fa-pencil', varControlaVisualizacao: 'finalizado' },
   ]
@@ -48,7 +55,7 @@ export class AtendimentoComponent implements OnInit {
   ]
 
   constructor(private atendimentoService: AtendimentoService, private messageService: MessageServiceUtil,
-    private router: Router, private confirmationService: ConfirmationService) { }
+    private router: Router, private confirmationService: ConfirmationService, private authService: AuthService) { }
 
   ngOnInit() {
     this.buscarTodos();
