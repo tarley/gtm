@@ -105,9 +105,21 @@ export class UsuarioNovoComponent implements OnInit {
   carregarDadosIniciais(){
     let usuarioLogado = this.auth.getUsuarioLogado();
 
-    this.instituicaoService.buscarPorId(usuarioLogado.idInstituicao).subscribe((instituicao: any) => {
-      this.instituicao.push({ label: instituicao.descricao, value: instituicao._id})
-    })
+    if(usuarioLogado.perfil == PerfilUsuario.ADMINISTRADOR){
+
+        this.instituicaoService.buscarTodos().subscribe((instituicao: Instituicao[]) => {
+          instituicao.forEach((p) => {
+            this.instituicao.push({ label: p.descricao, value: p._id})
+          })
+        })
+
+    }else{
+
+        this.instituicaoService.buscarPorId(usuarioLogado.idInstituicao).subscribe((instituicao: any) => {
+          this.instituicao.push({ label: instituicao.descricao, value: instituicao._id})
+        })
+
+    }
   }
 
   habilitaFormulario() {
