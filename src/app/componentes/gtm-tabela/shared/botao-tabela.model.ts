@@ -5,7 +5,8 @@ export class BotaoTabela {
         public icone: string,
         public label?: string,
         public varControlaVisualizacao?: string,
-        public inverteVarControlaVisualizacao?: boolean
+        public inverteVarControlaVisualizacao?: boolean,
+        public funcControlaExibicao?: Function,
 
     ) {}
 }
