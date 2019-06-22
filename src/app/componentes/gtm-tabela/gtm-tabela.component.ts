@@ -119,13 +119,13 @@ export class GtmTabelaComponent implements OnInit {
     this.router.navigate([this.rotaImpressao, id]);
   }
 
-  defineDisable(elemento, botao) {
-    if (botao.varControlaVisualizacao) {
-      if (botao.inverteVarControlaVisualizacao) {
-        return !elemento[botao.varControlaVisualizacao];
+  defineDisable(elemento, botao: BotaoTabela) {
+    if (botao.varControlaDisable) {
+      if (botao.inverteVarControlaDisable) {
+        return !elemento[botao.varControlaDisable];
       }
 
-      return elemento[botao.varControlaVisualizacao];
+      return elemento[botao.varControlaDisable];
     } else {
       return false;
     }

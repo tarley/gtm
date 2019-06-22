@@ -39,14 +39,14 @@ export class AtendimentoComponent implements OnInit {
   ];
 
   botoes: BotaoTabela[] = [
-    { nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle', varControlaVisualizacao: 'finalizado', funcControlaExibicao: () => {
+    { nome: 'finalizar', label: 'Finalizar', icone: 'fa fa-check-circle', varControlaDisable: 'finalizado', funcControlaExibicao: () => {
       if(this.authService.getUsuarioLogado().perfil === PerfilUsuario.ACADEMICO) {
         return false;
       }
       return true;
     }},
     { nome: 'visualizar', icone: 'fa fa-eye' },
-    { nome: 'editar', icone: 'fa fa-pencil', varControlaVisualizacao: 'finalizado' },
+    { nome: 'editar', icone: 'fa fa-pencil', varControlaDisable: 'finalizado' },
   ]
 
   criterioBusca = [

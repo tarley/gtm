@@ -32,7 +32,7 @@ export class PacienteComponent implements OnInit {
   ]
 
   botoes: BotaoTabela[] = [
-    { nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus', varControlaVisualizacao: "ativo", inverteVarControlaVisualizacao: true }
+    { nome: 'NovoAtendimento', label: 'Atendimento', icone: 'fa fa-plus', varControlaDisable: "ativo", inverteVarControlaDisable: true }
   ];
 
   pacientes: Paciente[] = [];
