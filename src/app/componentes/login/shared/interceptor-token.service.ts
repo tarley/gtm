@@ -31,8 +31,9 @@ export class InterceptorToken implements HttpInterceptor {
             catchError((err: any) => {
                 if (this.isRespostaTokenInvalido(err)) {
                     this.auth.logout();
+                    return of(err);
                 }
-                return of(err);
+                return next.handle(request);
             })
         );
     }
