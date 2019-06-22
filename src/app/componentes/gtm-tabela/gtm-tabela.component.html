@@ -11,9 +11,11 @@
       <tr>
         <td *ngFor="let coluna of colunas">{{ formataValor(elemento[coluna.var]) }}</td>
         <td *ngIf="existeDelete || existeEdicao || existeImpressao">
-          <button *ngFor="let botao of botoes" [label]="botao.label ? botao.label : null" pButton class="botao-acao" [icon]="botao.icone"
-            [disabled]="defineDisable(elemento, botao)" 
-            (click)="clickBotao(botao, elemento._id)" type="button"></button>
+          <span *ngFor="let botao of botoes">
+            <button *ngIf="exibeBotao(botao)" [label]="botao.label ? botao.label : null" pButton class="botao-acao" [icon]="botao.icone"
+              [disabled]="defineDisable(elemento, botao)" 
+              (click)="clickBotao(botao, elemento._id)" type="button"></button>
+          </span>
           <button *ngIf="existeEdicao" pButton class="botao-acao" icon="fa fa-pencil" (click)="editaItem(elemento._id)"
             type="button"></button>
           <button *ngIf="existeDelete" pButton class="botao-acao" icon="fa fa-trash" (click)="deletaItem(elemento._id)"

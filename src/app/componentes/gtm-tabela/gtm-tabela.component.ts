@@ -99,6 +99,13 @@ export class GtmTabelaComponent implements OnInit {
     }
   }
 
+  exibeBotao(botao: BotaoTabela) {
+    if(botao.funcControlaExibicao) {
+      return botao.funcControlaExibicao();
+    }
+      return true;
+  }
+
   deletaItemTabela(id: string) {
     const index = this.lista.findIndex(elem => elem._id == id);
     this.lista.splice(index, 1);
