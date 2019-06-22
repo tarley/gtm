@@ -25,6 +25,7 @@ import { PanelModule } from 'primeng/panel';
 import { AtendimentoVisualizarComponent } from './atendimento-visualizar/atendimento-visualizar.component';
 import { AtendimentoImprimirAtendimentoComponent } from './atendimento-imprimir/atendimento-imprimir-atendimento/atendimento-imprimir-atendimento.component';
 import { PacienteImprimirPacienteComponent } from '../paciente/paciente-imprimir-paciente/paciente-imprimir-paciente.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [AtendimentoComponent, AtendimentoNovoComponent, AtendimentoImprimirComponent, AtendimentoVisualizarComponent, PacienteImprimirPacienteComponent, AtendimentoImprimirAtendimentoComponent],
@@ -46,7 +47,8 @@ import { PacienteImprimirPacienteComponent } from '../paciente/paciente-imprimir
     CalendarModule,
     NgxPrintModule,
     FieldsetModule,
-    PanelModule
+    PanelModule,
+    AutoCompleteModule
   ],
   providers: [AtendimentoService, PacienteService, PacienteImprimirPacienteComponent, AtendimentoImprimirAtendimentoComponent]
 })
