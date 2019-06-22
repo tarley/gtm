@@ -1,0 +1,33 @@
+<p-card>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <h3>Desenvolvimento</h3>
+      <hr>
+      <div *ngFor="let desenvolvedor of desenvolvedores" class="ui-g-12 ui-md-2">
+        <p-card [header]="desenvolvedor.nome" [style]="{width: '100%'}">
+          <img src="../../../assets/imagensFundadores/perfilVazio.jpg"><br>
+          <span>Função: {{desenvolvedor.funcao}}</span><br>
+          <span>LinkedIn: {{desenvolvedor.linkedin}}</span>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <h3>Testes</h3>
+      <hr>
+      <div *ngFor="let desenvolvedor of desenvolvedores" class="ui-g-12 ui-md-3">
+        <p-card [header]="desenvolvedor.nome" [style]="{width: '100%'}">
+          <p>Informações da pessoa.</p>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <h3>Geral</h3>
+      <hr>
+      <div *ngFor="let desenvolvedor of desenvolvedores" class="ui-g-12 ui-md-3">
+        <p-card [header]="desenvolvedor.nome" [style]="{width: '100%'}">
+          <p>Informações da pessoa.</p>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</p-card>
