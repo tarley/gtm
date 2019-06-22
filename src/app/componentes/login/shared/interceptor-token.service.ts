@@ -9,17 +9,17 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpResponse,
-  } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-  
+} from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 @Injectable()
 export class InterceptorToken implements HttpInterceptor {
 
     constructor(private auth: AuthService, private router: Router) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
         if (this.router.url != '/login') {
             request = request.clone({
                 setHeaders: {
@@ -28,14 +28,13 @@ export class InterceptorToken implements HttpInterceptor {
             });
         }
         return next.handle(request).pipe(
-            map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                    if(this.isRespostaTokenInvalido(event)) {
-                        this.auth.logout();
-                    }
+            catchError((err: any) => {
+                if (this.isRespostaTokenInvalido(err)) {
+                    this.auth.logout();
                 }
-                return event;
-            }));
+                return of(err);
+            })
+        );
     }
 
     private getToken() {
@@ -43,7 +42,7 @@ export class InterceptorToken implements HttpInterceptor {
     }
 
     private isRespostaTokenInvalido(event) {
-        return event.status == 401 ? true : false; 
+        return event.status == 401 ? true : false;
     }
 
 
