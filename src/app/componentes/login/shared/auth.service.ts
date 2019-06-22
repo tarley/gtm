@@ -52,7 +52,11 @@ export class AuthService {
   }
 
   getDecodedToken() {
-    return jwt_decode(this.getToken());
+    try{
+      return jwt_decode(this.getToken());
+    } catch(err) {
+      this.logout();
+    }
   }
 
   criaTokenLocalStorage(token: string) {

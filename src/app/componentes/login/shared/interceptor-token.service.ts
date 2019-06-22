@@ -39,7 +39,7 @@ export class InterceptorToken implements HttpInterceptor {
     }
 
     private getToken() {
-        return this.auth.getToken().length > 0 ? this.auth.getToken() : '';
+        return this.auth.getToken() && this.auth.getToken().length > 0 ? this.auth.getToken() : '';
     }
 
     private isRespostaTokenInvalido(event) {
