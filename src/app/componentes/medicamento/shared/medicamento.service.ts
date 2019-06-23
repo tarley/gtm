@@ -25,7 +25,7 @@ export class MedicamentoService {
     return this.httpClient.put(`${this.urlApi}/${medicamento._id}`, medicamento);
   }
 
-  public buscarPorNome(descricao: Medicamento){
+  public buscarPorNome(descricao){
     return this.httpClient.get(`${this.urlApi}/descricao/${descricao}`)
   }
 }
