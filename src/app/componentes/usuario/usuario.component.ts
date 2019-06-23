@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   colunas: any[] = [
     {var: 'nome', label: 'Nome'}, 
     {var:'email', label: 'E-mail'},
-    {var:'instituicao', label: 'Instituição'}, 
+    {var:'idInstituicao', label: 'Instituição'}, 
     {var:'perfil', label: 'Perfil'},
   ];
   usuarios: Usuario[] = [];
@@ -43,7 +43,8 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
       usuarios.forEach(usuario =>{
         this.instituicaoService.buscarPorId(usuario.idInstituicao).subscribe((instituicao: any) => {
-            usuario.idInstituicao = instituicao.descricao;
+          usuario.idInstituicao = instituicao.descricao;
+
         });
       })
       this.usuarios = usuarios;
