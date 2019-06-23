@@ -40,11 +40,12 @@
             (onChange)="selecionaFarmaco(i, $event.index)">
             <p-tabPanel *ngFor="let farmaco of doenca.farmacoterapias; let j = index"
               [header]="formataTituloFarmaco(farmaco)" [closable]="true">
-              <div class="ui-g">
+              <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-12">
                   <label>Medicamento:*</label>
-                  <input name="medicamento{{i}}{{j}}" type="text" name="medicamento{{i}}"
-                    [(ngModel)]="farmaco.medicamento" pInputText />
+                  <p-autoComplete [(ngModel)]="farmaco.medicamento" [ngModelOptions]="{standalone: true}"
+                    [suggestions]="medicamentosCadastrados" (completeMethod)="buscarMedicamento($event)">
+                  </p-autoComplete>
                 </div>
                 <div class="ui-g-12 ui-md-12">
                   <div class="ui-g-6 ui-md-4">
