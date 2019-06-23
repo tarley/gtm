@@ -7,6 +7,6 @@ export class Usuario {
         public perfil?: string,
         public senha?: string,
         public confSenha?: string,
-        public instituicao?: string
+        public idInstituicao?: string
     ) {}
 }

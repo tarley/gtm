@@ -42,8 +42,8 @@ export class UsuarioComponent implements OnInit {
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
       usuarios.forEach(usuario =>{
-        this.instituicaoService.buscarPorId(usuario.instituicao).subscribe((instituicao: any) => {
-            usuario.instituicao = instituicao.descricao;
+        this.instituicaoService.buscarPorId(usuario.idInstituicao).subscribe((instituicao: any) => {
+            usuario.idInstituicao = instituicao.descricao;
         });
       })
       this.usuarios = usuarios;
