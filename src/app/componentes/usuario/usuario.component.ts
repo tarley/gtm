@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   colunas: any[] = [
     {var: 'nome', label: 'Nome'}, 
     {var:'email', label: 'E-mail'},
-    {var:'idInstituicao', label: 'Instituição'}, 
+    {var:'nomeInstituicao', label: 'Instituição'}, 
     {var:'perfil', label: 'Perfil'},
   ];
   usuarios: Usuario[] = [];
@@ -41,11 +41,14 @@ export class UsuarioComponent implements OnInit {
 
     this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
     this.usuarioService.buscarTodos().subscribe((usuarios: Usuario[]) => {
-      usuarios.forEach(usuario =>{
-        this.instituicaoService.buscarPorId(usuario.idInstituicao).subscribe((instituicao: any) => {
-          usuario.idInstituicao = instituicao.descricao;
-
-        });
+      this.instituicaoService.buscarTodos().subscribe((instituicoes: any[]) => {
+        usuarios.forEach(usuario => {
+          instituicoes.forEach(instituicao => {
+            if(instituicao._id == usuario.idInstituicao) {
+              usuario.nomeInstituicao = instituicao.descricao;
+            }
+          })
+        })
       })
       this.usuarios = usuarios;
     }, () => {
