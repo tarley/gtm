@@ -8,7 +8,7 @@ import { Instituicao } from './instituicao.model';
 })
 export class InstituicaoService {
   
-  urlApi = environment.urlApi.concat('v1/instituicao/');
+  urlApi = environment.urlApi.concat('v1/instituicao');
 
   constructor(private httpClient: HttpClient) { }
 

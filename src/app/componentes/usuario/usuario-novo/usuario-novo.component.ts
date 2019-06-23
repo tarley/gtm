@@ -135,21 +135,21 @@ export class UsuarioNovoComponent implements OnInit {
 
     if(tipoPerfil.perfil == PerfilUsuario.ADMINISTRADOR){
         this.perfis = [
-          {label: 'Administrador', value: 'Administrador'},
-          {label: 'Gestor da Instituição', value: 'Gestor da Instituicao'},
-          {label: 'Profissional da Saúde', value: 'Profissional Saude'},
-          {label: 'Academico', value: 'Academico'}
+          {label: PerfilUsuario.ADMINISTRADOR, value: PerfilUsuario.ADMINISTRADOR},
+          {label: PerfilUsuario.GESTOR_INSTITUICAO, value: PerfilUsuario.GESTOR_INSTITUICAO},
+          {label: PerfilUsuario.PROFISSIONAL_SAUDE, value: PerfilUsuario.PROFISSIONAL_SAUDE},
+          {label: PerfilUsuario.ACADEMICO, value: PerfilUsuario.ACADEMICO}
         ];
     }else
         if(tipoPerfil.perfil == PerfilUsuario.GESTOR_INSTITUICAO){
             this.perfis = [
-              {label: 'Profissional da Saúde', value: 'Profissional Saude'},
-              {label: 'Academico', value: 'Academico'}
+              {label: PerfilUsuario.PROFISSIONAL_SAUDE, value: PerfilUsuario.PROFISSIONAL_SAUDE},
+              {label: PerfilUsuario.ACADEMICO, value: PerfilUsuario.ACADEMICO}
             ];
         }else 
             if (tipoPerfil.perfil == PerfilUsuario.PROFISSIONAL_SAUDE){
                 this.perfis = [
-                  {label: 'Academico', value: 'Academico'}
+                  {label: PerfilUsuario.ACADEMICO, value: PerfilUsuario.ACADEMICO}
                 ];
         }
   }
