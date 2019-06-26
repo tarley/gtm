@@ -12,7 +12,7 @@ export class NovoMedicamentoComponent implements OnInit {
   rotaRetorno: String = 'medicamento';
   campos: any [] = [
     {var: 'descricao', label: 'Apresentação'},
-    {var: 'formaFarmaceuticaDosagem', label: 'Forma Farmaceutica/Dosagem'}
+    {var: 'formaFarmaceuticaDosagem', label: 'Forma Farmacêutica/Dosagem'}
   ];
   constructor() { }
 
