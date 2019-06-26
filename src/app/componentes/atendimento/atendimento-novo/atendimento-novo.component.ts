@@ -37,8 +37,10 @@ export class AtendimentoNovoComponent implements OnInit {
 
   indexFarmacoSelecionada = 0;
 
-  medicamentosCadastrados: string[] = [''];
+  medicamentosCadastrados: string[] = [];
   med: string[] = [];
+
+  testeMedicamento: String = 'teste'
 
   constructor(private atendimentoService: AtendimentoService, private pacienteService: PacienteService,
     private route: ActivatedRoute, private router: Router, private messageService: MessageServiceUtil, private medicamentoService: MedicamentoService) { }

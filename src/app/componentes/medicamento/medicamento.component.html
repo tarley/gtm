@@ -1,7 +1,19 @@
 <p-card [header]="titulo">
   <div class="botoes-topo">
+    <div class="ui-g-12 ui-md-2">
       <button pButton type="button" label="Novo Medicamento" (click)="navigate('medicamento/novo')"></button>
-  </div> 
+    </div>
+  </div>
+
+  <div class="ui-g ui-md-12">
+    <div class="ui-g-6 ui-md-3 camposBusca">
+      <label>Busca</label>
+      <div class="ui-inputgroup">
+        <input name="nome" type="text" [(ngModel)]="nome" placeholder="Digite o nome" pInputText />
+        <button pButton type="button" icon="fa fa-search" (click)="buscarPorNome()"></button>
+      </div>
+    </div>
+  </div>
+
   <app-gtm-tabela [colunas]="colunas" [lista]="medicamento" [urlDelete]="urlDelete"></app-gtm-tabela>
 </p-card>
-
