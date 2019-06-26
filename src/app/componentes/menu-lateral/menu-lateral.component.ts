@@ -36,7 +36,7 @@ export class MenuLateralComponent implements OnInit {
           {separator: true},
           {label: 'Instituições', icon: 'fa fa-graduation-cap', routerLink: '/instituicao'},
           {separator: true},
-          {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
+          {label: 'Medicamentos', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
           {separator: true},
           {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
         ]}
@@ -49,7 +49,7 @@ export class MenuLateralComponent implements OnInit {
               {separator: true},
               {label: 'Atendimentos', icon: 'fa fa-list-alt', routerLink: '/atendimento'},
               {separator: true},
-              {label: 'Medicamento', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
+              {label: 'Medicamentos', icon: 'fa fa-plus-square', routerLink: '/medicamento'},
               {separator: true},
               {label: 'Usuários', icon: 'fa fa-user-circle-o', routerLink: '/usuario'}
             ]}
