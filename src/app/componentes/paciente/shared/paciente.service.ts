@@ -10,7 +10,7 @@ import { concat } from 'rxjs';
 })
 
 export class PacienteService {
-    urlApi = environment.urlApi.concat('v1/pacientes/');
+    urlApi = environment.urlApi.concat('v1/pacientes');
 
     constructor(private httpClient: HttpClient) { }
 
