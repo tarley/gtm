@@ -36,7 +36,8 @@ export class UsuarioNovoComponent implements OnInit {
   perfis: SelectItem[] = [];
 
   instituicao: SelectItem[] = [];
-  au: any;
+
+  isEditando: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
     private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService,
@@ -48,6 +49,7 @@ export class UsuarioNovoComponent implements OnInit {
     this.route.params.subscribe(params => {
       if(params['id']) {
         const id = params['id'];
+        this.isFormularioEdicao();
         this.blockUI.start(MensagemUtil.CARREGANDO_REGISTRO);
         this.usuarioService.buscarPorId(id).subscribe((usuario: Usuario) => {
           this.usuario = usuario;
@@ -124,6 +126,10 @@ export class UsuarioNovoComponent implements OnInit {
 
   habilitaFormulario() {
     this.formDesabilitado = false;
+  }
+
+  isFormularioEdicao() {
+    this.isEditando = true;
   }
 
   voltar() {
