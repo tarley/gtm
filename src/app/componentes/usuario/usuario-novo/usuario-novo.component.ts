@@ -22,7 +22,7 @@ export class UsuarioNovoComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
 
-  titulo = 'Novo Usuário'
+  titulo: string = '';
 
   usuario: Usuario = new Usuario();
   confirmacaoSenhaValida: boolean;
@@ -38,6 +38,7 @@ export class UsuarioNovoComponent implements OnInit {
   instituicao: SelectItem[] = [];
 
   isEditando: boolean = false;
+  isAlterandoSenha: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private messageService: MessageServiceUtil, 
     private router: Router, private route: ActivatedRoute, private instituicaoService: InstituicaoService,
@@ -134,6 +135,20 @@ export class UsuarioNovoComponent implements OnInit {
 
   voltar() {
     this.router.navigate(['usuario']);
+  }
+
+  iniciaAlteracaoSenha() {
+    this.isAlterandoSenha = true;
+  }
+
+  finalizaAlteracaoSenha() {
+    this.isAlterandoSenha = false;
+  }
+
+  defineTitulo() {
+    return this.isEditando ?
+      this.titulo = 'Editar Usuário' :
+      this.titulo = 'Novo Usuário';
   }
 
   carregarPerfil(){

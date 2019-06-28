@@ -17,6 +17,8 @@ export class MensagemUtil {
     public static ERRO_FINALIZAR_ATENDIMENTO = 'Erro ao finalizar atendimento!';
     public static CONF_SENHA_INVALIDA = 'Senha e confirmação não conferem.';
     public static LOGIN_INVALIDO = 'Usuário ou senha inválidos';
+    public static SUCESSO_SENHA_REDEFINIDA = 'Senha redefinida com sucesso!';
+    public static ERRO_REDEFINIR_SENHA = 'Erro ao tentar redefinir senha!';
 
     public static criaMensagemSucesso(mensagem: string) {
         return {severity:'success', summary:'Sucesso!', detail: mensagem};

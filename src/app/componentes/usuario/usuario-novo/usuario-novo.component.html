@@ -1,6 +1,9 @@
-<p-card [header]="titulo">
+<p-card [header]="defineTitulo()">
   <form #form="ngForm" (ngSubmit)="salvar()">
     <div class="ui-g">
+      <div class="ui-g-12 ui-m-12">
+        <button pButton type="button" label="Alterar Senha" (click)="iniciaAlteracaoSenha()" ></button>
+      </div>
       <div class="ui-g-12 ui-md-12">
         <div class="ui-g-6 ui-md-6">
           <label>Nome:</label>
@@ -44,3 +47,5 @@
     <button pButton class="botao-acao" type="button" label="Voltar" (click)="voltar()"></button>
   </form>
 </p-card>
+
+<app-usuario-alteracao-senha [usuario]="usuario" [isVisivel]="isAlterandoSenha" (modalFechado)="finalizaAlteracaoSenha()" ></app-usuario-alteracao-senha>

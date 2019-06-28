@@ -1,0 +1,24 @@
+<p-dialog [header]="defineTitulo()" [(visible)]="isVisivel" [modal]="true" [style]="{'max-width':'30%'}"
+  (onHide)="fechaModal()">
+  <form>
+    <div class="ui-g-12 ui-md-12">
+      <label>Senha Antiga:</label>
+      <input type="password" minlength="5" name="senhaAntiga" [(ngModel)]="form.senhaAntiga" pInputText required />
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+      <label>Nova Senha:</label>
+      <input type="password" minlength="5" name="novaSenha" [(ngModel)]="form.novaSenha" pInputText required />
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+      <label>Confirmação Nova Senha:</label>
+      <input type="password" minlength="5" name="confNovaSenha" [(ngModel)]="form.confNovaSenha" pInputText required />
+    </div>
+  </form>
+
+  <p-footer>
+    <button pButton type="button" label="Salvar" (click)="alterarSenha()"></button>
+    <button pButton type="button" label="Cancelar" (click)="fechaModal()"></button>
+  </p-footer>
+</p-dialog>

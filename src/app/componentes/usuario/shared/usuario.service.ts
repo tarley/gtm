@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  urlApi = environment.urlApi.concat('v1/usuarios/');
+  urlApi = environment.urlApi.concat('v1/usuarios');
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,7 +26,11 @@ export class UsuarioService {
   }
 
   public buscarPorId(id: string) {
-    return this.httpClient.get(`${this.urlApi}${id}`);
+    return this.httpClient.get(`${this.urlApi}/${id}`);
+  }
+
+  public redefinirSenha(dadosSenha, idUsuario: string) {
+    return this.httpClient.put(`${this.urlApi}/${idUsuario}/redefinirSenha`, dadosSenha);
   }
 
 }

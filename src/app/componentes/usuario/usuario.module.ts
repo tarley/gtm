@@ -13,10 +13,12 @@ import { GtmTabelaModule } from '../gtm-tabela/gtm-tabela.module';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { KeyFilterModule } from 'primeng/keyfilter';
-import {PasswordModule} from 'primeng/password';
+import { PasswordModule } from 'primeng/password';
+import { DialogModule } from 'primeng/dialog';
+import { UsuarioAlteracaoSenhaComponent } from './usuario-alteracao-senha/usuario-alteracao-senha.component';
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioNovoComponent],
+  declarations: [UsuarioComponent, UsuarioNovoComponent, UsuarioAlteracaoSenhaComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -30,6 +32,7 @@ import {PasswordModule} from 'primeng/password';
     MessageModule,
     GtmTabelaModule,
     KeyFilterModule,
+    DialogModule,
   ],
   providers: [UsuarioService]
 })
