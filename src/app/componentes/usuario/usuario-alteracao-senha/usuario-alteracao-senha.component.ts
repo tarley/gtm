@@ -31,7 +31,8 @@ export class UsuarioAlteracaoSenhaComponent implements OnInit {
 
   alterarSenha() {
     this.usuarioService.redefinirSenha(this.form, this.usuario._id).subscribe(() => {
-      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.SUCESSO_SENHA_REDEFINIDA))
+      this.messageService.add(MensagemUtil.criaMensagemSucesso(MensagemUtil.SUCESSO_SENHA_REDEFINIDA));
+      this.fechaModal();
     }, (erro) => this.messageService.geraMensagensErro(erro, MensagemUtil.ERRO_REDEFINIR_SENHA));
   }
 
